@@ -73,32 +73,6 @@ const Navigation = () => {
             </a>
           ))}
           <a href="/library.html" className="nav-link" style={{ color: 'var(--nav-text)', textDecoration: 'none', fontWeight: '500' }}>Library</a>
-          <a
-            href="/Rajeh_Youssef_1196323_2025_08_07.pdf"
-            className="nav-link"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              padding: '8px 20px',
-              background: 'var(--glass-bg)',
-              border: '1px solid var(--primary-color)',
-              borderRadius: '20px',
-              color: 'var(--primary-color)',
-              textDecoration: 'none',
-              fontWeight: '500',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'var(--primary-color)';
-              e.target.style.color = 'white';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'var(--glass-bg)';
-              e.target.style.color = 'var(--primary-color)';
-            }}
-          >
-            Transcript
-          </a>
         </div>
       </div>
     </nav>

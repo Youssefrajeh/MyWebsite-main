@@ -49,9 +49,8 @@ Visit my portfolio at: [Youssefrajeh.com]
 
 ## 📞 Contact
 
-- **Email**: [Your Email]
-- **LinkedIn**: [Your LinkedIn]
-- **GitHub**: [Your GitHub]
+- **Email**:youssefrrajeh@gmail.com
+
 
 ---
 

@@ -9,7 +9,7 @@ const Footer = () => {
           <i className="fab fa-linkedin"></i>
         </a>
       </div>
-      <p>&copy; 2025 Youssef Rajeh. All rights reserved.</p>
+      <p>&copy; 2024 Youssef Rajeh. All rights reserved.</p>
     </footer>
   );
 };

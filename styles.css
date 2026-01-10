@@ -2029,16 +2029,82 @@ p {
   }
 
   .skill-container {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 15px !important;
     padding: 0 10px !important;
   }
 
   .skill {
     width: 100% !important;
     max-width: 100% !important;
-    height: 140px !important;
+    height: auto !important;
     margin-bottom: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Transform cards into circles on mobile */
+  .skill .glass-card {
+    width: 75px !important;
+    height: 75px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%) !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+    backdrop-filter: none !important;
+    border: none !important;
+  }
+  
+  /* Remove the white card background completely */
+  .skill .glass-card::after {
+    display: none !important;
+  }
+
+  /* Hide elements not needed in circular design */
+  .skill-icon,
+  .skill-description,
+  .skill-details,
+  .skill-footer,
+  .progress-bg,
+  .progress-fill,
+  .skill-level-row,
+  .skill-header div {
+    display: none !important;
+  }
+  
+  /* But show the h3 skill name */
+  .skill-header {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Show only percentage and name */
+  .skill-name {
+    font-size: 0.55rem !important;
+    color: white !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+    display: block !important;
+  }
+
+  /* Add percentage display */
+  .skill .glass-card::before {
+    content: attr(data-percentage) '%';
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: block;
   }
 
   .circle {
@@ -2059,52 +2125,6 @@ p {
   .skill p {
     font-size: 0.85rem;
     margin-top: 8px;
-  }
-
-  .skill-card {
-    padding: 12px 10px !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 1px solid rgba(59, 130, 246, 0.3) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-    border-radius: 16px !important;
-  }
-
-  .skill-header {
-    margin-bottom: 8px !important;
-    gap: 8px !important;
-  }
-
-  .skill-icon {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .skill-icon img {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .skill-name {
-    font-size: 0.85rem !important;
-    color: #1f2937 !important;
-    font-weight: 700 !important;
-    line-height: 1.2 !important;
-  }
-
-  .skill-description {
-    font-size: 0.7rem !important;
-    margin-bottom: 6px !important;
-    line-height: 1.3 !important;
-    color: #374151 !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .skill-details {
-    margin-bottom: 4px !important;
   }
 
   .skill-level {
@@ -2340,31 +2360,31 @@ p {
   .project-card {
     max-width: 100%;
     height: auto;
-    min-height: 120px;
+    min-height: 100px;
   }
 
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 8px;
     padding: 0 10px;
   }
 
   .project-card-inner {
     height: auto;
-    min-height: 120px;
+    min-height: 100px;
   }
 
   .project-content {
-    padding: 8px 8px 6px 8px;
+    padding: 6px 6px 4px 6px;
     height: auto;
-    min-height: 35px;
+    min-height: 28px;
     position: relative;
-    margin-top: 4px;
+    margin-top: 3px;
   }
 
   .project-content h3 {
-    font-size: 0.75rem;
-    margin-bottom: 3px;
+    font-size: 0.7rem;
+    margin-bottom: 2px;
     color: #2c3e50;
     line-height: 1.1;
   }
@@ -2372,7 +2392,7 @@ p {
   .project-content p {
     opacity: 1;
     transform: translateY(0);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     line-height: 1.2;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -2382,31 +2402,31 @@ p {
   }
 
   .project-image {
-    height: 65px;
+    height: 55px;
   }
 
   .project-logo {
-    top: 6px;
-    right: 6px;
-    width: 28px;
-    height: 28px;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
   }
 
   .project-logo .circle4 .project-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
   }
 
   .project-bottom {
-    padding: 6px 8px 8px;
+    padding: 4px 6px 6px;
     position: relative;
     background: white;
   }
 
   .project-link {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
 }
 

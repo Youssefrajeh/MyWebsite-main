@@ -34,8 +34,18 @@ const HackerText = ({ text, className = '' }) => {
     };
 
     useEffect(() => {
+        // Initial animation on mount
         animate();
-        return () => clearInterval(intervalRef.current);
+        
+        // Set up interval to repeat animation every 5 seconds
+        const repeatInterval = setInterval(() => {
+            animate();
+        }, 5000);
+        
+        return () => {
+            clearInterval(intervalRef.current);
+            clearInterval(repeatInterval);
+        };
     }, [text]);
 
     const handleMouseEnter = () => {

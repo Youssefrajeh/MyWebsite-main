@@ -52,7 +52,7 @@ const Skills = () => {
               transitionTimingFunction: 'ease'
             }}
           >
-            <div className="glass-card" style={{
+            <div className="glass-card" data-percentage={skill.percentage} style={{
               padding: '25px',
               height: '100%',
               display: 'flex',

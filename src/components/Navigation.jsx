@@ -40,27 +40,30 @@ const Navigation = () => {
           display: none;
           flex-direction: column;
           justify-content: space-between;
-          width: 28px;
-          height: 20px;
+          width: 30px !important;
+          height: 22px !important;
           cursor: pointer;
-          z-index: 1001;
+          z-index: 1100 !important;
+          position: relative !important;
         }
         .hamburger span {
-          display: block;
-          height: 3px;
-          width: 100%;
-          background: var(--text-color);
+          display: block !important;
+          height: 3px !important;
+          width: 100% !important;
+          background: var(--text-color) !important;
           border-radius: 3px;
           transition: all 0.3s ease;
+          opacity: 1 !important;
         }
         .hamburger.open span:nth-child(1) {
-          transform: rotate(45deg) translate(6px, 6px);
+          transform: rotate(45deg) translate(9px, 9px) !important;
         }
         .hamburger.open span:nth-child(2) {
-          opacity: 0;
+          opacity: 0 !important;
+          transform: scale(0);
         }
         .hamburger.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(6px, -6px);
+          transform: rotate(-45deg) translate(9px, -9px) !important;
         }
         .mobile-menu {
           display: none;

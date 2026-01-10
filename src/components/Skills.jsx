@@ -47,7 +47,9 @@ const Skills = () => {
               transitionDelay: `${index * 50}ms`,
               opacity: animateItems ? 1 : 0,
               transform: animateItems ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'all 0.5s ease'
+              transitionProperty: 'all',
+              transitionDuration: '0.5s',
+              transitionTimingFunction: 'ease'
             }}
           >
             <div className="glass-card" style={{

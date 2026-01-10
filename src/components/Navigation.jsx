@@ -89,10 +89,12 @@ const Navigation = () => {
           background: rgba(0, 0, 0, 0.5);
           z-index: 999;
           opacity: 0;
+          pointer-events: none;
           transition: opacity 0.3s ease;
         }
         .mobile-backdrop.open {
           opacity: 1;
+          pointer-events: auto;
         }
         .mobile-nav-link {
           display: block;

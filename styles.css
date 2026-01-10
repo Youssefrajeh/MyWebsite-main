@@ -42,7 +42,11 @@
   --gradient-primary: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
   --gradient-secondary: linear-gradient(135deg, #f59e0b 0%, #10b981 100%);
   --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  --gradient-glow: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  --gradient-glow: radial-gradient(
+    circle at center,
+    rgba(99, 102, 241, 0.15) 0%,
+    transparent 70%
+  );
   --gradient-text: linear-gradient(to right, #8b5cf6, #ec4899, #6366f1);
 
   /* Transitions */
@@ -52,8 +56,10 @@
 
   /* Shadows & Glows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.2);
   --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
 
@@ -75,7 +81,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Poppins', sans-serif;
+  font-family: "Inter", "Poppins", sans-serif;
   /* Modern sans-serif stack */
   line-height: 1.7;
   color: var(--text-color);
@@ -104,7 +110,7 @@ body {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -336,7 +342,6 @@ p {
 }
 
 @keyframes continuousType {
-
   0%,
   90%,
   100% {
@@ -570,7 +575,6 @@ p {
 
 /* Ensure no blinking cursor animation */
 @keyframes blink {
-
   0%,
   100% {
     opacity: 0;
@@ -686,21 +690,31 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 15% 25%,
+  background: radial-gradient(
+      circle at 15% 25%,
       rgba(59, 130, 246, 0.15) 0%,
-      transparent 40%),
-    radial-gradient(circle at 85% 75%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
       rgba(139, 92, 246, 0.15) 0%,
-      transparent 40%),
-    radial-gradient(circle at 45% 15%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 45% 15%,
       rgba(245, 158, 11, 0.1) 0%,
-      transparent 35%),
-    radial-gradient(circle at 75% 35%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 75% 35%,
       rgba(59, 130, 246, 0.08) 0%,
-      transparent 30%),
-    radial-gradient(circle at 25% 85%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 25% 85%,
       rgba(139, 92, 246, 0.08) 0%,
-      transparent 30%);
+      transparent 30%
+    );
   animation: neuralPulse 12s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -714,18 +728,24 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(45deg,
+  background-image: linear-gradient(
+      45deg,
       transparent 45%,
       rgba(59, 130, 246, 0.1) 50%,
-      transparent 55%),
-    linear-gradient(-45deg,
+      transparent 55%
+    ),
+    linear-gradient(
+      -45deg,
       transparent 45%,
       rgba(139, 92, 246, 0.1) 50%,
-      transparent 55%),
-    linear-gradient(90deg,
+      transparent 55%
+    ),
+    linear-gradient(
+      90deg,
       transparent 48%,
       rgba(245, 158, 11, 0.08) 50%,
-      transparent 52%);
+      transparent 52%
+    );
   background-size: 200px 200px, 180px 180px, 250px 250px;
   animation: neuralFlow 20s linear infinite;
   pointer-events: none;
@@ -736,10 +756,12 @@ p {
 .skills .section-title {
   font-size: 3.5rem;
   margin-bottom: 30px;
-  background: linear-gradient(135deg,
-      rgba(59, 130, 246, 1) 0%,
-      rgba(139, 92, 246, 1) 50%,
-      rgba(245, 158, 11, 1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 1) 0%,
+    rgba(139, 92, 246, 1) 50%,
+    rgba(245, 158, 11, 1) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -759,18 +781,19 @@ p {
   transform: translateX(-50%);
   width: 120px;
   height: 3px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(59, 130, 246, 0.8) 25%,
-      rgba(139, 92, 246, 0.8) 50%,
-      rgba(245, 158, 11, 0.8) 75%,
-      transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(59, 130, 246, 0.8) 25%,
+    rgba(139, 92, 246, 0.8) 50%,
+    rgba(245, 158, 11, 0.8) 75%,
+    transparent 100%
+  );
   border-radius: 2px;
   animation: titleUnderline 3s ease-in-out infinite;
 }
 
 @keyframes titlePulse {
-
   0%,
   100% {
     filter: brightness(1);
@@ -784,7 +807,6 @@ p {
 }
 
 @keyframes titleUnderline {
-
   0%,
   100% {
     opacity: 0.6;
@@ -1111,7 +1133,6 @@ p {
 
 /* Background Neural Pulse */
 @keyframes neuralPulse {
-
   0%,
   100% {
     opacity: 0.8;
@@ -1186,7 +1207,6 @@ p {
 }
 
 @keyframes organicFloat {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -1437,9 +1457,11 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to top,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
 }
 
 .project-links {
@@ -1817,7 +1839,6 @@ p {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-
   .nav-content,
   .project-grid,
   .contact-container {
@@ -2539,7 +2560,6 @@ p {
 
 /* Add floating animation keyframes */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -2551,7 +2571,6 @@ p {
 }
 
 @keyframes floatReverse {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -2613,9 +2632,11 @@ p {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg,
-      var(--primary-color),
-      var(--secondary-color));
+  background: linear-gradient(
+    180deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   opacity: 0;
   transition: all 0.4s ease;
   transform: scaleY(0);
@@ -2629,9 +2650,11 @@ p {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle,
-      rgba(59, 130, 246, 0.05) 0%,
-      transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.05) 0%,
+    transparent 70%
+  );
   opacity: 0;
   transition: all 0.6s ease;
   transform: scale(0);
@@ -2964,9 +2987,11 @@ section {
     bottom: 50px !important;
     left: 0 !important;
     right: 0 !important;
-    background: linear-gradient(to top,
-        rgba(0, 0, 0, 0.8) 0%,
-        transparent 100%) !important;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      transparent 100%
+    ) !important;
     z-index: 5 !important;
     margin-top: 15px !important;
   }
@@ -3135,10 +3160,12 @@ section {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(240, 90, 40, 0.1),
-        transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(240, 90, 40, 0.1),
+      transparent
+    );
     transition: left 0.5s ease;
   }
 
@@ -3368,7 +3395,6 @@ section {
 }
 
 @media (min-width: 768px) {
-
   .mobile-nav,
   .mobile-menu-overlay {
     display: none !important;
@@ -3752,7 +3778,6 @@ section {
 }
 
 @media screen and (max-width: 600px) {
-
   .skill,
   .skill-card {
     height: 90px !important;
@@ -3812,7 +3837,6 @@ section {
 
 /* General mobile icon improvements */
 @media (max-width: 768px) {
-
   /* Ensure all icons have proper touch targets */
   .nav-link,
   .fab-item,
@@ -4187,4 +4211,177 @@ section {
   }
 
   /* Add mobile menu styles here if needed */
+}
+
+/* ========================================
+   CRITICAL MOBILE INTERACTION FIXES
+   ======================================== */
+
+/* Fix skills category buttons on mobile */
+@media (max-width: 768px) {
+  .skills-categories {
+    position: relative;
+    z-index: 100 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .category-filter {
+    position: relative;
+    z-index: 101 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+    touch-action: manipulation;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+  }
+
+  .category-filter:active {
+    transform: scale(0.97);
+    background: var(--gradient-primary) !important;
+    color: white !important;
+  }
+
+  /* Fix project filter buttons on mobile */
+  .project-filters {
+    position: relative;
+    z-index: 100 !important;
+  }
+
+  .filter-btn {
+    position: relative;
+    z-index: 101 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+    touch-action: manipulation;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .filter-btn:active {
+    transform: scale(0.97);
+    background: var(--primary-color) !important;
+    color: white !important;
+  }
+
+  /* Fix contact form on mobile */
+  #contact {
+    position: relative;
+    z-index: 10;
+  }
+
+  #contact form,
+  #contact input,
+  #contact textarea,
+  #contact button {
+    position: relative;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+  }
+
+  #contact input,
+  #contact textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    touch-action: manipulation;
+  }
+
+  #contact button[type="submit"] {
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+    touch-action: manipulation;
+    min-height: 50px;
+    cursor: pointer !important;
+  }
+
+  #contact button[type="submit"]:active {
+    transform: scale(0.98);
+  }
+
+  /* Fix contact info links on mobile */
+  #contact a {
+    position: relative;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+    touch-action: manipulation;
+    display: inline-block;
+    min-height: 44px;
+    min-width: 44px;
+    line-height: 44px;
+  }
+
+  #contact a:active {
+    color: var(--primary-color) !important;
+    transform: scale(0.98);
+  }
+
+  /* Ensure contact info cards are clickable */
+  #contact > div > div > div:last-child > div {
+    position: relative;
+    z-index: 15 !important;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  #contact > div > div > div:last-child > div:active {
+    transform: scale(0.98);
+    background: rgba(99, 102, 241, 0.05);
+  }
+
+  /* Make entire contact info row clickable */
+  #contact > div > div > div:last-child > div a {
+    position: relative;
+    z-index: 25 !important;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Skill cards interaction fix */
+  .skill-container {
+    position: relative;
+    z-index: 10 !important;
+  }
+
+  .skill,
+  .skill-card {
+    position: relative;
+    z-index: 11 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Project cards interaction fix */
+  .project-grid {
+    position: relative;
+    z-index: 10 !important;
+  }
+
+  .glass-card,
+  .project-card {
+    position: relative;
+    z-index: 11 !important;
+    pointer-events: auto !important;
+  }
+
+  .view-project-btn {
+    position: relative;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.3);
+    touch-action: manipulation;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .view-project-btn:active {
+    transform: scale(0.97);
+  }
 }

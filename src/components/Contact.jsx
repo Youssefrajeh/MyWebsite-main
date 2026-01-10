@@ -527,8 +527,11 @@ const Contact = () => {
                 label: "Location",
               },
             ].map((item, index) => (
-              <div
+              <a
                 key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   background: "white",
                   padding: "20px",
@@ -538,6 +541,23 @@ const Contact = () => {
                   gap: "20px",
                   boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
                   border: "1px solid #e2e8f0",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  minHeight: "60px",
+                  WebkitTapHighlightColor: "rgba(99, 102, 241, 0.3)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 16px rgba(99, 102, 241, 0.15)";
+                  e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 6px rgba(0,0,0,0.05)";
+                  e.currentTarget.style.borderColor = "#e2e8f0";
                 }}
               >
                 <div
@@ -552,11 +572,12 @@ const Contact = () => {
                     justifyContent: "center",
                     color: "white",
                     fontSize: "1.2rem",
+                    flexShrink: 0,
                   }}
                 >
                   <i className={item.icon}></i>
                 </div>
-                <div style={{ textAlign: "left" }}>
+                <div style={{ textAlign: "left", flex: 1 }}>
                   <h4
                     style={{
                       color: "#64748b",
@@ -567,21 +588,17 @@ const Contact = () => {
                   >
                     {item.label}
                   </h4>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span
                     style={{
                       color: "#1e293b",
-                      textDecoration: "none",
                       fontSize: "1rem",
                       fontWeight: "600",
                     }}
                   >
                     {item.text}
-                  </a>
+                  </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

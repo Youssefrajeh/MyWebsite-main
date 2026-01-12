@@ -59,19 +59,21 @@ const Contact = () => {
 
   const inputStyle = {
     width: "100%",
-    padding: "15px",
+    padding: "12px",
     marginBottom: "20px",
-    border: "2px solid #e2e8f0",
-    borderRadius: "12px",
+    border: "1px solid #2d2d44",
+    borderRadius: "4px",
     fontSize: "1rem",
-    transition: "all 0.3s ease",
+    transition: "border-color 0.2s ease",
     outline: "none",
     boxSizing: "border-box",
+    background: "#16213e",
+    color: "#e8e8e8",
   };
 
   const inputFocusStyle = {
-    borderColor: "#6366f1",
-    boxShadow: "0 0 0 4px rgba(99, 102, 241, 0.1)",
+    borderColor: "#4a90e2",
+    boxShadow: "none",
   };
 
   return (
@@ -79,7 +81,7 @@ const Contact = () => {
       id="contact"
       style={{
         padding: "100px 20px",
-        background: "#f8fafc",
+        background: "#16213e",
         minHeight: "600px",
         position: "relative",
       }}
@@ -347,10 +349,8 @@ const Contact = () => {
           style={{
             fontSize: "3rem",
             marginBottom: "60px",
-            background: "linear-gradient(to right, #8b5cf6, #ec4899, #6366f1)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontWeight: "800",
+            color: "#e8e8e8",
+            fontWeight: "700",
           }}
         >
           Get In Touch
@@ -367,11 +367,11 @@ const Contact = () => {
           {/* Contact Form */}
           <div
             style={{
-              background: "white",
+              background: "#0f3460",
               padding: "40px",
-              borderRadius: "20px",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-              border: "1px solid #e2e8f0",
+              borderRadius: "8px",
+              boxShadow: "none",
+              border: "1px solid #2d2d44",
             }}
           >
             <form onSubmit={handleSubmit}>
@@ -431,19 +431,16 @@ const Contact = () => {
                   padding: "18px 30px",
                   background:
                     status === "submitting"
-                      ? "linear-gradient(135deg, #94a3b8 0%, #64748b 100%)"
-                      : "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                      ? "#64748b"
+                      : "#4a90e2",
                   color: "white",
                   border: "none",
-                  borderRadius: "12px",
+                  borderRadius: "4px",
                   fontSize: "1.1rem",
-                  fontWeight: "700",
+                  fontWeight: "600",
                   cursor: status === "submitting" ? "not-allowed" : "pointer",
-                  boxShadow:
-                    status === "submitting"
-                      ? "none"
-                      : "0 10px 30px rgba(99, 102, 241, 0.4)",
-                  transition: "all 0.3s ease",
+                  boxShadow: "none",
+                  transition: "background-color 0.2s ease",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -533,31 +530,25 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  background: "white",
+                  background: "#0f3460",
                   padding: "20px",
-                  borderRadius: "15px",
+                  borderRadius: "4px",
                   display: "flex",
                   alignItems: "center",
                   gap: "20px",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-                  border: "1px solid #e2e8f0",
+                  boxShadow: "none",
+                  border: "1px solid #2d2d44",
                   textDecoration: "none",
                   cursor: "pointer",
-                  transition: "all 0.3s ease",
+                  transition: "border-color 0.2s ease",
                   minHeight: "60px",
-                  WebkitTapHighlightColor: "rgba(99, 102, 241, 0.3)",
+                  WebkitTapHighlightColor: "transparent",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 16px rgba(99, 102, 241, 0.15)";
-                  e.currentTarget.style.borderColor = "rgba(99, 102, 241, 0.3)";
+                  e.currentTarget.style.borderColor = "#4a90e2";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 6px rgba(0,0,0,0.05)";
-                  e.currentTarget.style.borderColor = "#e2e8f0";
+                  e.currentTarget.style.borderColor = "#2d2d44";
                 }}
               >
                 <div
@@ -565,8 +556,7 @@ const Contact = () => {
                     width: "50px",
                     height: "50px",
                     borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #6366f1 0%, #ec4899 100%)",
+                    background: "#4a90e2",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -580,7 +570,7 @@ const Contact = () => {
                 <div style={{ textAlign: "left", flex: 1 }}>
                   <h4
                     style={{
-                      color: "#64748b",
+                      color: "#a0a0a0",
                       fontSize: "0.9rem",
                       marginBottom: "5px",
                       fontWeight: "500",
@@ -590,7 +580,7 @@ const Contact = () => {
                   </h4>
                   <span
                     style={{
-                      color: "#1e293b",
+                      color: "#e8e8e8",
                       fontSize: "1rem",
                       fontWeight: "600",
                     }}

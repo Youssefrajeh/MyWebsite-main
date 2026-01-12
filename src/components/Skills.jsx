@@ -27,9 +27,9 @@ const Skills = () => {
             className={`category-filter ${activeCategory === category.id ? 'active' : ''}`}
             onClick={() => setActiveCategory(category.id)}
             style={{
-              background: activeCategory === category.id ? 'var(--gradient-primary)' : 'var(--glass-bg)',
-              border: activeCategory === category.id ? 'none' : '1px solid rgba(255,255,255,0.1)',
-              color: activeCategory === category.id ? 'white' : 'var(--text-muted)'
+              background: activeCategory === category.id ? '#4a90e2' : '#0f3460',
+              border: activeCategory === category.id ? 'none' : '1px solid #2d2d44',
+              color: activeCategory === category.id ? 'white' : '#a0a0a0'
             }}
           >
             {category.name}
@@ -65,7 +65,7 @@ const Skills = () => {
                 <div className="skill-icon" style={{
                   width: '50px',
                   height: '50px',
-                  background: 'rgba(255,255,255,0.05)',
+                  background: '#1a1a2e',
                   borderRadius: '12px',
                   display: 'flex',
                   alignItems: 'center',
@@ -86,11 +86,11 @@ const Skills = () => {
                   <span style={{ color: 'var(--primary-color)', fontWeight: '500' }}>{skill.level}</span>
                   <span style={{ color: 'var(--text-light)' }}>{skill.percentage}%</span>
                 </div>
-                <div className="progress-bg" style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', overflow: 'hidden' }}>
+                <div className="progress-bg" style={{ width: '100%', height: '6px', background: '#1a1a2e', borderRadius: '3px', overflow: 'hidden' }}>
                   <div className="progress-fill" style={{
                     width: `${skill.percentage}%`,
                     height: '100%',
-                    background: 'var(--gradient-primary)',
+                    background: '#4a90e2',
                     borderRadius: '3px'
                   }}></div>
                 </div>

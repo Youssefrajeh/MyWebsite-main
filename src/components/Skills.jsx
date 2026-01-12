@@ -17,7 +17,12 @@ const Skills = () => {
 
   return (
     <section id="skills" className="skills">
-      <h2 className="section-title">Skills & Expertise</h2>
+      <h2 className="section-title" style={{ 
+        color: 'var(--text-color)',
+        background: 'none',
+        WebkitBackgroundClip: 'unset',
+        WebkitTextFillColor: 'unset'
+      }}>Skills & Expertise</h2>
 
       {/* Skills Categories Filter */}
       <div className="skills-categories">

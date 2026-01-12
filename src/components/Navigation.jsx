@@ -41,7 +41,7 @@ const Navigation = () => {
           flex-direction: column;
           justify-content: space-between;
           width: 30px !important;
-          height: 22px !important;
+          height: 28px !important;
           cursor: pointer;
           z-index: 1100 !important;
           position: relative !important;

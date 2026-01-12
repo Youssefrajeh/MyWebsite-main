@@ -2006,10 +2006,58 @@ p {
     text-align: center;
   }
 
+  /* Experience Section Mobile Fixes */
+  .experience-list {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    list-style: none !important;
+  }
+
+  .experience-list-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+    margin-bottom: 8px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-indent: 0 !important;
+    list-style: none !important;
+  }
+
+  .experience-list-item span:not(.bullet) {
+    color: #1e293b !important;
+    text-align: left !important;
+    font-size: 0.75rem !important;
+    line-height: 1.3 !important;
+    flex: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .experience-list-item .bullet {
+    color: var(--primary-color) !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    font-size: 0.9rem !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    display: inline-block !important;
+  }
+
+  .experience-card {
+    background: white !important;
+    padding: 15px !important;
+  }
+
   .skill-container {
     grid-template-columns: repeat(4, 1fr) !important;
     gap: 15px !important;
     padding: 0 10px !important;
+    background: transparent !important;
+    background-color: transparent !important;
   }
 
   .skill {
@@ -2020,30 +2068,50 @@ p {
     background: none !important;
     box-shadow: none !important;
     border: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  /* Transform cards into circles on mobile */
+  .skill.animate {
+    background: none !important;
+  }
+
+  /* Transform cards into hexagons on mobile */
   .skill .glass-card {
-    width: 75px !important;
-    height: 75px !important;
-    border-radius: 50% !important;
-    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%) !important;
-    padding: 8px !important;
+    width: 85px !important;
+    height: 98px !important;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
+    background: #4a90e2 !important;
+    background-color: #4a90e2 !important;
+    padding: 12px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+    box-shadow: none !important;
     backdrop-filter: none !important;
     border: none !important;
+    position: relative !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
   }
 
-  /* Remove the white card background completely */
+  /* Remove any pseudo-element backgrounds */
+  .skill .glass-card::after,
+  .skill .glass-card::before {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide the ::after completely */
   .skill .glass-card::after {
     display: none !important;
   }
 
-  /* Hide elements not needed in circular design */
+  /* Hide elements not needed in hexagon design */
   .skill-icon,
   .skill-description,
   .skill-details,
@@ -2064,25 +2132,130 @@ p {
 
   /* Show only percentage and name */
   .skill-name {
-    font-size: 0.55rem !important;
+    font-size: 0.5rem !important;
     color: white !important;
     font-weight: 700 !important;
     text-align: center !important;
-    line-height: 1.05 !important;
+    line-height: 1.1 !important;
     margin: 0 !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
     display: block !important;
   }
 
-  /* Add percentage display */
+  /* Add percentage display - override the ::before we just hid */
   .skill .glass-card::before {
-    content: attr(data-percentage) "%";
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 2px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: block;
+    content: attr(data-percentage) "%" !important;
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    color: white !important;
+    margin-bottom: 4px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    display: block !important;
+    background: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Project Cards as Hexagons on Mobile */
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+    padding: 0 20px !important;
+  }
+
+  .project-grid .glass-card {
+    width: 140px !important;
+    height: 161px !important;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%) !important;
+    background: #d35400 !important;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    margin: 0 auto !important;
+  }
+
+  .project-grid .glass-card:hover,
+  .project-grid .glass-card:active {
+    transform: none !important;
+  }
+
+  /* Show project images clipped to hexagon */
+  .project-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .project-image {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+
+  .project-overlay {
+    display: flex !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)) !important;
+    opacity: 1 !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .project-overlay p {
+    display: none !important;
+  }
+
+  /* Make the entire hexagon clickable */
+  .view-project-btn {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent !important;
+    color: transparent !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+  }
+
+  /* Show only project title */
+  .project-overlay h3 {
+    display: block !important;
+    font-size: 1.1rem !important;
+    color: white !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
   }
 
   .circle {

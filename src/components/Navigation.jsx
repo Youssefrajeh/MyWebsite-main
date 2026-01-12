@@ -183,7 +183,6 @@ const Navigation = () => {
                 {item}
               </a>
             ))}
-            <a href="/library.html" className="nav-link" style={{ color: 'var(--nav-text)', textDecoration: 'none', fontWeight: '500' }}>Library</a>
           </div>
 
           {/* Hamburger Button */}
@@ -216,17 +215,9 @@ const Navigation = () => {
             {item}
           </a>
         ))}
-        <a 
-          href="/library.html" 
-          className="mobile-nav-link"
-          onClick={handleLinkClick}
-        >
-          Library
-        </a>
       </div>
     </>
   );
 };
 
 export default Navigation;
-

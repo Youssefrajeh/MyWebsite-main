@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const Hero = () => {
   return (
-    <section id="home" className="hero" style={{ background: 'var(--section-bg)' }}>
+    <section id="home" className="hero" style={{ background: 'var(--dark-color)' }}>
       <div className="hero-content glass-panel" style={{
         padding: '4rem',
         borderRadius: '30px',

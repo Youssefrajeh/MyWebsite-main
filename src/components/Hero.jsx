@@ -3,31 +3,24 @@ import { useEffect } from 'react';
 const Hero = () => {
   return (
     <section id="home" className="hero" style={{ background: 'var(--dark-color)' }}>
-      <div className="hero-content glass-panel" style={{
+      <div className="hero-content" style={{
         padding: '4rem',
-        borderRadius: '30px',
         maxWidth: '1000px',
-        background: 'rgba(255, 255, 255, 0.6)',
-        backdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255, 255, 255, 0.8)',
-        boxShadow: '0 20px 50px rgba(0,0,0,0.05)'
+        textAlign: 'center'
       }}>
-        <h1 className="section-title" style={{
+        <h1 style={{
           marginBottom: '1.5rem',
           fontSize: '4.5rem',
-          background: 'linear-gradient(135deg, #1e293b 0%, #475569 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          letterSpacing: '-0.03em'
+          color: '#ffffff',
+          letterSpacing: '-0.03em',
+          fontWeight: 700
         }}>
           Welcome to my portfolio
         </h1>
         <div className="subtitle-container" style={{ marginBottom: '2.5rem' }}>
           <p className="hero-subtitle" style={{
             fontSize: '3rem',
-            background: 'var(--gradient-text)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: 'var(--primary-color)',
             fontWeight: 'bold',
             margin: 0
           }}>
@@ -49,7 +42,9 @@ const Hero = () => {
             borderRadius: '50px',
             transition: 'all 0.3s ease',
             transform: 'translateY(0)',
-            display: 'inline-block'
+            display: 'inline-block',
+            color: '#ffffff',
+            textDecoration: 'none'
           }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-3px)';
@@ -71,7 +66,8 @@ const Hero = () => {
             border: '2px solid var(--primary-color)',
             transition: 'all 0.3s ease',
             transform: 'translateY(0)',
-            display: 'inline-block'
+            display: 'inline-block',
+            textDecoration: 'none'
           }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-3px)';

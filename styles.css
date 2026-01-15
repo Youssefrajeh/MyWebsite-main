@@ -1985,11 +1985,12 @@ p {
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 2rem !important;
   }
 
-  .hero-content p {
-    font-size: 1rem;
+  .hero-content p,
+  .hero-subtitle {
+    font-size: 1.5rem !important;
   }
 
   .typing-text {

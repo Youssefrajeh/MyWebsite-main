@@ -143,8 +143,8 @@ const Navigation = () => {
           border-left: 1px solid rgba(255, 255, 255, 0.1);
           display: flex;
           flex-direction: column;
-          padding: 100px 40px;
-          gap: 20px;
+          padding: 80px 30px;
+          gap: 15px;
           transition: all 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
           z-index: 1050;
           box-shadow: -10px 0 30px rgba(0,0,0,0.3);
@@ -153,14 +153,14 @@ const Navigation = () => {
         .mobile-menu.open { right: 0; }
 
         .mobile-link {
-          font-size: 1.1rem;
-          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.7);
           text-decoration: none;
           font-weight: 500;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.05em;
           transition: all 0.3s ease;
-          padding: 10px 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 8px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .mobile-link:hover, .mobile-link.active {
@@ -186,15 +186,16 @@ const Navigation = () => {
         }
 
         .mobile-feedback-btn {
-          margin-top: 20px;
+          margin-top: 15px;
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.2);
           backdrop-filter: blur(10px);
           color: #fff;
-          padding: 15px;
-          border-radius: 12px;
+          padding: 12px;
+          border-radius: 50px;
           text-align: center;
           font-weight: 600;
+          font-size: 0.85rem;
           text-decoration: none;
           transition: all 0.3s ease;
         }

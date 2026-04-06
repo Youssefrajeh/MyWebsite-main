@@ -94,6 +94,22 @@ export const projectsData = [
     image: '/images/v2/rajehtube.png',
     description: 'A professional-quality Windows desktop application for downloading YouTube videos and playlists. Acts as a wrapper for yt-dlp and ffmpeg, featuring real-time progress tracking, quality selection, and automatic conversion.',
     link: 'https://github.com/Youssefrajeh/RajehtubeDownloader'
+  },
+  {
+    id: 13,
+    title: 'WordleGame',
+    category: 'csharp',
+    image: '/images/v2/wordle_game.png',
+    description: 'A distributed Wordle clone built with C#, ASP.NET Core, and gRPC. Features a multi-service architecture including a game server, word provider, and a console-based UI.',
+    link: 'https://github.com/Youssefrajeh/WordleGame'
+  },
+  {
+    id: 14,
+    title: 'Stoichiometry',
+    category: 'csharp',
+    image: '/images/v2/stoichiometry.png',
+    description: 'A component-based .NET 9.0 application for chemical formula analysis and molecular mass calculations. Includes a reusable class library and a command-line client.',
+    link: 'https://github.com/Youssefrajeh/Stoichiometry'
   }
 ];
 

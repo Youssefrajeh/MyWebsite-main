@@ -2,84 +2,89 @@ import { useEffect } from 'react';
 
 const Hero = () => {
   return (
-    <section id="home" className="hero" style={{ background: 'var(--dark-color)' }}>
+    <section id="home" className="hero" style={{ 
+      background: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/hero_bg_v4.png')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative'
+    }}>
       <div className="hero-content" style={{
-        padding: '4rem',
-        maxWidth: '1000px',
-        textAlign: 'center'
+        padding: '2rem',
+        maxWidth: '1200px',
+        textAlign: 'center',
+        zIndex: 2
       }}>
-        <h1 style={{
-          marginBottom: '1.5rem',
-          fontSize: '4.5rem',
-          color: '#ffffff',
-          letterSpacing: '-0.03em',
-          fontWeight: 700
-        }}>
-          Welcome to my portfolio
-        </h1>
-        <div className="subtitle-container" style={{ marginBottom: '2.5rem' }}>
+        <div className="subtitle-container" style={{ marginBottom: '3rem' }}>
           <p className="hero-subtitle" style={{
-            fontSize: '3rem',
-            color: 'var(--primary-color)',
-            fontWeight: 'bold',
+            fontSize: '3.5rem',
+            color: '#ffffff',
+            fontWeight: '800',
+            letterSpacing: '0.05em',
+            textShadow: '0 0 20px rgba(99, 102, 241, 0.5)',
             margin: 0
           }}>
-            Software Developer
+            SOFTWARE DEVELOPER
           </p>
         </div>
         <div className="hero-buttons" style={{
           display: 'flex',
-          gap: '20px',
+          gap: '24px',
           flexWrap: 'wrap',
           justifyContent: 'center'
         }}>
           <a href="#projects" className="btn primary-btn" style={{
-            background: 'var(--primary-color)',
-            boxShadow: '0 10px 25px -5px rgba(99, 102, 241, 0.4)',
-            border: 'none',
-            padding: '18px 45px',
-            fontSize: '1.2rem',
-            borderRadius: '50px',
-            transition: 'all 0.3s ease',
-            transform: 'translateY(0)',
-            display: 'inline-block',
+            borderColor: '#ffffff',
             color: '#ffffff',
-            textDecoration: 'none'
+            padding: '20px 50px',
+            fontSize: '1.25rem',
+            borderRadius: '50px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+            display: 'inline-block',
+            textDecoration: 'none',
+            fontWeight: '600'
           }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-3px)';
-              e.target.style.boxShadow = '0 15px 35px -5px rgba(99, 102, 241, 0.5)';
+              e.target.style.transform = 'translateY(-5px) scale(1.05)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.borderColor = '#ffffff';
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 10px 25px -5px rgba(99, 102, 241, 0.4)';
+              e.target.style.transform = 'translateY(0) scale(1)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
             }}>
             View My Work
           </a>
           <a href="#contact" className="btn secondary-btn" style={{
-            borderColor: 'var(--primary-color)',
-            color: 'var(--primary-color)',
-            padding: '18px 45px',
-            fontSize: '1.2rem',
+            borderColor: '#ffffff',
+            color: '#ffffff',
+            padding: '20px 50px',
+            fontSize: '1.25rem',
             borderRadius: '50px',
-            background: 'transparent',
-            border: '2px solid var(--primary-color)',
-            transition: 'all 0.3s ease',
-            transform: 'translateY(0)',
+            background: 'rgba(255, 255, 255, 0.05)',
+            backdropFilter: 'blur(10px)',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
             display: 'inline-block',
-            textDecoration: 'none'
+            textDecoration: 'none',
+            fontWeight: '600'
           }}
             onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-3px)';
-              e.target.style.background = 'var(--primary-color)';
-              e.target.style.color = 'white';
-              e.target.style.boxShadow = '0 15px 35px -5px rgba(99, 102, 241, 0.5)';
+              e.target.style.transform = 'translateY(-5px) scale(1.05)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.borderColor = '#ffffff';
             }}
             onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.background = 'transparent';
-              e.target.style.color = 'var(--primary-color)';
-              e.target.style.boxShadow = 'none';
+              e.target.style.transform = 'translateY(0) scale(1)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+              e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
             }}>
             Contact Me
           </a>

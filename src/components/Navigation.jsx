@@ -113,6 +113,33 @@ const Navigation = () => {
           color: var(--primary-color);
           padding-left: 10px;
         }
+        .feedback-nav-btn {
+          background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+          color: white !important;
+          padding: 10px 20px !important;
+          border-radius: 50px !important;
+          font-weight: 600 !important;
+          text-decoration: none !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+          transition: all 0.3s ease !important;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+          margin-top: 10px !important;
+        }
+        .feedback-nav-btn:hover {
+          transform: translateY(-2px) scale(1.02) !important;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+          filter: brightness(1.1) !important;
+        }
+        @media (min-width: 769px) {
+          .feedback-nav-btn {
+            margin-top: 0 !important;
+            margin-left: 20px !important;
+            padding: 8px 18px !important;
+            font-size: 0.9rem !important;
+          }
+        }
         @media (max-width: 768px) {
           .nav-links {
             display: none !important;
@@ -183,6 +210,14 @@ const Navigation = () => {
                 {item}
               </a>
             ))}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="feedback-nav-btn"
+            >
+              <i className="fas fa-comment-alt"></i> Feedback
+            </a>
           </div>
 
           {/* Hamburger Button */}
@@ -215,6 +250,18 @@ const Navigation = () => {
             {item}
           </a>
         ))}
+        <div style={{ marginTop: '20px' }}>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="feedback-nav-btn"
+            onClick={handleLinkClick}
+            style={{ width: '100%', justifyContent: 'center' }}
+          >
+            <i className="fas fa-comment-alt"></i> Anonymous Feedback
+          </a>
+        </div>
       </div>
     </>
   );

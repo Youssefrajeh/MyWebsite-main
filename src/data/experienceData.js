@@ -1,59 +1,89 @@
 export const experienceData = [
   {
     id: 1,
-    title: 'Computer Programming Student & Developer',
-    company: 'Fanshawe College - Advanced Diploma (CO-OP)',
-    duration: 'September 2023 - Present',
+    title: 'Volunteer',
+    company: 'MWN Marketing Team',
+    duration: 'September 2025 - Ongoing',
     responsibilities: [
-      'Maintaining exceptional GPA of 3.9 while mastering multiple programming languages',
-      'Developed comprehensive C++ applications demonstrating advanced data structures and algorithms',
-      'Built full-stack web applications using HTML, CSS, JavaScript, and modern frameworks',
-      'Gained expertise in SQL and database management for both relational and non-relational systems',
-      'Applied analytical thinking skills from chemistry background to optimize code performance'
+      'Collaborate with marketing teams to support promotional initiatives and campaigns',
+      'Assist in coordinating cross-functional activities to drive organizational goals',
+      'Leverage technical and analytical skills to organize and manage marketing data'
     ],
-    technologies: ['Java', 'C++', 'JavaScript', 'HTML/CSS', 'SQL']
+    technologies: ['Team Collaboration', 'Communication', 'Data Management']
   },
   {
     id: 2,
+    title: 'Volunteer',
+    company: 'Food Bank',
+    duration: 'September 2023',
+    responsibilities: [
+      'Organized and distributed food supplies to community members in need',
+      'Worked effectively in a team-oriented environment to improve process efficiency and workflow',
+      'Demonstrated adaptability by handling various roles to support daily operations'
+    ],
+    technologies: ['Community Service', 'Logistics', 'Teamwork']
+  },
+  {
+    id: 3,
     title: 'Plastic Blowing HDPE & PP Section Supervisor',
     company: 'Hoka Industry - Douala, Cameroon',
     duration: 'May 2020 - September 2022',
     responsibilities: [
-      'Led cross-functional teams in plastic manufacturing operations, ensuring production targets were met',
-      'Provided guidance and support to team members, creating positive and productive work atmosphere',
-      'Maintained accurate performance records and implemented training programs for employee development',
-      'Identified process improvement opportunities and developed actionable strategies to enhance team performance',
-      'Applied analytical thinking and problem-solving skills to optimize manufacturing processes'
+      'Supervised production operations and coordinated daily workflow across teams',
+      'Monitored process quality and ensured compliance with production standards',
+      'Identified process inefficiencies and implemented improvements to increase output reliability',
+      'Maintained accurate documentation and reports for production tracking'
     ],
-    technologies: ['Team Leadership', 'Process Optimization', 'Quality Management', 'Performance Analysis']
-  },
-  {
-    id: 3,
-    title: 'Quality Control Inspector & Production Manager',
-    company: 'Atlas Negoce - Douala, Cameroon',
-    duration: 'June 2015 - May 2020',
-    responsibilities: [
-      'Created comprehensive quality control plans ensuring production standards aligned with project requirements',
-      'Managed research and development initiatives to drive innovation and enhance manufacturing processes',
-      'Led operational audits and monitored operations to ensure cost efficiency, quality, and timely delivery',
-      'Conducted performance evaluations and provided constructive feedback to support employee growth',
-      'Implemented systematic improvements that increased productivity and product quality metrics'
-    ],
-    technologies: ['Quality Control', 'R&D Management', 'Process Improvement', 'Operations Management']
+    technologies: ['Process Quality', 'Team Supervision', 'Production Reporting', 'Workflow Optimization']
   },
   {
     id: 4,
-    title: 'Laboratory Technician',
-    company: 'Madar Group & SICCO - Damascus, Syria',
-    duration: 'November 2006 - September 2014',
+    title: 'Quality Control Inspector',
+    company: 'Atlas Negoce - Douala, Cameroon',
+    duration: 'September 2018 - May 2020',
     responsibilities: [
-      'Performed complex sample analysis using advanced spectrophotometry and chromatography techniques',
-      'Managed multiple analytical projects simultaneously while consistently meeting strict deadlines',
-      'Prepared detailed analysis reports and effectively communicated findings to internal teams and external clients',
-      'Collaborated with production and R&D teams to optimize processes based on analytical results',
-      'Maintained meticulous records and ensured compliance with laboratory safety standards'
+      'Investigated and resolved production issues through systematic troubleshooting',
+      'Maintained accurate documentation and reporting systems',
+      'Worked with technical equipment requiring precision and reliability',
+      'Collaborated with cross-functional teams to improve operational efficiency'
     ],
-    technologies: ['Analytical Chemistry', 'Spectrophotometry', 'Chromatography', 'Data Analysis']
+    technologies: ['Troubleshooting', 'Quality Assurance', 'Technical Equipment', 'Documentation']
+  },
+  {
+    id: 5,
+    title: 'Production Manager',
+    company: 'Atlas Negoce - Douala, Cameroon',
+    duration: 'June 2015 - September 2018',
+    responsibilities: [
+      'Managed production schedules, team coordination, and workflow optimization',
+      'Oversaw project timelines and ensured timely delivery of production targets',
+      'Improved operational efficiency through rapid process adjustments and system configuration'
+    ],
+    technologies: ['Project Management', 'Operational Efficiency', 'Team Coordination']
+  },
+  {
+    id: 6,
+    title: 'Laboratory Technician',
+    company: 'Madar Group - Damascus, Syria',
+    duration: 'June 2008 - September 2014',
+    responsibilities: [
+      'Operated and maintained technical equipment, ensuring accuracy and system reliability',
+      'Followed strict procedures and documentation standards for quality control',
+      'Diagnosed and resolved technical issues in lab processes',
+      'Worked in high-compliance environments requiring extreme attention to detail'
+    ],
+    technologies: ['Lab Equipment', 'Process Troubleshooting', 'Compliance', 'System Reliability']
+  },
+  {
+    id: 7,
+    title: 'Laboratory Technician',
+    company: 'SICCO - Damascus, Syria',
+    duration: 'November 2006 - May 2008',
+    responsibilities: [
+      'Performed meticulous sample analysis, adhering to strict laboratory safety and regulatory guidelines',
+      'Documented and analyzed technical experiments with precision and accuracy',
+      'Assisted production and R&D teams in achieving shared project goals'
+    ],
+    technologies: ['Sample Analysis', 'Documentation', 'Regulatory Guidelines', 'Data Logging']
   }
 ];
-

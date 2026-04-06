@@ -79,6 +79,41 @@ const Experience = () => {
           </div>
         ))}
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .experience-card {
+            padding: 30px 20px !important;
+            text-align: center !important;
+          }
+          .experience-header-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 15px !important;
+          }
+          .experience-duration {
+            text-align: center !important;
+            margin: 0 auto !important;
+            padding: 6px 16px !important;
+            font-size: 0.8rem !important;
+          }
+          .experience-list-item {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 5px !important;
+            margin-bottom: 20px !important;
+          }
+          .experience-list-item span {
+            text-align: center !important;
+            font-size: 0.9rem !important;
+          }
+          .bullet {
+            margin-bottom: -5px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

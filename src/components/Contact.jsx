@@ -301,7 +301,7 @@ const Contact = () => {
         </div>
       )}
 
-      {/* CSS Animations */}
+      {/* CSS Animations & Responsive Styles */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -319,22 +319,54 @@ const Contact = () => {
         @keyframes drawCheck {
           to { stroke-dashoffset: 0; }
         }
-        @keyframes confetti {
-          0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-          100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
-        }
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
           25% { transform: translateX(-10px); }
           75% { transform: translateX(10px); }
         }
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-        }
         .contact-input:focus {
           border-color: #6366f1 !important;
           box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+        }
+        
+        @media (max-width: 768px) {
+          .contact-info-list {
+            flex-direction: row !important;
+            justify-content: center !important;
+            gap: 15px !important;
+            width: 100% !important;
+            margin-top: 20px !important;
+          }
+          .contact-info-card {
+            width: 50px !important;
+            height: 50px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            justify-content: center !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(10px) !important;
+          }
+          .contact-text-container {
+            display: none !important;
+          }
+          .contact-info-icon {
+            width: 100% !important;
+            height: 100% !important;
+            background: transparent !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+          }
+          .contact-info-icon i {
+            color: #fff !important;
+            font-size: 1.2rem !important;
+          }
+          .contact-section-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 20px !important;
+          }
         }
       `}</style>
 
@@ -346,6 +378,7 @@ const Contact = () => {
         }}
       >
         <h2
+          className="contact-section-title"
           style={{
             fontSize: "3rem",
             marginBottom: "60px",
@@ -357,6 +390,7 @@ const Contact = () => {
         </h2>
 
         <div
+          className="contact-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -492,6 +526,7 @@ const Contact = () => {
 
           {/* Contact Info */}
           <div
+            className="contact-info-list"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -529,10 +564,11 @@ const Contact = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="contact-info-card"
                 style={{
                   background: "#0f3460",
                   padding: "20px",
-                  borderRadius: "4px",
+                  borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
                   gap: "20px",
@@ -540,7 +576,7 @@ const Contact = () => {
                   border: "1px solid #2d2d44",
                   textDecoration: "none",
                   cursor: "pointer",
-                  transition: "border-color 0.2s ease",
+                  transition: "all 0.3s ease",
                   minHeight: "60px",
                   WebkitTapHighlightColor: "transparent",
                 }}
@@ -552,6 +588,7 @@ const Contact = () => {
                 }}
               >
                 <div
+                  className="contact-info-icon"
                   style={{
                     width: "50px",
                     height: "50px",
@@ -567,7 +604,7 @@ const Contact = () => {
                 >
                   <i className={item.icon}></i>
                 </div>
-                <div style={{ textAlign: "left", flex: 1 }}>
+                <div className="contact-text-container" style={{ textAlign: "left", flex: 1 }}>
                   <h4
                     style={{
                       color: "#a0a0a0",

@@ -4064,13 +4064,16 @@ section {
   }
 
   .hero {
-    align-items: flex-start;
-    padding-top: 100px; /* Account for fixed navbar */
+    height: 55vh !important;
+    min-height: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 60px !important;
+    padding-bottom: 30px !important;
   }
 
   .hero-content {
     padding: 1rem !important;
-    margin-top: 0;
   }
 
   .hero-content h1 {

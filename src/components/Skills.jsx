@@ -17,12 +17,129 @@ const Skills = () => {
 
   return (
     <section id="skills" className="skills">
-      <h2 className="section-title" style={{ 
-        color: 'var(--text-color)',
-        background: 'none',
-        WebkitBackgroundClip: 'unset',
-        WebkitTextFillColor: 'unset'
-      }}>Skills & Expertise</h2>
+      <style>{`
+        .skills-section-title {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #e8e8e8;
+          text-align: center;
+          margin-bottom: 40px;
+          letter-spacing: -0.5px;
+        }
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 20px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          position: relative;
+          z-index: 2;
+        }
+        .skill-card-modern {
+          background: rgba(15, 52, 96, 0.6);
+          border: 1px solid rgba(74, 144, 226, 0.15);
+          border-radius: 16px;
+          padding: 24px;
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .skill-card-modern:hover {
+          transform: translateY(-4px);
+          border-color: rgba(74, 144, 226, 0.4);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+        .skill-card-top {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+        .skill-icon-box {
+          width: 44px;
+          height: 44px;
+          background: rgba(26, 26, 46, 0.8);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px;
+          flex-shrink: 0;
+        }
+        .skill-icon-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .skill-card-info {
+          flex: 1;
+          min-width: 0;
+        }
+        .skill-card-name {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #e8e8e8;
+          margin: 0 0 2px 0;
+          text-align: left;
+        }
+        .skill-card-level {
+          font-size: 0.8rem;
+          color: #4a90e2;
+          font-weight: 500;
+          text-align: left;
+          margin: 0;
+        }
+        .skill-card-pct {
+          font-size: 0.8rem;
+          color: #a0a0a0;
+          font-weight: 600;
+          flex-shrink: 0;
+        }
+        .skill-card-desc {
+          font-size: 0.85rem;
+          color: #a0a0a0;
+          line-height: 1.5;
+          margin: 0;
+          text-align: left;
+        }
+        .skill-progress-track {
+          width: 100%;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 2px;
+          overflow: hidden;
+        }
+        .skill-progress-bar {
+          height: 100%;
+          background: linear-gradient(90deg, #4a90e2, #6366f1);
+          border-radius: 2px;
+          transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (max-width: 768px) {
+          .skills-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+          }
+          .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 0 15px;
+          }
+          .skill-card-modern {
+            padding: 18px;
+            gap: 12px;
+          }
+        }
+        @media (max-width: 480px) {
+          .skills-section-title {
+            font-size: 1.3rem;
+          }
+        }
+      `}</style>
+
+      <h2 className="skills-section-title">Skills & Expertise</h2>
 
       {/* Skills Categories Filter */}
       <div className="skills-categories">
@@ -42,64 +159,37 @@ const Skills = () => {
         ))}
       </div>
 
-      {/* Skills Container */}
-      <div className="skill-container">
+      {/* Skills Grid */}
+      <div className="skills-grid">
         {filteredSkills.map((skill, index) => (
           <div
             key={skill.id}
-            className={`skill ${animateItems ? 'animate' : ''}`}
+            className="skill-card-modern"
             style={{
-              transitionDelay: `${index * 50}ms`,
               opacity: animateItems ? 1 : 0,
               transform: animateItems ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: `${index * 40}ms`,
               transitionProperty: 'all',
               transitionDuration: '0.5s',
               transitionTimingFunction: 'ease'
             }}
           >
-            <div className="glass-card" data-percentage={skill.percentage} style={{
-              padding: '25px',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              borderRadius: '16px',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              <div className="skill-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '15px', gap: '15px' }}>
-                <div className="skill-icon" style={{
-                  width: '50px',
-                  height: '50px',
-                  background: '#1a1a2e',
-                  borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '10px'
-                }}>
-                  <img src={skill.icon} alt={skill.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                </div>
-                <h3 className="skill-name" style={{ fontSize: '1.2rem', fontWeight: '600', color: 'var(--text-color)' }}>{skill.name}</h3>
+            <div className="skill-card-top">
+              <div className="skill-icon-box">
+                <img src={skill.icon} alt={skill.name} />
               </div>
-
-              <p className="skill-description" style={{ fontSize: '0.9rem', color: 'var(--text-muted)', flex: 1, marginBottom: '20px' }}>
-                {skill.description}
-              </p>
-
-              <div className="skill-footer" style={{ marginTop: 'auto' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.85rem' }}>
-                  <span style={{ color: 'var(--primary-color)', fontWeight: '500' }}>{skill.level}</span>
-                  <span style={{ color: 'var(--text-light)' }}>{skill.percentage}%</span>
-                </div>
-                <div className="progress-bg" style={{ width: '100%', height: '6px', background: '#1a1a2e', borderRadius: '3px', overflow: 'hidden' }}>
-                  <div className="progress-fill" style={{
-                    width: `${skill.percentage}%`,
-                    height: '100%',
-                    background: '#4a90e2',
-                    borderRadius: '3px'
-                  }}></div>
-                </div>
+              <div className="skill-card-info">
+                <h3 className="skill-card-name">{skill.name}</h3>
+                <p className="skill-card-level">{skill.level}</p>
               </div>
+              <span className="skill-card-pct">{skill.percentage}%</span>
+            </div>
+            <p className="skill-card-desc">{skill.description}</p>
+            <div className="skill-progress-track">
+              <div
+                className="skill-progress-bar"
+                style={{ width: animateItems ? `${skill.percentage}%` : '0%' }}
+              />
             </div>
           </div>
         ))}
@@ -109,4 +199,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

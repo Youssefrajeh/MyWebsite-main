@@ -18,7 +18,7 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
-        <div className="subtitle-container" style={{ marginBottom: '3rem' }}>
+        <div className="subtitle-container" style={{ marginBottom: '2rem' }}>
           <p className="hero-subtitle" style={{
             fontSize: '3.5rem',
             color: '#ffffff',

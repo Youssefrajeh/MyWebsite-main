@@ -41,31 +41,18 @@ const Experience = () => {
                     <li key={index} className="experience-list-item" style={{
                       display: 'flex',
                       alignItems: 'flex-start',
-                      marginBottom: '12px',
+                      padding: '10px 0',
                       textAlign: 'left',
-                      gap: '10px',
-                      paddingLeft: '0',
+                      paddingLeft: '14px',
                       marginLeft: '0',
                       listStyle: 'none',
-                      width: '100%'
+                      width: '100%',
+                      borderLeft: '2px solid #e2e8f0',
+                      lineHeight: '1.6',
+                      color: '#475569',
+                      fontSize: '1rem'
                     }}>
-                      <span className="bullet" style={{
-                        color: 'var(--primary-color)',
-                        fontSize: '1.2rem',
-                        lineHeight: '1.6',
-                        flexShrink: '0',
-                        marginTop: '0',
-                        width: '20px',
-                        display: 'inline-block',
-                        textAlign: 'left'
-                      }}>•</span>
-                      <span style={{
-                        flex: '1',
-                        textAlign: 'left',
-                        lineHeight: '1.6',
-                        paddingLeft: '0',
-                        margin: '0'
-                      }}>{responsibility}</span>
+                      {responsibility}
                     </li>
                   ))}
                 </ul>
@@ -99,18 +86,14 @@ const Experience = () => {
             font-size: 0.8rem !important;
           }
           .experience-list-item {
-            flex-direction: column !important;
-            align-items: center !important;
             text-align: center !important;
-            gap: 5px !important;
-            margin-bottom: 20px !important;
+            padding: 10px 0 !important;
+            border-left: none !important;
+            border-bottom: 1px solid #f1f5f9 !important;
+            padding-left: 0 !important;
           }
-          .experience-list-item span {
-            text-align: center !important;
-            font-size: 0.9rem !important;
-          }
-          .bullet {
-            margin-bottom: -5px !important;
+          .experience-list-item:last-child {
+            border-bottom: none !important;
           }
         }
       `}</style>

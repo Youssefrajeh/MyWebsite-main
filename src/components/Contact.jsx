@@ -185,6 +185,7 @@ const Contact = () => {
                 </p>
 
                 <button
+                  className="modal-close-btn"
                   onClick={closeModal}
                   style={{
                     padding: "10px 30px",
@@ -199,12 +200,6 @@ const Contact = () => {
                     boxShadow: "0 6px 20px rgba(16, 185, 129, 0.3)",
                     transition: "all 0.3s ease",
                   }}
-                  onMouseOver={(e) =>
-                    (e.target.style.transform = "translateY(-2px)")
-                  }
-                  onMouseOut={(e) =>
-                    (e.target.style.transform = "translateY(0)")
-                  }
                 >
                   Close
                 </button>
@@ -272,6 +267,7 @@ const Contact = () => {
                 </p>
 
                 <button
+                  className="modal-close-btn"
                   onClick={closeModal}
                   style={{
                     padding: "10px 30px",
@@ -286,12 +282,6 @@ const Contact = () => {
                     boxShadow: "0 6px 20px rgba(99, 102, 241, 0.3)",
                     transition: "all 0.3s ease",
                   }}
-                  onMouseOver={(e) =>
-                    (e.target.style.transform = "translateY(-2px)")
-                  }
-                  onMouseOut={(e) =>
-                    (e.target.style.transform = "translateY(0)")
-                  }
                 >
                   Close
                 </button>
@@ -327,6 +317,12 @@ const Contact = () => {
         .contact-input:focus {
           border-color: #6366f1 !important;
           box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+        }
+        .contact-info-card:hover {
+          border-color: #4a90e2 !important;
+        }
+        .modal-close-btn:hover {
+          transform: translateY(-2px);
         }
         
         @media (max-width: 768px) {
@@ -580,12 +576,7 @@ const Contact = () => {
                   minHeight: "60px",
                   WebkitTapHighlightColor: "transparent",
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#4a90e2";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#2d2d44";
-                }}
+
               >
                 <div
                   className="contact-info-icon"

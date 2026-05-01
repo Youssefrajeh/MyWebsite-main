@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 const Hero = () => {
   return (
     <section id="home" className="hero" style={{ 
@@ -12,6 +10,27 @@ const Hero = () => {
       justifyContent: 'center',
       position: 'relative'
     }}>
+      <style>{`
+        .hero-btn {
+          color: #ffffff;
+          padding: 20px 50px;
+          font-size: 1.25rem;
+          border-radius: 50px;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          display: inline-block;
+          text-decoration: none;
+          font-weight: 600;
+        }
+        .hero-btn:hover {
+          transform: translateY(-5px) scale(1.05);
+          background: rgba(255, 255, 255, 0.15);
+          border-color: #ffffff;
+        }
+      `}</style>
+
       <div className="hero-content" style={{
         padding: '2rem',
         maxWidth: '1200px',
@@ -49,56 +68,10 @@ const Hero = () => {
           justifyContent: 'center',
           animation: 'fadeInUp 0.8s 0.6s ease both'
         }}>
-          <a href="#projects" className="btn primary-btn" style={{
-            borderColor: '#ffffff',
-            color: '#ffffff',
-            padding: '20px 50px',
-            fontSize: '1.25rem',
-            borderRadius: '50px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(10px)',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            display: 'inline-block',
-            textDecoration: 'none',
-            fontWeight: '600'
-          }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-5px) scale(1.05)';
-              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-              e.target.style.borderColor = '#ffffff';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0) scale(1)';
-              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-            }}>
+          <a href="#projects" className="hero-btn">
             View My Work
           </a>
-          <a href="#contact" className="btn secondary-btn" style={{
-            borderColor: '#ffffff',
-            color: '#ffffff',
-            padding: '20px 50px',
-            fontSize: '1.25rem',
-            borderRadius: '50px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(10px)',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-            transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            display: 'inline-block',
-            textDecoration: 'none',
-            fontWeight: '600'
-          }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-5px) scale(1.05)';
-              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-              e.target.style.borderColor = '#ffffff';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0) scale(1)';
-              e.target.style.background = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-            }}>
+          <a href="#contact" className="hero-btn">
             Contact Me
           </a>
         </div>

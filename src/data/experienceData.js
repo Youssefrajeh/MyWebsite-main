@@ -1,15 +1,15 @@
 export const experienceData = [
   {
     id: 1,
-    title: 'Volunteer',
-    company: 'MWN Marketing Team',
+    title: 'Volunteer - Marketing Team',
+    company: 'Muslim Wellness Network (MWN)',
     duration: 'September 2025 - Ongoing',
     responsibilities: [
-      'Collaborate with marketing teams to support promotional initiatives and campaigns',
-      'Assist in coordinating cross-functional activities to drive organizational goals',
-      'Leverage technical and analytical skills to organize and manage marketing data'
+      'Manage and maintain the organization\'s social media accounts across multiple platforms',
+      'Create engaging visual and written content to promote events and community initiatives',
+      'Coordinate with the marketing team to plan and execute content calendars'
     ],
-    technologies: ['Team Collaboration', 'Communication', 'Data Management']
+    technologies: ['Social Media Management', 'Content Creation', 'Digital Marketing']
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const experienceData = [
       'Worked effectively in a team-oriented environment to improve process efficiency and workflow',
       'Demonstrated adaptability by handling various roles to support daily operations'
     ],
-    technologies: ['Community Service', 'Logistics', 'Teamwork']
+    technologies: ['Logistics', 'Process Optimization', 'Volunteer']
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ export const experienceData = [
       'Identified process inefficiencies and implemented improvements to increase output reliability',
       'Maintained accurate documentation and reports for production tracking'
     ],
-    technologies: ['Process Quality', 'Team Supervision', 'Production Reporting', 'Workflow Optimization']
+    technologies: ['Process Automation', 'Quality Systems', 'Reporting', 'Workflow Optimization']
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ export const experienceData = [
       'Worked with technical equipment requiring precision and reliability',
       'Collaborated with cross-functional teams to improve operational efficiency'
     ],
-    technologies: ['Troubleshooting', 'Quality Assurance', 'Technical Equipment', 'Documentation']
+    technologies: ['Root Cause Analysis', 'Data Validation', 'QA', 'Documentation']
   },
   {
     id: 5,
@@ -59,7 +59,7 @@ export const experienceData = [
       'Oversaw project timelines and ensured timely delivery of production targets',
       'Improved operational efficiency through rapid process adjustments and system configuration'
     ],
-    technologies: ['Project Management', 'Operational Efficiency', 'Team Coordination']
+    technologies: ['Scheduling', 'Workflow Optimization', 'KPI Tracking']
   },
   {
     id: 6,
@@ -72,7 +72,7 @@ export const experienceData = [
       'Diagnosed and resolved technical issues in lab processes',
       'Worked in high-compliance environments requiring extreme attention to detail'
     ],
-    technologies: ['Lab Equipment', 'Process Troubleshooting', 'Compliance', 'System Reliability']
+    technologies: ['Data Analysis', 'Equipment Calibration', 'Compliance', 'System Reliability']
   },
   {
     id: 7,
@@ -84,6 +84,6 @@ export const experienceData = [
       'Documented and analyzed technical experiments with precision and accuracy',
       'Assisted production and R&D teams in achieving shared project goals'
     ],
-    technologies: ['Sample Analysis', 'Documentation', 'Regulatory Guidelines', 'Data Logging']
+    technologies: ['Analytical Methods', 'Technical Writing', 'R&D Support', 'Data Logging']
   }
 ];

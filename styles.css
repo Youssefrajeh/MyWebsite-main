@@ -96,6 +96,69 @@ body.cursor-hidden * {
   cursor: none !important;
 }
 
+/* ===== Global Animations ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section transitions */
+section {
+  transition: opacity 0.6s ease;
+}
+
+/* Experience card hover animation */
+.experience-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Tech tag hover */
+.tech-tag {
+  transition: all 0.25s ease !important;
+}
+
+.tech-tag:hover {
+  background: #4a90e2 !important;
+  color: white !important;
+  border-color: #4a90e2 !important;
+  transform: translateY(-2px);
+}
+
+/* Project card smooth hover */
+.glass-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Button pulse on download CV */
+.cv-button .btn {
+  transition: all 0.3s ease;
+}
+
+.cv-button .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3);
+}
+
 /* Section Titles */
 .section-title {
   font-size: 3rem;

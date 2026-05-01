@@ -106,6 +106,24 @@ export const skillsData = [
     percentage: 70,
     description: 'Building robust, object-oriented applications, managing dependencies, and implementing interfaces.',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'
+  },
+  {
+    id: 13,
+    name: 'Python',
+    category: 'programming',
+    level: 'Intermediate',
+    percentage: 65,
+    description: 'Scripting, automation, and data processing tasks.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'
+  },
+  {
+    id: 14,
+    name: 'Angular',
+    category: 'web',
+    level: 'Beginner',
+    percentage: 55,
+    description: 'Building component-based web applications with TypeScript.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg'
   }
 ];
 

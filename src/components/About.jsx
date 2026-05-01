@@ -1,18 +1,52 @@
+import { useEffect, useRef, useState } from 'react';
+
 const About = () => {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="about" className="about">
-      <h2 className="section-title">About Me</h2>
+    <section id="about" className="about" ref={sectionRef}>
+      <h2 className="section-title" style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'all 0.6s ease'
+      }}>About Me</h2>
       <div className="about-text">
-        <p>
-          I am a Software Developer with hands-on experience in software development, system troubleshooting, and technical environments. I have a strong background working in manufacturing and quality-controlled settings, with a proven ability to analyze complex problems, improve processes, and support system reliability.
+        <p style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.6s 0.2s ease'
+        }}>
+          I'm a Computer Programming & Analysis student at Fanshawe College (Co-op) with a background in quality control, laboratory work, and production management across manufacturing environments in Syria and Cameroon.
         </p>
-        <p>
-          Experienced in building client-server applications using C#, .NET Core, and SQL Server, with a solid working knowledge of REST APIs, networking, and system configuration. My chemical engineering background instilled a deep attention to detail, precision, and adaptability to new technologies in fast-paced environments.
+        <p style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.6s 0.4s ease'
+        }}>
+          I build full-stack applications using C#, .NET Core, SQL Server, and React. My previous career in applied chemistry and manufacturing gave me strong habits around data accuracy, compliance, process improvement, and meticulous documentation — skills that transfer directly to application support and data integrity roles.
         </p>
-        <p>
-          Beyond development, I have actively volunteered in my community, contributing my skills to the MWN Marketing team and local Food Bank. Fluent in English (C2), French (B1), and Arabic (Native), I am highly motivated to contribute to software and industrial system integration on cross-functional engineering teams.
+        <p style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.6s 0.6s ease'
+        }}>
+          I speak English (C2), French (B1), and Arabic (Native), and I volunteer with the MWN Marketing team and my local Food Bank.
         </p>
-        <div className="cv-button">
+        <div className="cv-button" style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.6s 0.8s ease'
+        }}>
           <a href="/Youssef Rajeh.pdf" className="btn primary-btn" download>
             <i className="fas fa-download"></i> Download CV
           </a>
@@ -23,4 +57,3 @@ const About = () => {
 };
 
 export default About;
-

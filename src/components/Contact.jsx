@@ -108,14 +108,14 @@ const Contact = () => {
           <div
             style={{
               background: "white",
-              borderRadius: "24px",
-              padding: "50px",
-              maxWidth: "500px",
-              width: "90%",
+              borderRadius: "20px",
+              padding: "30px",
+              maxWidth: "340px",
+              width: "85%",
               textAlign: "center",
               position: "relative",
               animation: "scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-              boxShadow: "0 25px 80px rgba(0,0,0,0.3)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -124,23 +124,23 @@ const Contact = () => {
                 {/* Success Icon */}
                 <div
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "60px",
+                    height: "60px",
                     borderRadius: "50%",
                     background:
                       "linear-gradient(135deg, #10b981 0%, #059669 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 30px",
-                    boxShadow: "0 15px 40px rgba(16, 185, 129, 0.4)",
+                    margin: "0 auto 20px",
+                    boxShadow: "0 8px 25px rgba(16, 185, 129, 0.35)",
                     animation:
                       "bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                   }}
                 >
                   <svg
-                    width="50"
-                    height="50"
+                    width="28"
+                    height="28"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="white"
@@ -161,13 +161,13 @@ const Contact = () => {
 
                 <h3
                   style={{
-                    fontSize: "2rem",
-                    fontWeight: "800",
+                    fontSize: "1.4rem",
+                    fontWeight: "700",
                     background:
                       "linear-gradient(135deg, #10b981 0%, #059669 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    marginBottom: "15px",
+                    marginBottom: "8px",
                   }}
                 >
                   Got it!
@@ -176,27 +176,27 @@ const Contact = () => {
                 <p
                   style={{
                     color: "#64748b",
-                    fontSize: "1.1rem",
-                    lineHeight: "1.7",
-                    marginBottom: "25px",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.6",
+                    marginBottom: "20px",
                   }}
                 >
-                  Thanks for the message! I'll read it and get back to you soon.
+                  Thanks for the message! I'll get back to you soon.
                 </p>
 
                 <button
                   onClick={closeModal}
                   style={{
-                    padding: "15px 40px",
+                    padding: "10px 30px",
                     background:
                       "linear-gradient(135deg, #10b981 0%, #059669 100%)",
                     color: "white",
                     border: "none",
-                    borderRadius: "12px",
-                    fontSize: "1.1rem",
+                    borderRadius: "10px",
+                    fontSize: "0.95rem",
                     fontWeight: "600",
                     cursor: "pointer",
-                    boxShadow: "0 10px 30px rgba(16, 185, 129, 0.4)",
+                    boxShadow: "0 6px 20px rgba(16, 185, 129, 0.3)",
                     transition: "all 0.3s ease",
                   }}
                   onMouseOver={(e) =>
@@ -214,22 +214,22 @@ const Contact = () => {
                 {/* Error Icon */}
                 <div
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "60px",
+                    height: "60px",
                     borderRadius: "50%",
                     background:
                       "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 30px",
-                    boxShadow: "0 15px 40px rgba(239, 68, 68, 0.4)",
+                    margin: "0 auto 20px",
+                    boxShadow: "0 8px 25px rgba(239, 68, 68, 0.35)",
                     animation: "shake 0.5s ease",
                   }}
                 >
                   <svg
-                    width="50"
-                    height="50"
+                    width="28"
+                    height="28"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="white"
@@ -245,10 +245,10 @@ const Contact = () => {
 
                 <h3
                   style={{
-                    fontSize: "2rem",
-                    fontWeight: "800",
+                    fontSize: "1.4rem",
+                    fontWeight: "700",
                     color: "#ef4444",
-                    marginBottom: "15px",
+                    marginBottom: "8px",
                   }}
                 >
                   Something went wrong
@@ -257,12 +257,12 @@ const Contact = () => {
                 <p
                   style={{
                     color: "#64748b",
-                    fontSize: "1.1rem",
-                    lineHeight: "1.7",
-                    marginBottom: "25px",
+                    fontSize: "0.9rem",
+                    lineHeight: "1.6",
+                    marginBottom: "20px",
                   }}
                 >
-                  The form didn't go through. You can email me directly at{" "}
+                  The form didn't go through. Email me at{" "}
                   <a
                     href="mailto:youssefrrajeh@gmail.com"
                     style={{ color: "#6366f1", fontWeight: "600" }}
@@ -274,16 +274,16 @@ const Contact = () => {
                 <button
                   onClick={closeModal}
                   style={{
-                    padding: "15px 40px",
+                    padding: "10px 30px",
                     background:
                       "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
                     color: "white",
                     border: "none",
-                    borderRadius: "12px",
-                    fontSize: "1.1rem",
+                    borderRadius: "10px",
+                    fontSize: "0.95rem",
                     fontWeight: "600",
                     cursor: "pointer",
-                    boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)",
+                    boxShadow: "0 6px 20px rgba(99, 102, 241, 0.3)",
                     transition: "all 0.3s ease",
                   }}
                   onMouseOver={(e) =>

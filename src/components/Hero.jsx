@@ -18,14 +18,26 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
-        <div className="subtitle-container" style={{ marginBottom: '2rem' }}>
+        <p className="hero-name" style={{
+          fontSize: '1.1rem',
+          color: 'rgba(255, 255, 255, 0.7)',
+          fontWeight: '500',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          marginBottom: '12px',
+          animation: 'fadeInDown 0.8s ease forwards'
+        }}>
+          Youssef Rajeh
+        </p>
+        <div className="subtitle-container" style={{ marginBottom: '1rem' }}>
           <p className="hero-subtitle" style={{
             fontSize: '3.5rem',
             color: '#ffffff',
             fontWeight: '800',
             letterSpacing: '0.05em',
             textShadow: '0 0 20px rgba(99, 102, 241, 0.5)',
-            margin: 0
+            margin: 0,
+            animation: 'fadeInUp 0.8s 0.2s ease both'
           }}>
             SOFTWARE DEVELOPER
           </p>
@@ -34,7 +46,8 @@ const Hero = () => {
           display: 'flex',
           gap: '24px',
           flexWrap: 'wrap',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          animation: 'fadeInUp 0.8s 0.6s ease both'
         }}>
           <a href="#projects" className="btn primary-btn" style={{
             borderColor: '#ffffff',

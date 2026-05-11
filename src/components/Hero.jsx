@@ -97,8 +97,9 @@ const Hero = () => {
           #home.hero {
             height: 100vh !important;
             min-height: 100vh !important;
-            padding-top: 10px !important;
+            padding-top: 70px !important;
             padding-bottom: 20px !important;
+            align-items: flex-start !important;
           }
           .hero-profile-ring {
             width: 180px;

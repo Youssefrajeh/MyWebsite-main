@@ -29,6 +29,43 @@ const Hero = () => {
           background: rgba(255, 255, 255, 0.15);
           border-color: #ffffff;
         }
+        .hero-profile-wrapper {
+          animation: fadeInScale 1s ease forwards;
+          margin-bottom: 24px;
+        }
+        .hero-profile-ring {
+          width: 160px;
+          height: 160px;
+          border-radius: 50%;
+          padding: 4px;
+          background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa, #6366f1);
+          background-size: 300% 300%;
+          animation: gradientSpin 4s ease infinite;
+          display: inline-block;
+          box-shadow: 0 0 30px rgba(99, 102, 241, 0.4), 0 0 60px rgba(139, 92, 246, 0.15);
+          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .hero-profile-ring:hover {
+          transform: scale(1.08);
+          box-shadow: 0 0 40px rgba(99, 102, 241, 0.6), 0 0 80px rgba(139, 92, 246, 0.25);
+        }
+        .hero-profile-img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          display: block;
+          border: 3px solid rgba(15, 23, 42, 0.9);
+        }
+        @keyframes fadeInScale {
+          0% { opacity: 0; transform: scale(0.7); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes gradientSpin {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
       `}</style>
 
       <div className="hero-content" style={{
@@ -37,6 +74,15 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
+        <div className="hero-profile-wrapper">
+          <div className="hero-profile-ring">
+            <img
+              src="/images/images/youssef.jpeg"
+              alt="Youssef Rajeh"
+              className="hero-profile-img"
+            />
+          </div>
+        </div>
         <p className="hero-name" style={{
           fontSize: '1.1rem',
           color: 'rgba(255, 255, 255, 0.7)',

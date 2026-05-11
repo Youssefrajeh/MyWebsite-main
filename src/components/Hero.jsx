@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <section id="home" className="hero" style={{ 
-      background: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/hero_bg_v4.png')`,
+      background: `linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.88)), url('/images/hero_bg_v4.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: '100vh',
@@ -11,6 +11,10 @@ const Hero = () => {
       position: 'relative'
     }}>
       <style>{`
+        #home.hero {
+          height: 100vh !important;
+          min-height: 100vh !important;
+        }
         .hero-btn {
           color: #ffffff;
           padding: 20px 50px;
@@ -57,6 +61,29 @@ const Hero = () => {
           display: block;
           border: 3px solid rgba(15, 23, 42, 0.9);
         }
+        .hero-name-text {
+          font-size: 1.1rem !important;
+          color: rgba(255, 255, 255, 0.7) !important;
+          -webkit-text-fill-color: rgba(255, 255, 255, 0.7) !important;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+          text-shadow: none !important;
+          display: block;
+          text-align: center;
+        }
+        .hero-title-text {
+          font-size: 3.5rem !important;
+          color: #ffffff !important;
+          -webkit-text-fill-color: #ffffff !important;
+          font-weight: 800;
+          letter-spacing: 0.05em;
+          text-shadow: 0 0 20px rgba(99, 102, 241, 0.5) !important;
+          margin: 0 0 1rem 0;
+          display: block;
+          text-align: center;
+        }
         @keyframes fadeInScale {
           0% { opacity: 0; transform: scale(0.7); }
           100% { opacity: 1; transform: scale(1); }
@@ -65,6 +92,48 @@ const Hero = () => {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
+        }
+        @media (max-width: 768px) {
+          #home.hero {
+            height: 100vh !important;
+            min-height: 100vh !important;
+            padding-top: 80px !important;
+            padding-bottom: 20px !important;
+          }
+          .hero-profile-ring {
+            width: 120px;
+            height: 120px;
+          }
+          .hero-profile-wrapper {
+            margin-bottom: 16px;
+          }
+          .hero-name-text {
+            font-size: 0.9rem !important;
+            margin-bottom: 8px;
+          }
+          .hero-title-text {
+            font-size: 2rem !important;
+          }
+          .hero-btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+          }
+          .hero-buttons {
+            gap: 12px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-profile-ring {
+            width: 100px;
+            height: 100px;
+          }
+          .hero-title-text {
+            font-size: 1.6rem !important;
+          }
+          .hero-btn {
+            padding: 12px 28px;
+            font-size: 0.9rem;
+          }
         }
       `}</style>
 
@@ -83,36 +152,17 @@ const Hero = () => {
             />
           </div>
         </div>
-        <p className="hero-name" style={{
-          fontSize: '1.1rem',
-          color: 'rgba(255, 255, 255, 0.7)',
-          fontWeight: '500',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          marginBottom: '12px',
-          animation: 'fadeInDown 0.8s ease forwards'
-        }}>
+        <span className="hero-name-text">
           Youssef Rajeh
-        </p>
-        <div className="subtitle-container" style={{ marginBottom: '1rem' }}>
-          <p className="hero-subtitle" style={{
-            fontSize: '3.5rem',
-            color: '#ffffff',
-            fontWeight: '800',
-            letterSpacing: '0.05em',
-            textShadow: '0 0 20px rgba(99, 102, 241, 0.5)',
-            margin: 0,
-            animation: 'fadeInUp 0.8s 0.2s ease both'
-          }}>
-            SOFTWARE DEVELOPER
-          </p>
-        </div>
+        </span>
+        <span className="hero-title-text">
+          SOFTWARE DEVELOPER
+        </span>
         <div className="hero-buttons" style={{
           display: 'flex',
           gap: '24px',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          animation: 'fadeInUp 0.8s 0.6s ease both'
         }}>
           <a href="#projects" className="hero-btn">
             View My Work

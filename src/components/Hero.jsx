@@ -147,7 +147,7 @@ const Hero = () => {
         <div className="hero-profile-wrapper">
           <div className="hero-profile-ring">
             <img
-              src="/images/images/youssef.jpeg"
+              src="/images/youssef.jpeg"
               alt="Youssef Rajeh"
               className="hero-profile-img"
             />

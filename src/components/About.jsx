@@ -26,21 +26,21 @@ const About = () => {
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           transition: 'all 0.6s 0.2s ease'
         }}>
-          I'm a Computer Programming & Analysis student at Fanshawe College (Co-op) with a background in quality control, laboratory work, and production management across manufacturing environments in Syria and Cameroon.
+          I'm a Computer Programming & Analysis co-op student at Fanshawe College with hands-on experience developing full-stack web applications using C#, .NET Core, React, SQL Server, and modern development tools.
         </p>
         <p style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           transition: 'all 0.6s 0.4s ease'
         }}>
-          I build full-stack applications using C#, .NET Core, SQL Server, and React. My previous career in applied chemistry and manufacturing gave me strong habits around data accuracy, compliance, process improvement, and meticulous documentation — skills that transfer directly to application support and data integrity roles.
+          I have a strong understanding of software development principles, databases, debugging, and structured workflows gained through academic projects and prior experience in quality-driven technical environments. I'm a detail-oriented problem solver with strong analytical, documentation, and process improvement skills.
         </p>
         <p style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           transition: 'all 0.6s 0.6s ease'
         }}>
-          I speak English (C2), French (B1), and Arabic (Native), and I volunteer with the MWN Marketing team and my local Food Bank.
+          I speak English (C2), French (B1), and Arabic (Native), and I currently volunteer with the MWN Marketing team.
         </p>
         <div className="cv-button" style={{
           opacity: isVisible ? 1 : 0,

@@ -5,7 +5,7 @@ export const skillsData = [
     category: 'programming',
     level: 'Advanced',
     percentage: 85,
-    description: 'Developing multi-layered web applications and REST APIs using modern .NET Core architecture.',
+    description: 'Developing full-stack web applications and RESTful APIs using modern .NET Core architecture.',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg'
   },
   {
@@ -14,17 +14,17 @@ export const skillsData = [
     category: 'database',
     level: 'Advanced',
     percentage: 80,
-    description: 'Designing and implementing relational database schemas with enforced validation rules and complex query optimization.',
+    description: 'Designing and managing relational databases with enforced validation rules and complex query optimization.',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-original.svg'
   },
   {
     id: 3,
-    name: 'Networking (TCP/IP)',
-    category: 'systems',
+    name: 'Java',
+    category: 'programming',
     level: 'Intermediate',
-    percentage: 75,
-    description: 'Configuring and testing network-based applications utilizing robust client-server architecture and TCP/IP protocols.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
+    percentage: 70,
+    description: 'Building robust, object-oriented applications, managing dependencies, and implementing interfaces.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'
   },
   {
     id: 4,
@@ -37,6 +37,15 @@ export const skillsData = [
   },
   {
     id: 5,
+    name: 'Angular',
+    category: 'web',
+    level: 'Beginner',
+    percentage: 55,
+    description: 'Building component-based web applications with TypeScript.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg'
+  },
+  {
+    id: 6,
     name: 'JavaScript',
     category: 'web',
     level: 'Advanced',
@@ -45,7 +54,7 @@ export const skillsData = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'
   },
   {
-    id: 6,
+    id: 7,
     name: 'HTML5 & CSS3',
     category: 'web',
     level: 'Advanced',
@@ -54,61 +63,7 @@ export const skillsData = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg'
   },
   {
-    id: 7,
-    name: 'Git & GitHub',
-    category: 'tools',
-    level: 'Intermediate',
-    percentage: 85,
-    description: 'Managing source code, branching strategies, and collaborative development in Agile/Scrum environments.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg'
-  },
-  {
     id: 8,
-    name: 'CI/CD Pipelines',
-    category: 'tools',
-    level: 'Intermediate',
-    percentage: 70,
-    description: 'Automating build and deployment processes to streamline delivery and maintain code reliability.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg'
-  },
-  {
-    id: 9,
-    name: 'PowerShell',
-    category: 'tools',
-    level: 'Intermediate',
-    percentage: 65,
-    description: 'Creating basic automation scripts and efficiently managing Windows OS environments and configurations.',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png'
-  },
-  {
-    id: 10,
-    name: 'System Support',
-    category: 'systems',
-    level: 'Advanced',
-    percentage: 85,
-    description: 'Troubleshooting, root cause analysis, environmental setup, and hardware configuration (PCs, peripherals).',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg'
-  },
-  {
-    id: 11,
-    name: 'C++',
-    category: 'programming',
-    level: 'Intermediate',
-    percentage: 75,
-    description: 'Implementing object-oriented applications with advanced data structures, memory management, and algorithms.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg'
-  },
-  {
-    id: 12,
-    name: 'Java',
-    category: 'programming',
-    level: 'Intermediate',
-    percentage: 70,
-    description: 'Building robust, object-oriented applications, managing dependencies, and implementing interfaces.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'
-  },
-  {
-    id: 13,
     name: 'Python',
     category: 'programming',
     level: 'Intermediate',
@@ -117,13 +72,31 @@ export const skillsData = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'
   },
   {
-    id: 14,
-    name: 'Angular',
-    category: 'web',
-    level: 'Beginner',
-    percentage: 55,
-    description: 'Building component-based web applications with TypeScript.',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg'
+    id: 9,
+    name: 'Git, GitHub & GitLab',
+    category: 'tools',
+    level: 'Intermediate',
+    percentage: 85,
+    description: 'Managing source code, branching strategies, and collaborative development in Agile/Scrum environments.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg'
+  },
+  {
+    id: 10,
+    name: 'CI/CD Pipelines',
+    category: 'tools',
+    level: 'Intermediate',
+    percentage: 70,
+    description: 'Automating build and deployment processes to streamline delivery and maintain code reliability.',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg'
+  },
+  {
+    id: 11,
+    name: 'PowerShell',
+    category: 'tools',
+    level: 'Intermediate',
+    percentage: 65,
+    description: 'Creating automation scripts and efficiently managing Windows OS environments and configurations.',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png'
   }
 ];
 
@@ -132,6 +105,5 @@ export const skillCategories = [
   { id: 'programming', name: 'Programming' },
   { id: 'web', name: 'Web Dev' },
   { id: 'database', name: 'Database' },
-  { id: 'tools', name: 'Tools & DevOps' },
-  { id: 'systems', name: 'Systems & Support' }
+  { id: 'tools', name: 'Tools & DevOps' }
 ];

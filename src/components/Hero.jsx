@@ -97,12 +97,12 @@ const Hero = () => {
           #home.hero {
             height: 100vh !important;
             min-height: 100vh !important;
-            padding-top: 80px !important;
+            padding-top: 10px !important;
             padding-bottom: 20px !important;
           }
           .hero-profile-ring {
-            width: 120px;
-            height: 120px;
+            width: 180px;
+            height: 180px;
           }
           .hero-profile-wrapper {
             margin-bottom: 16px;
@@ -124,8 +124,8 @@ const Hero = () => {
         }
         @media (max-width: 480px) {
           .hero-profile-ring {
-            width: 100px;
-            height: 100px;
+            width: 160px;
+            height: 160px;
           }
           .hero-title-text {
             font-size: 1.6rem !important;

@@ -71,18 +71,19 @@ const Hero = () => {
           #home.hero {
             height: 100vh !important;
             min-height: 100vh !important;
-            padding-top: 0 !important;
+            padding-top: 60px !important;
             padding-bottom: 0 !important;
-            align-items: center !important;
+            align-items: flex-start !important;
             justify-content: center !important;
           }
           .hero-logo-video {
             width: 500px;
             height: 500px;
+            margin-left: -15px;
           }
           .hero-logo-wrapper {
-            margin-bottom: -10px;
-            margin-top: 0;
+            margin-bottom: -30px;
+            margin-top: -80px;
           }
           .hero-title-text {
             font-size: 1.8rem !important;

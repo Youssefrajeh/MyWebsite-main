@@ -1,10 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import HackerText from './HackerText';
+
+const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server', 'C++', 'JavaScript', 'REST APIs'];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('Home');
+  const [typeText, setTypeText] = useState('');
+  const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
+
+  useEffect(() => {
+    const tick = () => {
+      const { wordIndex, charIndex, isDeleting } = typeState.current;
+      const currentWord = TYPEWRITER_WORDS[wordIndex];
+
+      if (!isDeleting) {
+        setTypeText(currentWord.substring(0, charIndex + 1));
+        typeState.current.charIndex++;
+        if (typeState.current.charIndex > currentWord.length) {
+          typeState.current.isDeleting = true;
+        return setTimeout(tick, 1800);
+        }
+        return setTimeout(tick, 350);
+      } else {
+        setTypeText(currentWord.substring(0, charIndex - 1));
+        typeState.current.charIndex--;
+        if (typeState.current.charIndex <= 0) {
+          typeState.current.isDeleting = false;
+          typeState.current.wordIndex = (wordIndex + 1) % TYPEWRITER_WORDS.length;
+          return setTimeout(tick, 2000);
+        }
+        return setTimeout(tick, 200);
+      }
+    };
+    const timer = setTimeout(tick, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,6 +142,28 @@ const Navigation = () => {
           text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
         }
 
+        .logo-prompt {
+          color: #4ade80;
+          font-family: 'Space Mono', monospace;
+          font-size: 1.1rem;
+          font-weight: 700;
+        }
+
+        .logo-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1.1em;
+          background: var(--primary-color);
+          margin-left: 2px;
+          vertical-align: text-bottom;
+          animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+
         .hamburger {
           display: none;
           flex-direction: column;
@@ -213,11 +267,10 @@ const Navigation = () => {
 
       <div className={`nav-container ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-pill">
-          <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ color: 'var(--primary-color)', fontSize: '1.4rem', fontWeight: '800' }}>{`{`}</span>
-            <span className="logo-text"><HackerText text="Youssef Rajeh" /></span>
-            <span style={{ color: 'var(--secondary-color)', fontSize: '1.4rem', fontWeight: '800' }}>{`}`}</span>
-          </a>
+          <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span className="logo-prompt">▸</span>
+            <span className="logo-text">{typeText}</span>
+            <span className="logo-cursor" /></a>
 
           <div className="nav-links" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {navItems.map((item) => (

@@ -35,7 +35,7 @@ const Hero = () => {
         }
         .hero-logo-wrapper {
           animation: fadeInScale 1s ease forwards;
-          margin-bottom: 28px;
+          margin-bottom: 10px;
         }
         .hero-logo-video {
           width: 500px;
@@ -46,8 +46,8 @@ const Hero = () => {
           pointer-events: none;
           filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.2));
           transition: filter 0.4s ease;
-          -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 55%);
-          mask-image: radial-gradient(circle at center, black 25%, transparent 55%);
+          -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
+          mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
         }
         .hero-logo-wrapper:hover .hero-logo-video {
           filter: drop-shadow(0 0 50px rgba(99, 102, 241, 0.35));
@@ -81,8 +81,8 @@ const Hero = () => {
             height: 500px;
           }
           .hero-logo-wrapper {
-            margin-bottom: 0;
-            margin-top: -150px;
+            margin-bottom: -10px;
+            margin-top: 0;
           }
           .hero-title-text {
             font-size: 1.8rem !important;

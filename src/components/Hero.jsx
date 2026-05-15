@@ -82,7 +82,7 @@ const Hero = () => {
           }
           .hero-logo-wrapper {
             margin-bottom: 0;
-            margin-top: -20px;
+            margin-top: -60px;
           }
           .hero-title-text {
             font-size: 1.8rem !important;
@@ -98,7 +98,7 @@ const Hero = () => {
             gap: 10px !important;
           }
           .hero-content {
-            padding: 1rem !important;
+            padding: 0.5rem !important;
           }
         }
         @media (max-width: 480px) {

@@ -33,45 +33,24 @@ const Hero = () => {
           background: rgba(255, 255, 255, 0.15);
           border-color: #ffffff;
         }
-        .hero-profile-wrapper {
+        .hero-logo-wrapper {
           animation: fadeInScale 1s ease forwards;
-          margin-bottom: 24px;
+          margin-bottom: 28px;
         }
-        .hero-profile-ring {
-          width: 160px;
-          height: 160px;
-          border-radius: 50%;
-          padding: 4px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa, #6366f1);
-          background-size: 300% 300%;
-          animation: gradientSpin 4s ease infinite;
-          display: inline-block;
-          box-shadow: 0 0 30px rgba(99, 102, 241, 0.4), 0 0 60px rgba(139, 92, 246, 0.15);
-          transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-        }
-        .hero-profile-ring:hover {
-          transform: scale(1.08);
-          box-shadow: 0 0 40px rgba(99, 102, 241, 0.6), 0 0 80px rgba(139, 92, 246, 0.25);
-        }
-        .hero-profile-img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
+        .hero-logo-video {
+          width: 500px;
+          height: 500px;
           object-fit: cover;
           display: block;
-          border: 3px solid rgba(15, 23, 42, 0.9);
+          margin: 0 auto;
+          pointer-events: none;
+          filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.2));
+          transition: filter 0.4s ease;
+          -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 55%);
+          mask-image: radial-gradient(circle at center, black 25%, transparent 55%);
         }
-        .hero-name-text {
-          font-size: 1.1rem !important;
-          color: rgba(255, 255, 255, 0.7) !important;
-          -webkit-text-fill-color: rgba(255, 255, 255, 0.7) !important;
-          font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          margin-bottom: 12px;
-          text-shadow: none !important;
-          display: block;
-          text-align: center;
+        .hero-logo-wrapper:hover .hero-logo-video {
+          filter: drop-shadow(0 0 50px rgba(99, 102, 241, 0.35));
         }
         .hero-title-text {
           font-size: 3.5rem !important;
@@ -88,52 +67,51 @@ const Hero = () => {
           0% { opacity: 0; transform: scale(0.7); }
           100% { opacity: 1; transform: scale(1); }
         }
-        @keyframes gradientSpin {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
         @media (max-width: 768px) {
           #home.hero {
             height: 100vh !important;
             min-height: 100vh !important;
-            padding-top: 70px !important;
-            padding-bottom: 20px !important;
-            align-items: flex-start !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            align-items: center !important;
+            justify-content: center !important;
           }
-          .hero-profile-ring {
-            width: 180px;
-            height: 180px;
+          .hero-logo-video {
+            width: 380px;
+            height: 380px;
           }
-          .hero-profile-wrapper {
-            margin-bottom: 16px;
-          }
-          .hero-name-text {
-            font-size: 0.9rem !important;
-            margin-bottom: 8px;
+          .hero-logo-wrapper {
+            margin-bottom: 0;
+            margin-top: -20px;
           }
           .hero-title-text {
-            font-size: 2rem !important;
+            font-size: 1.8rem !important;
+            margin-bottom: 0.5rem !important;
           }
           .hero-btn {
-            padding: 14px 32px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            font-size: 0.85rem;
           }
           .hero-buttons {
-            gap: 12px !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 10px !important;
+          }
+          .hero-content {
+            padding: 1rem !important;
           }
         }
         @media (max-width: 480px) {
-          .hero-profile-ring {
-            width: 160px;
-            height: 160px;
+          .hero-logo-video {
+            width: 340px;
+            height: 340px;
           }
           .hero-title-text {
-            font-size: 1.6rem !important;
+            font-size: 1.5rem !important;
           }
           .hero-btn {
-            padding: 12px 28px;
-            font-size: 0.9rem;
+            padding: 10px 24px;
+            font-size: 0.85rem;
           }
         }
       `}</style>
@@ -144,18 +122,16 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
-        <div className="hero-profile-wrapper">
-          <div className="hero-profile-ring">
-            <img
-              src="/images/youssef.jpeg"
-              alt="Youssef Rajeh"
-              className="hero-profile-img"
-            />
-          </div>
+        <div className="hero-logo-wrapper">
+          <video
+            src="/YR.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero-logo-video"
+          />
         </div>
-        <span className="hero-name-text">
-          Youssef Rajeh
-        </span>
         <span className="hero-title-text">
           SOFTWARE DEVELOPER
         </span>

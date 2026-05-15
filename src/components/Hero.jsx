@@ -77,12 +77,12 @@ const Hero = () => {
             justify-content: center !important;
           }
           .hero-logo-video {
-            width: 380px;
-            height: 380px;
+            width: 440px;
+            height: 440px;
           }
           .hero-logo-wrapper {
             margin-bottom: 0;
-            margin-top: -60px;
+            margin-top: -100px;
           }
           .hero-title-text {
             font-size: 1.8rem !important;
@@ -103,8 +103,8 @@ const Hero = () => {
         }
         @media (max-width: 480px) {
           .hero-logo-video {
-            width: 340px;
-            height: 340px;
+            width: 400px;
+            height: 400px;
           }
           .hero-title-text {
             font-size: 1.5rem !important;

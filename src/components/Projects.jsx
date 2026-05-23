@@ -11,7 +11,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects" style={{ padding: '100px 20px' }}>
-      <h2 className="section-title">My Projects</h2>
+      <h2 className="section-title">Innovation Gallery</h2>
 
       <div className="project-filters" style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '50px', flexWrap: 'wrap' }}>
         {projectFilters.map((filter) => (
@@ -21,14 +21,15 @@ const Projects = () => {
             onClick={() => setActiveFilter(filter.id)}
             style={{
               padding: '10px 25px',
-              borderRadius: '30px',
-              border: activeFilter === filter.id ? 'none' : '1px solid rgba(255,255,255,0.1)',
-              background: activeFilter === filter.id ? 'var(--gradient-primary)' : 'var(--glass-bg)',
-              color: activeFilter === filter.id ? 'white' : 'var(--text-muted)',
+              borderRadius: '8px',
+              border: activeFilter === filter.id ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
+              background: activeFilter === filter.id ? '#00f2ff' : 'rgba(25, 33, 34, 0.7)',
+              color: activeFilter === filter.id ? '#00363a' : '#b9cacb',
               cursor: 'pointer',
-              transition: 'all 0.3s ease',
+              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
               fontSize: '0.95rem',
-              fontWeight: '500'
+              fontFamily: '"Hanken Grotesk", sans-serif',
+              fontWeight: activeFilter === filter.id ? '700' : '500'
             }}
           >
             {filter.name}
@@ -50,12 +51,14 @@ const Projects = () => {
             onMouseEnter={() => setHoveredProject(project.id)}
             onMouseLeave={() => setHoveredProject(null)}
             style={{
-              borderRadius: '20px',
+              borderRadius: '16px',
               overflow: 'hidden',
               height: '400px',
               position: 'relative',
-              transition: 'all 0.4s ease',
-              transform: hoveredProject === project.id ? 'translateY(-10px)' : 'translateY(0)'
+              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+              transform: hoveredProject === project.id ? 'translateY(-10px) scale(1.02)' : 'translateY(0)',
+              border: hoveredProject === project.id ? '1px solid rgba(0, 242, 255, 0.3)' : '1px solid rgba(255, 255, 255, 0.06)',
+              boxShadow: hoveredProject === project.id ? '0 0 30px rgba(0, 242, 255, 0.15)' : 'none'
             }}
           >
             <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
@@ -76,7 +79,7 @@ const Projects = () => {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.4))',
+                background: 'linear-gradient(to top, rgba(13, 21, 21, 0.97), rgba(13, 21, 21, 0.3))',
                 opacity: hoveredProject === project.id ? 1 : 0.8,
                 transition: 'all 0.3s ease',
                 display: 'flex',
@@ -85,16 +88,18 @@ const Projects = () => {
                 padding: '30px'
               }}>
                 <h3 style={{
+                  fontFamily: '"Space Grotesk", sans-serif',
                   fontSize: '1.5rem',
                   marginBottom: '10px',
-                  color: 'white',
+                  color: '#e1fdff',
                   transform: hoveredProject === project.id ? 'translateY(0)' : 'translateY(10px)',
                   transition: 'all 0.3s ease'
                 }}>
                   {project.title}
                 </h3>
                 <p style={{
-                  color: 'var(--text-light)',
+                  fontFamily: '"Hanken Grotesk", sans-serif',
+                  color: '#b9cacb',
                   marginBottom: '20px',
                   fontSize: '0.95rem',
                   opacity: hoveredProject === project.id ? 1 : 0,
@@ -113,20 +118,24 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="view-project-btn"
                   style={{
-                    display: 'inline-block',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
                     padding: '10px 25px',
-                    background: 'var(--primary-color)',
-                    color: 'white',
-                    borderRadius: '25px',
+                    background: '#00f2ff',
+                    color: '#00363a',
+                    borderRadius: '8px',
                     textDecoration: 'none',
-                    fontWeight: '500',
+                    fontFamily: '"Hanken Grotesk", sans-serif',
+                    fontWeight: '700',
+                    fontSize: '0.9rem',
                     opacity: hoveredProject === project.id ? 1 : 0,
                     transform: hoveredProject === project.id ? 'translateY(0)' : 'translateY(20px)',
                     transition: 'all 0.3s ease 0.2s',
                     alignSelf: 'flex-start'
                   }}
                 >
-                  View Project
+                  View Project →
                 </a>
               </div>
             </div>
@@ -138,4 +147,3 @@ const Projects = () => {
 };
 
 export default Projects;
-

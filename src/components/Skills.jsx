@@ -19,9 +19,10 @@ const Skills = () => {
     <section id="skills" className="skills">
       <style>{`
         .skills-section-title {
+          font-family: "Space Grotesk", sans-serif;
           font-size: 2rem;
           font-weight: 700;
-          color: #e8e8e8;
+          color: #dce4e4;
           text-align: center;
           margin-bottom: 40px;
           letter-spacing: -0.5px;
@@ -37,20 +38,20 @@ const Skills = () => {
           z-index: 2;
         }
         .skill-card-modern {
-          background: rgba(15, 52, 96, 0.6);
-          border: 1px solid rgba(74, 144, 226, 0.15);
+          background: rgba(25, 33, 34, 0.7);
+          border: 1px solid rgba(0, 242, 255, 0.1);
           border-radius: 16px;
           padding: 24px;
-          backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
+          backdrop-filter: blur(12px);
+          transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
           display: flex;
           flex-direction: column;
           gap: 16px;
         }
         .skill-card-modern:hover {
-          transform: translateY(-4px);
-          border-color: rgba(74, 144, 226, 0.4);
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+          transform: translateY(-6px) scale(1.02);
+          border-color: rgba(0, 242, 255, 0.35);
+          box-shadow: 0 0 25px rgba(0, 242, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.3);
         }
         .skill-card-top {
           display: flex;
@@ -60,13 +61,19 @@ const Skills = () => {
         .skill-icon-box {
           width: 44px;
           height: 44px;
-          background: rgba(26, 26, 46, 0.8);
+          background: rgba(13, 21, 21, 0.8);
+          border: 1px solid rgba(0, 242, 255, 0.15);
           border-radius: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 8px;
           flex-shrink: 0;
+          transition: all 0.3s ease;
+        }
+        .skill-card-modern:hover .skill-icon-box {
+          border-color: rgba(0, 242, 255, 0.4);
+          box-shadow: 0 0 12px rgba(0, 242, 255, 0.2);
         }
         .skill-icon-box img {
           width: 100%;
@@ -78,28 +85,34 @@ const Skills = () => {
           min-width: 0;
         }
         .skill-card-name {
+          font-family: "Space Grotesk", sans-serif;
           font-size: 1rem;
           font-weight: 600;
-          color: #e8e8e8;
+          color: #dce4e4;
           margin: 0 0 2px 0;
           text-align: left;
         }
         .skill-card-level {
-          font-size: 0.8rem;
-          color: #4a90e2;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.7rem;
+          color: #00f2ff;
           font-weight: 500;
           text-align: left;
           margin: 0;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
         }
         .skill-card-pct {
+          font-family: "JetBrains Mono", monospace;
           font-size: 0.8rem;
-          color: #a0a0a0;
+          color: #849495;
           font-weight: 600;
           flex-shrink: 0;
         }
         .skill-card-desc {
+          font-family: "Hanken Grotesk", sans-serif;
           font-size: 0.85rem;
-          color: #a0a0a0;
+          color: #b9cacb;
           line-height: 1.5;
           margin: 0;
           text-align: left;
@@ -107,13 +120,13 @@ const Skills = () => {
         .skill-progress-track {
           width: 100%;
           height: 4px;
-          background: rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.06);
           border-radius: 2px;
           overflow: hidden;
         }
         .skill-progress-bar {
           height: 100%;
-          background: linear-gradient(90deg, #4a90e2, #6366f1);
+          background: linear-gradient(90deg, #00f2ff, #00f8aa);
           border-radius: 2px;
           transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -139,7 +152,7 @@ const Skills = () => {
         }
       `}</style>
 
-      <h2 className="skills-section-title">Skills & Expertise</h2>
+      <h2 className="skills-section-title">Technical Arsenal</h2>
 
       {/* Skills Categories Filter */}
       <div className="skills-categories">
@@ -149,9 +162,11 @@ const Skills = () => {
             className={`category-filter ${activeCategory === category.id ? 'active' : ''}`}
             onClick={() => setActiveCategory(category.id)}
             style={{
-              background: activeCategory === category.id ? '#4a90e2' : '#0f3460',
-              border: activeCategory === category.id ? 'none' : '1px solid #2d2d44',
-              color: activeCategory === category.id ? 'white' : '#a0a0a0'
+              background: activeCategory === category.id ? '#00f2ff' : 'rgba(25, 33, 34, 0.7)',
+              border: activeCategory === category.id ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
+              color: activeCategory === category.id ? '#00363a' : '#b9cacb',
+              fontFamily: '"Hanken Grotesk", sans-serif',
+              fontWeight: activeCategory === category.id ? '700' : '500'
             }}
           >
             {category.name}

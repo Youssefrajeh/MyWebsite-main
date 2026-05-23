@@ -3,7 +3,7 @@ import { experienceData } from '../data/experienceData';
 const Experience = () => {
   return (
     <section id="experience" className="experience">
-      <h2 className="section-title">My Experience</h2>
+      <h2 className="section-title">Professional Journey</h2>
       <div className="experience-container">
         {experienceData.map((exp) => (
           <div key={exp.id} className="experience-card">
@@ -47,10 +47,11 @@ const Experience = () => {
                       marginLeft: '0',
                       listStyle: 'none',
                       width: '100%',
-                      borderLeft: '2px solid #e2e8f0',
+                      borderLeft: '2px solid #3a494b',
                       lineHeight: '1.6',
-                      color: '#475569',
-                      fontSize: '1rem'
+                      color: '#b9cacb',
+                      fontSize: '1rem',
+                      fontFamily: '"Hanken Grotesk", sans-serif'
                     }}>
                       {responsibility}
                     </li>
@@ -67,6 +68,19 @@ const Experience = () => {
         ))}
       </div>
       <style>{`
+        .experience-company {
+          color: #00f2ff !important;
+          font-family: "JetBrains Mono", monospace !important;
+          font-size: 0.85rem !important;
+        }
+        .experience-duration {
+          font-family: "JetBrains Mono", monospace !important;
+          font-size: 0.8rem !important;
+          color: #849495 !important;
+        }
+        .experience-title {
+          font-family: "Space Grotesk", sans-serif !important;
+        }
         @media (max-width: 768px) {
           .experience-card {
             padding: 30px 20px !important;
@@ -89,7 +103,7 @@ const Experience = () => {
             text-align: center !important;
             padding: 10px 0 !important;
             border-left: none !important;
-            border-bottom: 1px solid #f1f5f9 !important;
+            border-bottom: 1px solid #3a494b !important;
             padding-left: 0 !important;
           }
           .experience-list-item:last-child {

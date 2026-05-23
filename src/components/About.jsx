@@ -34,27 +34,27 @@ const About = () => {
         .about-photo-frame {
           width: 260px;
           height: 260px;
-          border-radius: 24px;
+          border-radius: 16px;
           padding: 4px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa, #6366f1);
+          background: linear-gradient(135deg, #00f2ff, #00f8aa, #6366f1, #00f2ff);
           background-size: 300% 300%;
           animation: aboutGradientSpin 6s ease infinite;
-          box-shadow: 0 0 30px rgba(99, 102, 241, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+          box-shadow: 0 0 30px rgba(0, 242, 255, 0.25), 0 0 60px rgba(0, 248, 170, 0.1);
           transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
         .about-photo-frame:hover {
           transform: scale(1.04) rotate(1deg);
-          box-shadow: 0 0 40px rgba(99, 102, 241, 0.5), 0 0 80px rgba(139, 92, 246, 0.2);
+          box-shadow: 0 0 40px rgba(0, 242, 255, 0.45), 0 0 80px rgba(0, 248, 170, 0.15);
         }
 
         .about-photo-img {
           width: 100%;
           height: 100%;
-          border-radius: 20px;
+          border-radius: 12px;
           object-fit: cover;
           display: block;
-          border: 3px solid rgba(15, 23, 42, 0.9);
+          border: 3px solid #0d1515;
         }
 
         @keyframes aboutGradientSpin {
@@ -65,6 +65,27 @@ const About = () => {
 
         .about-text-col {
           flex: 1;
+        }
+
+        .language-badges {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 8px;
+          margin-bottom: 16px;
+        }
+
+        .language-badge {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.75rem;
+          font-weight: 500;
+          padding: 6px 14px;
+          border-radius: 9999px;
+          background: rgba(0, 242, 255, 0.08);
+          color: #00f2ff;
+          border: 1px solid rgba(0, 242, 255, 0.2);
+          letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
@@ -114,13 +135,15 @@ const About = () => {
             }}>
               I have a strong understanding of software development principles, databases, debugging, and structured workflows gained through academic projects and prior experience in quality-driven technical environments. I'm a detail-oriented problem solver with strong analytical, documentation, and process improvement skills.
             </p>
-            <p style={{
+            <div className="language-badges" style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'all 0.6s 0.6s ease'
+              transition: 'all 0.6s 0.5s ease'
             }}>
-              I speak English (C2), French (B1), and Arabic (Native), and I currently volunteer with the MWN Marketing team.
-            </p>
+              <span className="language-badge">English (C2)</span>
+              <span className="language-badge">French (B1)</span>
+              <span className="language-badge">Arabic (Native)</span>
+            </div>
             <div className="cv-button" style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',

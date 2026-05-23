@@ -9,10 +9,11 @@ const Footer = () => {
           <i className="fab fa-linkedin"></i>
         </a>
       </div>
-      <p>&copy; 2024 Youssef Rajeh. All rights reserved.</p>
+      <p style={{ fontFamily: '"Hanken Grotesk", sans-serif' }}>
+        &copy; 2025 DevPortfolio. Built with Digital Craftsmanship.
+      </p>
     </footer>
   );
 };
 
 export default Footer;
-

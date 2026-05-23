@@ -85,38 +85,39 @@ const Navigation = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: rgba(15, 23, 42, 0.1);
+          background: rgba(13, 21, 21, 0.15);
           backdrop-filter: blur(12px) saturate(180%);
           -webkit-backdrop-filter: blur(12px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.06);
           border-radius: 100px;
           padding: 8px 12px 8px 24px;
           transition: all 0.4s ease;
           pointer-events: auto;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
         }
 
         .nav-container.scrolled .nav-pill {
-          background: rgba(15, 23, 42, 0.6);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: rgba(13, 21, 21, 0.65);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 6px 10px 6px 20px;
           transform: scale(0.98);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
         .nav-link {
           position: relative;
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(220, 228, 228, 0.7);
           text-decoration: none;
           font-size: 0.9rem;
+          font-family: "Hanken Grotesk", sans-serif;
           font-weight: 500;
           padding: 8px 16px;
           transition: all 0.3s ease;
           border-radius: 50px;
         }
 
-        .nav-link:hover { color: #fff; }
-        .nav-link.active { color: #fff; background: rgba(255, 255, 255, 0.1); }
+        .nav-link:hover { color: #dce4e4; }
+        .nav-link.active { color: #dce4e4; background: rgba(0, 242, 255, 0.08); }
 
         .active-indicator {
           position: absolute;
@@ -125,9 +126,9 @@ const Navigation = () => {
           transform: translateX(-50%);
           width: 4px;
           height: 4px;
-          background: var(--primary-color);
+          background: #00f2ff;
           border-radius: 50%;
-          box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+          box-shadow: 0 0 10px #00f2ff, 0 0 20px rgba(0, 242, 255, 0.4);
           opacity: 0;
           transition: all 0.3s ease;
         }
@@ -135,16 +136,16 @@ const Navigation = () => {
         .nav-link.active .active-indicator { opacity: 1; }
 
         .logo-text {
-          font-family: 'Space Mono', monospace;
-          color: #fff;
-          font-weight: 700;
+          font-family: 'JetBrains Mono', 'Space Mono', monospace;
+          color: #dce4e4;
+          font-weight: 600;
           letter-spacing: -0.5px;
-          text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+          text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
         }
 
         .logo-prompt {
-          color: #4ade80;
-          font-family: 'Space Mono', monospace;
+          color: #00f8aa;
+          font-family: 'JetBrains Mono', 'Space Mono', monospace;
           font-size: 1.1rem;
           font-weight: 700;
         }
@@ -153,7 +154,7 @@ const Navigation = () => {
           display: inline-block;
           width: 2px;
           height: 1.1em;
-          background: var(--primary-color);
+          background: #00f2ff;
           margin-left: 2px;
           vertical-align: text-bottom;
           animation: blink 1s step-end infinite;
@@ -177,7 +178,7 @@ const Navigation = () => {
           display: block;
           width: 24px;
           height: 2px;
-          background: #fff;
+          background: #dce4e4;
           border-radius: 2px;
           transition: all 0.3s ease;
         }
@@ -192,24 +193,25 @@ const Navigation = () => {
           right: -320px;
           width: 320px;
           height: 100vh;
-          background: rgba(15, 23, 42, 0.8);
+          background: rgba(13, 21, 21, 0.85);
           backdrop-filter: blur(25px) saturate(180%);
-          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          border-left: 1px solid rgba(255, 255, 255, 0.08);
           display: flex;
           flex-direction: column;
           padding: 80px 30px;
           gap: 15px;
           transition: all 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
           z-index: 1050;
-          box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+          box-shadow: -10px 0 30px rgba(0,0,0,0.4);
         }
 
         .mobile-menu.open { right: 0; }
 
         .mobile-link {
           font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(220, 228, 228, 0.7);
           text-decoration: none;
+          font-family: "Hanken Grotesk", sans-serif;
           font-weight: 500;
           letter-spacing: 0.05em;
           transition: all 0.3s ease;
@@ -218,33 +220,38 @@ const Navigation = () => {
         }
 
         .mobile-link:hover, .mobile-link.active {
-          color: #fff;
+          color: #dce4e4;
           padding-left: 8px;
-          border-bottom-color: var(--primary-color);
+          border-bottom-color: #00f2ff;
         }
 
         .feedback-pill-btn {
-          background: linear-gradient(135deg, var(--primary-color), #818cf8);
-          color: #fff !important;
+          background: linear-gradient(135deg, #00f2ff, #00dbe7);
+          color: #00363a !important;
           padding: 10px 24px;
           border-radius: 50px;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 0.9rem;
           text-decoration: none;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+          box-shadow: 0 4px 15px rgba(0, 242, 255, 0.25);
           border: none;
           display: inline-flex;
           align-items: center;
           gap: 8px;
         }
 
+        .feedback-pill-btn:hover {
+          transform: translateY(-2px) scale(1.05);
+          box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+        }
+
         .mobile-feedback-btn {
           margin-top: 15px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(0, 242, 255, 0.05);
+          border: 1px solid rgba(0, 242, 255, 0.2);
           backdrop-filter: blur(10px);
-          color: #fff;
+          color: #dce4e4;
           padding: 12px;
           border-radius: 50px;
           text-align: center;
@@ -255,8 +262,8 @@ const Navigation = () => {
         }
 
         .mobile-feedback-btn:hover {
-          background: rgba(255, 255, 255, 0.1);
-          border-color: #fff;
+          background: rgba(0, 242, 255, 0.1);
+          border-color: #00f2ff;
         }
 
         @media (max-width: 991px) {

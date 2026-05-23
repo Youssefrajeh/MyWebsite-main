@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <section id="home" className="hero" style={{ 
-      background: `linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.88)), url('/images/hero_bg_v4.png')`,
+      background: `linear-gradient(rgba(13, 21, 21, 0.92), rgba(13, 21, 21, 0.88)), url('/images/hero_bg_v4.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: '100vh',
@@ -16,22 +16,24 @@ const Hero = () => {
           min-height: 100vh !important;
         }
         .hero-btn {
-          color: #ffffff;
+          color: #dce4e4;
           padding: 20px 50px;
           font-size: 1.25rem;
-          border-radius: 50px;
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(10px);
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          border-radius: 8px;
+          background: rgba(0, 242, 255, 0.05);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(0, 242, 255, 0.25);
+          transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
           display: inline-block;
           text-decoration: none;
+          font-family: "Hanken Grotesk", sans-serif;
           font-weight: 600;
         }
         .hero-btn:hover {
           transform: translateY(-5px) scale(1.05);
-          background: rgba(255, 255, 255, 0.15);
-          border-color: #ffffff;
+          background: rgba(0, 242, 255, 0.12);
+          border-color: #00f2ff;
+          box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
         }
         .hero-logo-wrapper {
           animation: fadeInScale 1s ease forwards;
@@ -44,21 +46,22 @@ const Hero = () => {
           display: block;
           margin: 0 auto;
           pointer-events: none;
-          filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.2));
+          filter: drop-shadow(0 0 40px rgba(0, 242, 255, 0.15));
           transition: filter 0.4s ease;
           -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
           mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
         }
         .hero-logo-wrapper:hover .hero-logo-video {
-          filter: drop-shadow(0 0 50px rgba(99, 102, 241, 0.35));
+          filter: drop-shadow(0 0 50px rgba(0, 242, 255, 0.3));
         }
         .hero-title-text {
+          font-family: "Space Grotesk", sans-serif !important;
           font-size: 3.5rem !important;
-          color: #ffffff !important;
-          -webkit-text-fill-color: #ffffff !important;
-          font-weight: 800;
-          letter-spacing: 0.05em;
-          text-shadow: 0 0 20px rgba(99, 102, 241, 0.5) !important;
+          color: #e1fdff !important;
+          -webkit-text-fill-color: #e1fdff !important;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          text-shadow: 0 0 30px rgba(0, 242, 255, 0.4) !important;
           margin: 0 0 1rem 0;
           display: block;
           text-align: center;

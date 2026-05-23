@@ -59,21 +59,17 @@ const Contact = () => {
 
   const inputStyle = {
     width: "100%",
-    padding: "12px",
+    padding: "14px 16px",
     marginBottom: "20px",
-    border: "1px solid #2d2d44",
-    borderRadius: "4px",
+    border: "1px solid #3a494b",
+    borderRadius: "8px",
     fontSize: "1rem",
-    transition: "border-color 0.2s ease",
+    fontFamily: '"Hanken Grotesk", sans-serif',
+    transition: "border-color 0.3s ease, box-shadow 0.3s ease",
     outline: "none",
     boxSizing: "border-box",
-    background: "#16213e",
-    color: "#e8e8e8",
-  };
-
-  const inputFocusStyle = {
-    borderColor: "#4a90e2",
-    boxShadow: "none",
+    background: "#080f10",
+    color: "#dce4e4",
   };
 
   return (
@@ -81,7 +77,7 @@ const Contact = () => {
       id="contact"
       style={{
         padding: "100px 20px",
-        background: "#16213e",
+        background: "#151d1e",
         minHeight: "600px",
         position: "relative",
       }}
@@ -95,8 +91,8 @@ const Contact = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(8px)",
+            background: "rgba(0, 0, 0, 0.7)",
+            backdropFilter: "blur(12px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -107,15 +103,16 @@ const Contact = () => {
         >
           <div
             style={{
-              background: "white",
-              borderRadius: "20px",
+              background: "#192122",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              borderRadius: "16px",
               padding: "30px",
               maxWidth: "340px",
               width: "85%",
               textAlign: "center",
               position: "relative",
               animation: "scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -128,12 +125,12 @@ const Contact = () => {
                     height: "60px",
                     borderRadius: "50%",
                     background:
-                      "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+                      "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     margin: "0 auto 20px",
-                    boxShadow: "0 8px 25px rgba(16, 185, 129, 0.35)",
+                    boxShadow: "0 8px 25px rgba(0, 248, 170, 0.3)",
                     animation:
                       "bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                   }}
@@ -161,12 +158,10 @@ const Contact = () => {
 
                 <h3
                   style={{
+                    fontFamily: '"Space Grotesk", sans-serif',
                     fontSize: "1.4rem",
                     fontWeight: "700",
-                    background:
-                      "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
+                    color: "#00f8aa",
                     marginBottom: "8px",
                   }}
                 >
@@ -175,7 +170,8 @@ const Contact = () => {
 
                 <p
                   style={{
-                    color: "#64748b",
+                    fontFamily: '"Hanken Grotesk", sans-serif',
+                    color: "#b9cacb",
                     fontSize: "0.9rem",
                     lineHeight: "1.6",
                     marginBottom: "20px",
@@ -190,14 +186,14 @@ const Contact = () => {
                   style={{
                     padding: "10px 30px",
                     background:
-                      "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                    color: "white",
+                      "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
+                    color: "#002113",
                     border: "none",
-                    borderRadius: "10px",
+                    borderRadius: "8px",
                     fontSize: "0.95rem",
-                    fontWeight: "600",
+                    fontWeight: "700",
                     cursor: "pointer",
-                    boxShadow: "0 6px 20px rgba(16, 185, 129, 0.3)",
+                    boxShadow: "0 6px 20px rgba(0, 248, 170, 0.25)",
                     transition: "all 0.3s ease",
                   }}
                 >
@@ -213,12 +209,12 @@ const Contact = () => {
                     height: "60px",
                     borderRadius: "50%",
                     background:
-                      "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
+                      "linear-gradient(135deg, #ffb4ab 0%, #93000a 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     margin: "0 auto 20px",
-                    boxShadow: "0 8px 25px rgba(239, 68, 68, 0.35)",
+                    boxShadow: "0 8px 25px rgba(255, 180, 171, 0.25)",
                     animation: "shake 0.5s ease",
                   }}
                 >
@@ -240,9 +236,10 @@ const Contact = () => {
 
                 <h3
                   style={{
+                    fontFamily: '"Space Grotesk", sans-serif',
                     fontSize: "1.4rem",
                     fontWeight: "700",
-                    color: "#ef4444",
+                    color: "#ffb4ab",
                     marginBottom: "8px",
                   }}
                 >
@@ -251,7 +248,8 @@ const Contact = () => {
 
                 <p
                   style={{
-                    color: "#64748b",
+                    fontFamily: '"Hanken Grotesk", sans-serif',
+                    color: "#b9cacb",
                     fontSize: "0.9rem",
                     lineHeight: "1.6",
                     marginBottom: "20px",
@@ -260,7 +258,7 @@ const Contact = () => {
                   The form didn't go through. Email me at{" "}
                   <a
                     href="mailto:youssefrrajeh@gmail.com"
-                    style={{ color: "#6366f1", fontWeight: "600" }}
+                    style={{ color: "#00f2ff", fontWeight: "600" }}
                   >
                     youssefrrajeh@gmail.com
                   </a>
@@ -272,14 +270,14 @@ const Contact = () => {
                   style={{
                     padding: "10px 30px",
                     background:
-                      "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
-                    color: "white",
+                      "linear-gradient(135deg, #00f2ff 0%, #00dbe7 100%)",
+                    color: "#00363a",
                     border: "none",
-                    borderRadius: "10px",
+                    borderRadius: "8px",
                     fontSize: "0.95rem",
-                    fontWeight: "600",
+                    fontWeight: "700",
                     cursor: "pointer",
-                    boxShadow: "0 6px 20px rgba(99, 102, 241, 0.3)",
+                    boxShadow: "0 6px 20px rgba(0, 242, 255, 0.25)",
                     transition: "all 0.3s ease",
                   }}
                 >
@@ -315,14 +313,25 @@ const Contact = () => {
           75% { transform: translateX(10px); }
         }
         .contact-input:focus {
-          border-color: #6366f1 !important;
-          box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+          border-color: #00f2ff !important;
+          box-shadow: 0 0 0 3px rgba(0, 242, 255, 0.1) !important;
         }
         .contact-info-card:hover {
-          border-color: #4a90e2 !important;
+          border-color: rgba(0, 242, 255, 0.35) !important;
+          box-shadow: 0 0 20px rgba(0, 242, 255, 0.12) !important;
         }
         .modal-close-btn:hover {
-          transform: translateY(-2px);
+          transform: translateY(-2px) scale(1.05);
+        }
+        .contact-label {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.75rem;
+          color: #849495;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          margin-bottom: 6px;
+          display: block;
+          text-align: left;
         }
         
         @media (max-width: 768px) {
@@ -339,9 +348,9 @@ const Contact = () => {
             padding: 0 !important;
             border-radius: 50% !important;
             justify-content: center !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-            backdrop-filter: blur(10px) !important;
+            background: rgba(25, 33, 34, 0.7) !important;
+            border: 1px solid rgba(0, 242, 255, 0.15) !important;
+            backdrop-filter: blur(12px) !important;
           }
           .contact-text-container {
             display: none !important;
@@ -356,7 +365,7 @@ const Contact = () => {
             justify-content: center !important;
           }
           .contact-info-icon i {
-            color: #fff !important;
+            color: #00f2ff !important;
             font-size: 1.2rem !important;
           }
           .contact-section-title {
@@ -376,9 +385,10 @@ const Contact = () => {
         <h2
           className="contact-section-title"
           style={{
+            fontFamily: '"Space Grotesk", sans-serif',
             fontSize: "3rem",
             marginBottom: "60px",
-            color: "#e8e8e8",
+            color: "#dce4e4",
             fontWeight: "700",
           }}
         >
@@ -397,14 +407,15 @@ const Contact = () => {
           {/* Contact Form */}
           <div
             style={{
-              background: "#0f3460",
+              background: "#192122",
               padding: "40px",
-              borderRadius: "8px",
+              borderRadius: "16px",
               boxShadow: "none",
-              border: "1px solid #2d2d44",
+              border: "1px solid rgba(255, 255, 255, 0.06)",
             }}
           >
             <form onSubmit={handleSubmit}>
+              <label className="contact-label">Name</label>
               <input
                 type="text"
                 name="name"
@@ -416,6 +427,7 @@ const Contact = () => {
                 style={inputStyle}
               />
 
+              <label className="contact-label">Email</label>
               <input
                 type="email"
                 name="email"
@@ -427,6 +439,7 @@ const Contact = () => {
                 style={inputStyle}
               />
 
+              <label className="contact-label">Subject</label>
               <input
                 type="text"
                 name="subject"
@@ -438,6 +451,7 @@ const Contact = () => {
                 style={inputStyle}
               />
 
+              <label className="contact-label">Message</label>
               <textarea
                 name="message"
                 placeholder="Your Message"
@@ -461,16 +475,17 @@ const Contact = () => {
                   padding: "18px 30px",
                   background:
                     status === "submitting"
-                      ? "#64748b"
-                      : "#4a90e2",
-                  color: "white",
+                      ? "#3a494b"
+                      : "#00f2ff",
+                  color: status === "submitting" ? "#849495" : "#00363a",
                   border: "none",
-                  borderRadius: "4px",
+                  borderRadius: "8px",
                   fontSize: "1.1rem",
-                  fontWeight: "600",
+                  fontFamily: '"Hanken Grotesk", sans-serif',
+                  fontWeight: "700",
                   cursor: status === "submitting" ? "not-allowed" : "pointer",
-                  boxShadow: "none",
-                  transition: "background-color 0.2s ease",
+                  boxShadow: status === "submitting" ? "none" : "0 0 20px rgba(0, 242, 255, 0.2)",
+                  transition: "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -483,8 +498,8 @@ const Contact = () => {
                       style={{
                         width: "20px",
                         height: "20px",
-                        border: "3px solid rgba(255,255,255,0.3)",
-                        borderTop: "3px solid white",
+                        border: "3px solid rgba(255,255,255,0.2)",
+                        borderTop: "3px solid #00f2ff",
                         borderRadius: "50%",
                         animation: "spin 1s linear infinite",
                       }}
@@ -562,17 +577,17 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="contact-info-card"
                 style={{
-                  background: "#0f3460",
+                  background: "#192122",
                   padding: "20px",
                   borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
                   gap: "20px",
                   boxShadow: "none",
-                  border: "1px solid #2d2d44",
+                  border: "1px solid rgba(255, 255, 255, 0.06)",
                   textDecoration: "none",
                   cursor: "pointer",
-                  transition: "all 0.3s ease",
+                  transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
                   minHeight: "60px",
                   WebkitTapHighlightColor: "transparent",
                 }}
@@ -583,14 +598,16 @@ const Contact = () => {
                   style={{
                     width: "50px",
                     height: "50px",
-                    borderRadius: "50%",
-                    background: "#4a90e2",
+                    borderRadius: "12px",
+                    background: "rgba(0, 242, 255, 0.08)",
+                    border: "1px solid rgba(0, 242, 255, 0.15)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: "#00f2ff",
                     fontSize: "1.2rem",
                     flexShrink: 0,
+                    transition: "all 0.3s ease",
                   }}
                 >
                   <i className={item.icon}></i>
@@ -598,17 +615,21 @@ const Contact = () => {
                 <div className="contact-text-container" style={{ textAlign: "left", flex: 1 }}>
                   <h4
                     style={{
-                      color: "#a0a0a0",
-                      fontSize: "0.9rem",
+                      fontFamily: '"JetBrains Mono", monospace',
+                      color: "#849495",
+                      fontSize: "0.75rem",
                       marginBottom: "5px",
                       fontWeight: "500",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
                     }}
                   >
                     {item.label}
                   </h4>
                   <span
                     style={{
-                      color: "#e8e8e8",
+                      fontFamily: '"Hanken Grotesk", sans-serif',
+                      color: "#dce4e4",
                       fontSize: "1rem",
                       fontWeight: "600",
                     }}

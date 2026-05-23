@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useMagnetic } from "../hooks/useMagnetic";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,36 @@ const Contact = () => {
   });
   const [status, setStatus] = useState("idle"); // idle, submitting, success, error
   const [showModal, setShowModal] = useState(false);
+  const containerRef = useRef(null);
+  const { wrapRef: submitWrapRef, btnRef: submitBtnRef } = useMagnetic(0.25);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const revealElements = container.querySelectorAll('.reveal');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -376,6 +407,7 @@ const Contact = () => {
       `}</style>
 
       <div
+        ref={containerRef}
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
@@ -406,12 +438,14 @@ const Contact = () => {
         >
           {/* Contact Form */}
           <div
+            className="reveal"
             style={{
               background: "#192122",
               padding: "40px",
               borderRadius: "16px",
               boxShadow: "none",
               border: "1px solid rgba(255, 255, 255, 0.06)",
+              transitionDelay: "100ms"
             }}
           >
             <form onSubmit={handleSubmit}>
@@ -467,64 +501,68 @@ const Contact = () => {
                 }}
               />
 
-              <button
-                type="submit"
-                disabled={status === "submitting"}
-                style={{
-                  width: "100%",
-                  padding: "18px 30px",
-                  background:
-                    status === "submitting"
-                      ? "#3a494b"
-                      : "#00f2ff",
-                  color: status === "submitting" ? "#849495" : "#00363a",
-                  border: "none",
-                  borderRadius: "8px",
-                  fontSize: "1.1rem",
-                  fontFamily: '"Hanken Grotesk", sans-serif',
-                  fontWeight: "700",
-                  cursor: status === "submitting" ? "not-allowed" : "pointer",
-                  boxShadow: status === "submitting" ? "none" : "0 0 20px rgba(0, 242, 255, 0.2)",
-                  transition: "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
-                }}
-              >
-                {status === "submitting" ? (
-                  <>
-                    <div
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        border: "3px solid rgba(255,255,255,0.2)",
-                        borderTop: "3px solid #00f2ff",
-                        borderRadius: "50%",
-                        animation: "spin 1s linear infinite",
-                      }}
-                    />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <span>Send Message</span>
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="22" y1="2" x2="11" y2="13" />
-                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                    </svg>
-                  </>
-                )}
-              </button>
+              <div className="magnetic-wrap" ref={submitWrapRef} style={{ width: "100%" }}>
+                <button
+                  ref={submitBtnRef}
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="magnetic-button"
+                  style={{
+                    width: "100%",
+                    padding: "18px 30px",
+                    background:
+                      status === "submitting"
+                        ? "#3a494b"
+                        : "#00f2ff",
+                    color: status === "submitting" ? "#849495" : "#00363a",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "1.1rem",
+                    fontFamily: '"Hanken Grotesk", sans-serif',
+                    fontWeight: "700",
+                    cursor: status === "submitting" ? "not-allowed" : "pointer",
+                    boxShadow: status === "submitting" ? "none" : "0 0 20px rgba(0, 242, 255, 0.2)",
+                    transition: "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                  }}
+                >
+                  {status === "submitting" ? (
+                    <>
+                      <div
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                          border: "3px solid rgba(255,255,255,0.2)",
+                          borderTop: "3px solid #00f2ff",
+                          borderRadius: "50%",
+                          animation: "spin 1s linear infinite",
+                        }}
+                      />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <line x1="22" y1="2" x2="11" y2="13" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                      </svg>
+                    </>
+                  )}
+                </button>
+              </div>
 
               {/* Spinner animation */}
               <style>{`
@@ -575,7 +613,7 @@ const Contact = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-info-card"
+                className="contact-info-card reveal shimmer"
                 style={{
                   background: "#192122",
                   padding: "20px",
@@ -587,9 +625,10 @@ const Contact = () => {
                   border: "1px solid rgba(255, 255, 255, 0.06)",
                   textDecoration: "none",
                   cursor: "pointer",
-                  transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+                  transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease, transform 0.8s ease",
                   minHeight: "60px",
                   WebkitTapHighlightColor: "transparent",
+                  transitionDelay: `${(index + 2) * 100}ms`
                 }}
 
               >

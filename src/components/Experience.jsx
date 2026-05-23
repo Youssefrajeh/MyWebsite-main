@@ -1,12 +1,47 @@
+import { useEffect, useRef } from 'react';
 import { experienceData } from '../data/experienceData';
 
 const Experience = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.experience-card');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section id="experience" className="experience">
       <h2 className="section-title">Professional Journey</h2>
-      <div className="experience-container">
-        {experienceData.map((exp) => (
-          <div key={exp.id} className="experience-card">
+      <div className="experience-container" ref={containerRef}>
+        {experienceData.map((exp, index) => (
+          <div 
+            key={exp.id} 
+            className="experience-card reveal"
+            style={{ transitionDelay: `${index * 150}ms` }}
+          >
             <div className="experience-header-grid">
               <div className="experience-info">
                 <h3 className="experience-title">{exp.title}</h3>

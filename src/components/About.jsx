@@ -109,7 +109,7 @@ const About = () => {
 
       <div className="about-layout">
         <div className="about-photo-col">
-          <div className="about-photo-frame">
+          <div className="about-photo-frame shimmer">
             <img
               src="/images/youssef.jpeg"
               alt="Youssef Rajeh"
@@ -140,9 +140,9 @@ const About = () => {
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               transition: 'all 0.6s 0.5s ease'
             }}>
-              <span className="language-badge">English (C2)</span>
-              <span className="language-badge">French (B1)</span>
-              <span className="language-badge">Arabic (Native)</span>
+              <span className="language-badge shimmer">English (C2)</span>
+              <span className="language-badge shimmer">French (B1)</span>
+              <span className="language-badge shimmer">Arabic (Native)</span>
             </div>
             <div className="cv-button" style={{
               opacity: isVisible ? 1 : 0,

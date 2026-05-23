@@ -1,9 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { projectsData, projectFilters } from '../data/projectsData';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.glass-card');
+    const observerOptions = {
+      threshold: 0.05,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeFilter]);
 
   const filteredProjects = activeFilter === 'all'
     ? projectsData
@@ -37,17 +66,17 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="project-grid" style={{
+      <div className="project-grid" ref={containerRef} style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
         gap: '30px',
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        {filteredProjects.map((project) => (
+        {filteredProjects.map((project, index) => (
           <div
             key={project.id}
-            className="glass-card"
+            className="glass-card reveal shimmer"
             onMouseEnter={() => setHoveredProject(project.id)}
             onMouseLeave={() => setHoveredProject(null)}
             style={{
@@ -55,10 +84,11 @@ const Projects = () => {
               overflow: 'hidden',
               height: '400px',
               position: 'relative',
-              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease, transform 0.8s ease',
               transform: hoveredProject === project.id ? 'translateY(-10px) scale(1.02)' : 'translateY(0)',
               border: hoveredProject === project.id ? '1px solid rgba(0, 242, 255, 0.3)' : '1px solid rgba(255, 255, 255, 0.06)',
-              boxShadow: hoveredProject === project.id ? '0 0 30px rgba(0, 242, 255, 0.15)' : 'none'
+              boxShadow: hoveredProject === project.id ? '0 0 30px rgba(0, 242, 255, 0.15)' : 'none',
+              transitionDelay: hoveredProject === project.id ? '0ms' : `${index * 80}ms`
             }}
           >
             <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>

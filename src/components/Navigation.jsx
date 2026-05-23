@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import HackerText from './HackerText';
+import { useMagnetic } from '../hooks/useMagnetic';
 
 const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server', 'C++', 'JavaScript', 'REST APIs'];
 
@@ -9,6 +10,7 @@ const Navigation = () => {
   const [activeItem, setActiveItem] = useState('Home');
   const [typeText, setTypeText] = useState('');
   const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
+  const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
 
   useEffect(() => {
     const tick = () => {
@@ -291,15 +293,18 @@ const Navigation = () => {
                 <div className="active-indicator" />
               </a>
             ))}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="feedback-pill-btn"
-              style={{ marginLeft: '12px' }}
-            >
-              Feedback
-            </a>
+            <div className="magnetic-wrap" ref={navWrapRef}>
+              <a
+                ref={navBtnRef}
+                href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="feedback-pill-btn magnetic-button"
+                style={{ marginLeft: '12px' }}
+              >
+                Feedback
+              </a>
+            </div>
           </div>
 
           <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>

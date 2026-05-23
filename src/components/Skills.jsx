@@ -1,22 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { skillsData, skillCategories } from '../data/skillsData';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [animateItems, setAnimateItems] = useState(false);
+  const sectionRef = useRef(null);
+  const [hasEntered, setHasEntered] = useState(false);
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          setAnimateItems(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasEntered) return;
     setAnimateItems(false);
     const timer = setTimeout(() => setAnimateItems(true), 100);
     return () => clearTimeout(timer);
-  }, [activeCategory]);
+  }, [activeCategory, hasEntered]);
 
   const filteredSkills = activeCategory === 'all'
     ? skillsData
     : skillsData.filter(skill => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="skills">
+    <section id="skills" className="skills" ref={sectionRef}>
       <style>{`
         .skills-section-title {
           font-family: "Space Grotesk", sans-serif;
@@ -190,7 +211,7 @@ const Skills = () => {
             }}
           >
             <div className="skill-card-top">
-              <div className="skill-icon-box">
+              <div className="skill-icon-box shimmer">
                 <img src={skill.icon} alt={skill.name} />
               </div>
               <div className="skill-card-info">

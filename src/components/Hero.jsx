@@ -1,6 +1,123 @@
+import { useEffect, useRef } from "react";
+import { useMagnetic } from "../hooks/useMagnetic";
+
 const Hero = () => {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const { wrapRef: workWrapRef, btnRef: workBtnRef } = useMagnetic(0.3);
+  const { wrapRef: contactWrapRef, btnRef: contactBtnRef } = useMagnetic(0.3);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let mouse = { x: null, y: null };
+    let animationId;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const handleResize = () => {
+      canvas.width = container.offsetWidth;
+      canvas.height = container.offsetHeight;
+      initParticles();
+    };
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 1.5 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (mouse.x !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            this.x -= dx * 0.01;
+            this.y -= dy * 0.01;
+          }
+        }
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#00f2ff";
+        ctx.globalAlpha = 0.4;
+        ctx.fill();
+      }
+    }
+
+    const initParticles = () => {
+      particles = [];
+      const count = Math.floor((canvas.width * canvas.height) / 12000);
+      for (let i = 0; i < Math.min(count, 100); i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = "#00f2ff";
+            ctx.globalAlpha = (1 - dist / 150) * 0.15;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    if (!isReducedMotion) {
+      window.addEventListener("resize", handleResize);
+      
+      const handleMouseMove = (e) => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      };
+
+      const handleMouseLeave = () => {
+        mouse.x = null;
+        mouse.y = null;
+      };
+
+      container.addEventListener("mousemove", handleMouseMove);
+      container.addEventListener("mouseleave", handleMouseLeave);
+      
+      handleResize();
+      animate();
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+        container.removeEventListener("mousemove", handleMouseMove);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+        cancelAnimationFrame(animationId);
+      };
+    }
+  }, []);
+
   return (
-    <section id="home" className="hero" style={{ 
+    <section id="home" className="hero" ref={containerRef} style={{ 
       background: `linear-gradient(rgba(13, 21, 21, 0.92), rgba(13, 21, 21, 0.88)), url('/images/hero_bg_v4.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -10,10 +127,21 @@ const Hero = () => {
       justifyContent: 'center',
       position: 'relative'
     }}>
+      <canvas ref={canvasRef} id="neural-canvas" />
       <style>{`
         #home.hero {
           height: 100vh !important;
           min-height: 100vh !important;
+        }
+        #neural-canvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 1;
+          opacity: 0.6;
         }
         .hero-btn {
           color: #dce4e4;
@@ -144,13 +272,19 @@ const Hero = () => {
           gap: '24px',
           flexWrap: 'wrap',
           justifyContent: 'center',
+          position: 'relative',
+          zIndex: 10
         }}>
-          <a href="#projects" className="hero-btn">
-            View My Work
-          </a>
-          <a href="#contact" className="hero-btn">
-            Contact Me
-          </a>
+          <div className="magnetic-wrap" ref={workWrapRef}>
+            <a ref={workBtnRef} href="#projects" className="hero-btn magnetic-button">
+              View My Work
+            </a>
+          </div>
+          <div className="magnetic-wrap" ref={contactWrapRef}>
+            <a ref={contactBtnRef} href="#contact" className="hero-btn magnetic-button">
+              Contact Me
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -158,3 +292,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

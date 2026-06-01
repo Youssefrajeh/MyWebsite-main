@@ -1672,48 +1672,7 @@ p {
     padding-top: 0;
   }
 
-  .nav-container {
-    /* Keep floating pill on mobile, just adjust sizing */
-    width: 96%;
-    max-width: none;
-    top: 10px;
-  }
-
-  .nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    padding: 0;
-  }
-
-  .nav-container .logo {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 8px;
-    margin: 0;
-    z-index: 1100;
-    position: relative;
-  }
-
-  .hamburger:hover {
-    color: var(--primary-color);
-  }
+  /* Nav handled by Navigation.jsx component styles */
 
   .hero-content {
     padding: 0 15px;

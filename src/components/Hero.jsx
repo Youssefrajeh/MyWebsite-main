@@ -202,13 +202,17 @@ const Hero = () => {
             justify-content: center !important;
           }
           .hero-logo-video {
-            width: 380px;
-            height: 380px;
-            margin-left: -10px;
+            width: 85vw;
+            max-width: 380px;
+            height: auto;
+            aspect-ratio: 1;
+            margin: 0 auto;
           }
           .hero-logo-wrapper {
             margin-bottom: -50px;
             margin-top: -60px;
+            display: flex;
+            justify-content: center;
           }
           .hero-title-text {
             font-size: 1.8rem !important;
@@ -229,12 +233,12 @@ const Hero = () => {
         }
         @media (max-width: 480px) {
           .hero-logo-video {
-            width: 340px;
-            height: 340px;
+            width: 80vw;
+            max-width: 320px;
           }
           .hero-logo-wrapper {
-            margin-bottom: -45px;
-            margin-top: -50px;
+            margin-bottom: -40px;
+            margin-top: -40px;
           }
           .hero-title-text {
             font-size: 1.5rem !important;

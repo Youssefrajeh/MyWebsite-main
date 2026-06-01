@@ -272,6 +272,67 @@ const Navigation = () => {
         @media (max-width: 991px) {
           .nav-links { display: none; }
           .hamburger { display: flex; }
+          
+          .nav-container {
+            width: 92%;
+            top: 12px;
+          }
+          
+          .nav-pill {
+            padding: 10px 16px 10px 20px;
+            border-radius: 60px;
+            background: rgba(13, 21, 21, 0.55);
+          }
+          
+          .nav-container.scrolled .nav-pill {
+            padding: 8px 14px 8px 18px;
+          }
+          
+          .logo-text {
+            font-size: 0.9rem;
+          }
+          
+          .logo-prompt {
+            font-size: 1rem;
+          }
+          
+          .hamburger {
+            padding: 8px;
+            gap: 5px;
+          }
+          
+          .hamburger span {
+            width: 22px;
+            height: 2px;
+          }
+          
+          .mobile-menu {
+            width: min(300px, 80vw);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .nav-container {
+            width: 94%;
+            top: 8px;
+          }
+          
+          .nav-pill {
+            padding: 8px 14px 8px 16px;
+          }
+          
+          .logo-text {
+            font-size: 0.8rem;
+          }
+          
+          .logo-prompt {
+            font-size: 0.9rem;
+          }
+          
+          .mobile-menu {
+            width: min(280px, 85vw);
+            padding: 70px 24px;
+          }
         }
       `}</style>
 

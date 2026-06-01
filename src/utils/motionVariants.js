@@ -135,15 +135,19 @@ export const scaleStaggerItem = {
   },
 };
 
-// ─── Hero Scale In (logo entrance) ──────────────────────────────
+// ─── Hero Scale In (logo entrance — spring for organic feel) ────
 export const heroScaleIn = {
-  hidden: { opacity: 0, scale: 0.7 },
+  hidden: { opacity: 0, scale: 0.7, y: 20 },
   visible: {
     opacity: 1,
     scale: 1,
+    y: 0,
     transition: {
-      duration: 1,
-      ease: easings.smooth,
+      type: "spring",
+      stiffness: 50,
+      damping: 14,
+      mass: 1.5,
+      opacity: { duration: 1.2, ease: easings.smooth },
     },
   },
 };

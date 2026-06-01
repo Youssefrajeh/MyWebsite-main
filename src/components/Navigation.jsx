@@ -9,10 +9,24 @@ const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server',
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const [activeItem, setActiveItem] = useState('Home');
   const [typeText, setTypeText] = useState('');
   const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
   const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
+
+  // Track mobile breakpoint
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 991);
+    const mq = window.matchMedia('(max-width: 991px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    window.addEventListener('resize', checkMobile);
+    return () => {
+      mq.removeEventListener('change', handler);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   useEffect(() => {
     const tick = () => {
@@ -79,17 +93,10 @@ const Navigation = () => {
           z-index: 1000;
           width: 95%;
           max-width: 1100px;
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           pointer-events: none;
           background: transparent !important;
         }
         
-        .nav-links {
-          display: flex;
-          gap: 8px;
-          align-items: center;
-        }
-
         .nav-pill {
           display: flex;
           justify-content: space-between;
@@ -100,7 +107,7 @@ const Navigation = () => {
           border: 1px solid rgba(255, 255, 255, 0.06);
           border-radius: 100px;
           padding: 8px 12px 8px 24px;
-          transition: all 0.4s ease;
+          transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
           pointer-events: auto;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
         }
@@ -109,8 +116,13 @@ const Navigation = () => {
           background: rgba(13, 21, 21, 0.65);
           border: 1px solid rgba(255, 255, 255, 0.1);
           padding: 6px 10px 6px 20px;
-          transform: scale(0.98);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 8px;
+          align-items: center;
         }
 
         .nav-link {
@@ -121,7 +133,7 @@ const Navigation = () => {
           font-family: "Hanken Grotesk", sans-serif;
           font-weight: 500;
           padding: 8px 16px;
-          transition: all 0.3s ease;
+          transition: color 0.3s ease, background 0.3s ease;
           border-radius: 50px;
         }
 
@@ -170,23 +182,23 @@ const Navigation = () => {
           50% { opacity: 0; }
         }
 
-        .hamburger {
-          display: none;
+        .hamburger-btn {
+          display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 5px;
           cursor: pointer;
           padding: 10px;
+          background: none;
+          border: none;
           z-index: 1100;
         }
 
-        .hamburger span {
+        .hamburger-line {
           display: block;
           width: 24px;
           height: 2px;
           background: #dce4e4;
           border-radius: 2px;
-          transition: all 0.3s ease;
-          transform-origin: center;
         }
 
         .mobile-menu-overlay {
@@ -203,9 +215,9 @@ const Navigation = () => {
           position: fixed;
           top: 0;
           right: 0;
-          width: 320px;
+          width: min(300px, 80vw);
           height: 100vh;
-          background: rgba(13, 21, 21, 0.85);
+          background: rgba(13, 21, 21, 0.9);
           backdrop-filter: blur(25px) saturate(180%);
           border-left: 1px solid rgba(255, 255, 255, 0.08);
           display: flex;
@@ -251,7 +263,6 @@ const Navigation = () => {
         }
 
         .feedback-pill-btn:hover {
-          transform: translateY(-2px) scale(1.05);
           box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
         }
 
@@ -275,46 +286,23 @@ const Navigation = () => {
           border-color: #00f2ff;
         }
 
+        /* ─── Mobile adjustments ─── */
         @media (max-width: 991px) {
-          .nav-links { display: none; }
-          .hamburger { display: flex; }
-          
           .nav-container {
             width: 92%;
             top: 12px;
           }
-          
           .nav-pill {
-            padding: 10px 16px 10px 20px;
-            border-radius: 60px;
-            background: rgba(13, 21, 21, 0.55);
+            padding: 10px 12px 10px 20px;
+            background: rgba(13, 21, 21, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
           }
-          
           .nav-container.scrolled .nav-pill {
-            padding: 8px 14px 8px 18px;
+            padding: 8px 10px 8px 18px;
+            background: rgba(13, 21, 21, 0.8);
           }
-          
-          .logo-text {
-            font-size: 0.9rem;
-          }
-          
-          .logo-prompt {
-            font-size: 1rem;
-          }
-          
-          .hamburger {
-            padding: 8px;
-            gap: 5px;
-          }
-          
-          .hamburger span {
-            width: 22px;
-            height: 2px;
-          }
-          
-          .mobile-menu {
-            width: min(300px, 80vw);
-          }
+          .logo-text { font-size: 0.9rem; }
+          .logo-prompt { font-size: 1rem; }
         }
 
         @media (max-width: 480px) {
@@ -322,19 +310,11 @@ const Navigation = () => {
             width: 94%;
             top: 8px;
           }
-          
           .nav-pill {
-            padding: 8px 14px 8px 16px;
+            padding: 8px 10px 8px 16px;
           }
-          
-          .logo-text {
-            font-size: 0.8rem;
-          }
-          
-          .logo-prompt {
-            font-size: 0.9rem;
-          }
-          
+          .logo-text { font-size: 0.8rem; }
+          .logo-prompt { font-size: 0.9rem; }
           .mobile-menu {
             width: min(280px, 85vw);
             padding: 70px 24px;
@@ -342,7 +322,7 @@ const Navigation = () => {
         }
       `}</style>
 
-      {/* Navbar with entrance animation */}
+      {/* Navbar */}
       <m.div
         className={`nav-container ${isScrolled ? 'scrolled' : ''}`}
         variants={fadeInDown}
@@ -351,83 +331,84 @@ const Navigation = () => {
         style={{ x: "-50%" }}
       >
         <div className="nav-pill">
+          {/* Logo */}
           <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="logo-prompt">▸</span>
             <span className="logo-text">{typeText}</span>
-            <span className="logo-cursor" /></a>
+            <span className="logo-cursor" />
+          </a>
 
-          <div className="nav-links">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`nav-link ${activeItem === item ? 'active' : ''}`}
-                onClick={() => handleLinkClick(item)}
-                style={{ position: 'relative' }}
-              >
-                {item}
-                {/* layoutId active indicator — slides smoothly between items */}
-                {activeItem === item && (
-                  <m.div
-                    className="active-indicator"
-                    layoutId="nav-active-dot"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  />
-                )}
-              </a>
-            ))}
-            <div className="magnetic-wrap" ref={navWrapRef}>
-              <a
-                ref={navBtnRef}
-                href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="feedback-pill-btn magnetic-button"
-                style={{ marginLeft: '12px' }}
-              >
-                Feedback
-              </a>
+          {/* Desktop nav links — only rendered on desktop */}
+          {!isMobile && (
+            <div className="nav-links">
+              {navItems.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={`nav-link ${activeItem === item ? 'active' : ''}`}
+                  onClick={() => handleLinkClick(item)}
+                  style={{ position: 'relative' }}
+                >
+                  {item}
+                  {activeItem === item && (
+                    <m.div
+                      className="active-indicator"
+                      layoutId="nav-active-dot"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </a>
+              ))}
+              <div className="magnetic-wrap" ref={navWrapRef}>
+                <a
+                  ref={navBtnRef}
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="feedback-pill-btn magnetic-button"
+                  style={{ marginLeft: '12px' }}
+                >
+                  Feedback
+                </a>
+              </div>
             </div>
-          </div>
+          )}
 
-          <div
-            className="hamburger"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <m.span
-              animate={isMobileMenuOpen
-                ? { rotate: 45, y: 8 }
-                : { rotate: 0, y: 0 }
-              }
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            />
-            <m.span
-              animate={isMobileMenuOpen
-                ? { opacity: 0, scaleX: 0 }
-                : { opacity: 1, scaleX: 1 }
-              }
-              transition={{ duration: 0.2 }}
-            />
-            <m.span
-              animate={isMobileMenuOpen
-                ? { rotate: -45, y: -8 }
-                : { rotate: 0, y: 0 }
-              }
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            />
-          </div>
+          {/* Hamburger — only rendered on mobile */}
+          {isMobile && (
+            <button
+              className="hamburger-btn"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <m.span
+                className="hamburger-line"
+                animate={isMobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              />
+              <m.span
+                className="hamburger-line"
+                animate={isMobileMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.2 }}
+              />
+              <m.span
+                className="hamburger-line"
+                animate={isMobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </button>
+          )}
         </div>
       </m.div>
 
-      {/* Mobile Menu with AnimatePresence */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop overlay */}
             <m.div
               className="mobile-menu-overlay"
               initial={{ opacity: 0 }}
@@ -437,7 +418,6 @@ const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Sliding menu */}
             <m.div
               className="mobile-menu"
               variants={slideInRight}

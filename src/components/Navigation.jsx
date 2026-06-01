@@ -84,6 +84,12 @@ const Navigation = () => {
           background: transparent !important;
         }
         
+        .nav-links {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+        }
+
         .nav-pill {
           display: flex;
           justify-content: space-between;
@@ -350,7 +356,7 @@ const Navigation = () => {
             <span className="logo-text">{typeText}</span>
             <span className="logo-cursor" /></a>
 
-          <div className="nav-links" style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <div className="nav-links">
             {navItems.map((item) => (
               <a
                 key={item}

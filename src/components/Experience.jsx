@@ -1,46 +1,32 @@
-import { useEffect, useRef } from 'react';
+import { m } from 'motion/react';
 import { experienceData } from '../data/experienceData';
+import { fadeInUp, staggerContainer, staggerItem, scaleIn, viewportConfig } from '../utils/motionVariants';
 
 const Experience = () => {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const cards = container.querySelectorAll('.experience-card');
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    cards.forEach((card) => {
-      observer.observe(card);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
   return (
     <section id="experience" className="experience">
-      <h2 className="section-title">Professional Journey</h2>
-      <div className="experience-container" ref={containerRef}>
-        {experienceData.map((exp, index) => (
-          <div 
+      <m.h2
+        className="section-title"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+      >
+        Professional Journey
+      </m.h2>
+
+      <m.div
+        className="experience-container"
+        variants={staggerContainer(0.15, 0.1)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+      >
+        {experienceData.map((exp) => (
+          <m.div 
             key={exp.id} 
-            className="experience-card reveal"
-            style={{ transitionDelay: `${index * 150}ms` }}
+            className="experience-card"
+            variants={staggerItem}
           >
             <div className="experience-header-grid">
               <div className="experience-info">
@@ -93,15 +79,24 @@ const Experience = () => {
                   ))}
                 </ul>
               </div>
-              <div className="experience-tech-stack">
+              <m.div
+                className="experience-tech-stack"
+                variants={staggerContainer(0.05, 0)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
                 {exp.technologies.map((tech, index) => (
-                  <span key={index} className="tech-tag">{tech}</span>
+                  <m.span key={index} className="tech-tag" variants={scaleIn}>
+                    {tech}
+                  </m.span>
                 ))}
-              </div>
+              </m.div>
             </div>
-          </div>
+          </m.div>
         ))}
-      </div>
+      </m.div>
+
       <style>{`
         .experience-company {
           color: #00f2ff !important;

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+import { m, AnimatePresence } from "motion/react";
 import { useMagnetic } from "../hooks/useMagnetic";
+import { heroScaleIn, fadeInUp, staggerContainer, staggerItem, viewportConfig } from "../utils/motionVariants";
 
 const Hero = () => {
   const canvasRef = useRef(null);
@@ -163,13 +165,9 @@ const Hero = () => {
           border-color: #00f2ff;
           box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
         }
-        .hero-logo-wrapper {
-          animation: fadeInScale 1s ease forwards;
-          margin-bottom: 10px;
-        }
         .hero-logo-video {
-          width: 500px;
-          height: 500px;
+          width: 420px;
+          height: 420px;
           object-fit: cover;
           display: block;
           margin: 0 auto;
@@ -194,27 +192,23 @@ const Hero = () => {
           display: block;
           text-align: center;
         }
-        @keyframes fadeInScale {
-          0% { opacity: 0; transform: scale(0.7); }
-          100% { opacity: 1; transform: scale(1); }
-        }
         @media (max-width: 768px) {
           #home.hero {
             height: 100vh !important;
             min-height: 100vh !important;
-            padding-top: 60px !important;
+            padding-top: 40px !important;
             padding-bottom: 0 !important;
             align-items: flex-start !important;
             justify-content: center !important;
           }
           .hero-logo-video {
-            width: 500px;
-            height: 500px;
-            margin-left: -15px;
+            width: 380px;
+            height: 380px;
+            margin-left: -10px;
           }
           .hero-logo-wrapper {
-            margin-bottom: -30px;
-            margin-top: -80px;
+            margin-bottom: -50px;
+            margin-top: -60px;
           }
           .hero-title-text {
             font-size: 1.8rem !important;
@@ -235,8 +229,12 @@ const Hero = () => {
         }
         @media (max-width: 480px) {
           .hero-logo-video {
-            width: 460px;
-            height: 460px;
+            width: 340px;
+            height: 340px;
+          }
+          .hero-logo-wrapper {
+            margin-bottom: -45px;
+            margin-top: -50px;
           }
           .hero-title-text {
             font-size: 1.5rem !important;
@@ -254,7 +252,14 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
-        <div className="hero-logo-wrapper">
+        {/* Logo with scale-in animation */}
+        <m.div
+          className="hero-logo-wrapper"
+          style={{ marginBottom: '-20px' }}
+          variants={heroScaleIn}
+          initial="hidden"
+          animate="visible"
+        >
           <video
             src="/YR.mp4"
             autoPlay
@@ -263,29 +268,45 @@ const Hero = () => {
             playsInline
             className="hero-logo-video"
           />
-        </div>
-        <span className="hero-title-text">
+        </m.div>
+
+        {/* Title with fade-in-up */}
+        <m.span
+          className="hero-title-text"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.4}
+        >
           SOFTWARE DEVELOPER
-        </span>
-        <div className="hero-buttons" style={{
-          display: 'flex',
-          gap: '24px',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          position: 'relative',
-          zIndex: 10
-        }}>
-          <div className="magnetic-wrap" ref={workWrapRef}>
+        </m.span>
+
+        {/* Buttons with stagger */}
+        <m.div
+          className="hero-buttons"
+          style={{
+            display: 'flex',
+            gap: '24px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 10
+          }}
+          variants={staggerContainer(0.15, 0.7)}
+          initial="hidden"
+          animate="visible"
+        >
+          <m.div className="magnetic-wrap" ref={workWrapRef} variants={staggerItem}>
             <a ref={workBtnRef} href="#projects" className="hero-btn magnetic-button">
               View My Work
             </a>
-          </div>
-          <div className="magnetic-wrap" ref={contactWrapRef}>
+          </m.div>
+          <m.div className="magnetic-wrap" ref={contactWrapRef} variants={staggerItem}>
             <a ref={contactBtnRef} href="#contact" className="hero-btn magnetic-button">
               Contact Me
             </a>
-          </div>
-        </div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

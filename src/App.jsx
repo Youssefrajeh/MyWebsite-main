@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { LazyMotion, domAnimation } from "motion/react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -68,7 +69,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       <Navigation />
       <Hero />
       <About />
@@ -77,7 +78,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
-    </>
+    </LazyMotion>
   );
 }
 

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import HackerText from './HackerText';
 import { useMagnetic } from '../hooks/useMagnetic';
+import { fadeInDown, slideInRight, staggerContainer, staggerItem } from '../utils/motionVariants';
 
 const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server', 'C++', 'JavaScript', 'REST APIs'];
 
@@ -74,7 +76,6 @@ const Navigation = () => {
           position: fixed;
           top: 20px;
           left: 50%;
-          transform: translateX(-50%);
           z-index: 1000;
           width: 95%;
           max-width: 1100px;
@@ -131,11 +132,7 @@ const Navigation = () => {
           background: #00f2ff;
           border-radius: 50%;
           box-shadow: 0 0 10px #00f2ff, 0 0 20px rgba(0, 242, 255, 0.4);
-          opacity: 0;
-          transition: all 0.3s ease;
         }
-
-        .nav-link.active .active-indicator { opacity: 1; }
 
         .logo-text {
           font-family: 'JetBrains Mono', 'Space Mono', monospace;
@@ -183,16 +180,23 @@ const Navigation = () => {
           background: #dce4e4;
           border-radius: 2px;
           transition: all 0.3s ease;
+          transform-origin: center;
         }
 
-        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .mobile-menu-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.4);
+          z-index: 1040;
+        }
 
         .mobile-menu {
           position: fixed;
           top: 0;
-          right: -320px;
+          right: 0;
           width: 320px;
           height: 100vh;
           background: rgba(13, 21, 21, 0.85);
@@ -202,12 +206,9 @@ const Navigation = () => {
           flex-direction: column;
           padding: 80px 30px;
           gap: 15px;
-          transition: all 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
           z-index: 1050;
           box-shadow: -10px 0 30px rgba(0,0,0,0.4);
         }
-
-        .mobile-menu.open { right: 0; }
 
         .mobile-link {
           font-size: 0.95rem;
@@ -274,7 +275,14 @@ const Navigation = () => {
         }
       `}</style>
 
-      <div className={`nav-container ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Navbar with entrance animation */}
+      <m.div
+        className={`nav-container ${isScrolled ? 'scrolled' : ''}`}
+        variants={fadeInDown}
+        initial="hidden"
+        animate="visible"
+        style={{ x: "-50%" }}
+      >
         <div className="nav-pill">
           <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="logo-prompt">▸</span>
@@ -288,9 +296,21 @@ const Navigation = () => {
                 href={`#${item.toLowerCase()}`}
                 className={`nav-link ${activeItem === item ? 'active' : ''}`}
                 onClick={() => handleLinkClick(item)}
+                style={{ position: 'relative' }}
               >
                 {item}
-                <div className="active-indicator" />
+                {/* layoutId active indicator — slides smoothly between items */}
+                {activeItem === item && (
+                  <m.div
+                    className="active-indicator"
+                    layoutId="nav-active-dot"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
               </a>
             ))}
             <div className="magnetic-wrap" ref={navWrapRef}>
@@ -307,35 +327,88 @@ const Navigation = () => {
             </div>
           </div>
 
-          <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
+          <div
+            className="hamburger"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <m.span
+              animate={isMobileMenuOpen
+                ? { rotate: 45, y: 8 }
+                : { rotate: 0, y: 0 }
+              }
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            />
+            <m.span
+              animate={isMobileMenuOpen
+                ? { opacity: 0, scaleX: 0 }
+                : { opacity: 1, scaleX: 1 }
+              }
+              transition={{ duration: 0.2 }}
+            />
+            <m.span
+              animate={isMobileMenuOpen
+                ? { rotate: -45, y: -8 }
+                : { rotate: 0, y: 0 }
+              }
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            />
           </div>
         </div>
-      </div>
+      </m.div>
 
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-        {navItems.map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className={`mobile-link ${activeItem === item ? 'active' : ''}`}
-            onClick={() => handleLinkClick(item)}
-          >
-            {item}
-          </a>
-        ))}
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mobile-feedback-btn"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Anonymous Feedback
-        </a>
-      </div>
+      {/* Mobile Menu with AnimatePresence */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop overlay */}
+            <m.div
+              className="mobile-menu-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+
+            {/* Sliding menu */}
+            <m.div
+              className="mobile-menu"
+              variants={slideInRight}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <m.div
+                variants={staggerContainer(0.06, 0.15)}
+                initial="hidden"
+                animate="visible"
+              >
+                {navItems.map((item) => (
+                  <m.a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className={`mobile-link ${activeItem === item ? 'active' : ''}`}
+                    onClick={() => handleLinkClick(item)}
+                    variants={staggerItem}
+                  >
+                    {item}
+                  </m.a>
+                ))}
+                <m.a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSf_zNZ_TAJhpFpz-Aj-ARUDhseLQ90iGRfVeClJVOScad3uZg/viewform?usp=header"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-feedback-btn"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variants={staggerItem}
+                >
+                  Anonymous Feedback
+                </m.a>
+              </m.div>
+            </m.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };

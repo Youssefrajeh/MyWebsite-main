@@ -122,15 +122,14 @@ section {
   transition: opacity 0.6s ease;
 }
 
-/* Experience card hover animation */
+/* Experience card hover — Framer Motion handles transform */
 .experience-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .experience-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 0 25px rgba(0, 242, 255, 0.12) !important;
-  border-color: rgba(0, 242, 255, 0.2) !important;
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.12);
+  border-color: rgba(0, 242, 255, 0.2);
 }
 
 /* Tech tag hover */
@@ -145,9 +144,9 @@ section {
   transform: translateY(-2px);
 }
 
-/* Project card smooth hover */
+/* Project card — Framer Motion handles hover transforms */
 .glass-card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 /* Button pulse on download CV */
@@ -210,13 +209,7 @@ p {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow-lg);
-  transition: var(--transition);
-}
-
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-  border-color: rgba(0, 242, 255, 0.4);
+  /* Framer Motion handles transforms and hover */
 }
 
 /* Preloader */
@@ -1676,19 +1669,14 @@ p {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 70px;
+    padding-top: 0;
   }
 
   .nav-container {
-    padding: 0 15px;
-    width: 100%;
-    box-sizing: border-box;
-    height: 70px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    /* Keep floating pill on mobile, just adjust sizing */
+    width: 96%;
+    max-width: none;
+    top: 10px;
   }
 
   .nav-content {
@@ -4408,16 +4396,16 @@ section {
 }
 
 /* Staggered Scroll Reveals */
+/* .reveal class — Framer Motion now handles scroll reveals.
+   Keeping class neutral so any remaining usage doesn't hide content. */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
-              transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 1;
+  transform: none;
 }
 
 .reveal.active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  opacity: 1;
+  transform: none;
 }
 
 .staggered-item {

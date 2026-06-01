@@ -1,43 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { m, AnimatePresence } from 'motion/react';
 import { skillsData, skillCategories } from '../data/skillsData';
+import { fadeInUp, scaleStaggerItem, staggerContainer, progressBar, viewportConfig } from '../utils/motionVariants';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [animateItems, setAnimateItems] = useState(false);
-  const sectionRef = useRef(null);
-  const [hasEntered, setHasEntered] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasEntered(true);
-          setAnimateItems(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!hasEntered) return;
-    setAnimateItems(false);
-    const timer = setTimeout(() => setAnimateItems(true), 100);
-    return () => clearTimeout(timer);
-  }, [activeCategory, hasEntered]);
 
   const filteredSkills = activeCategory === 'all'
     ? skillsData
     : skillsData.filter(skill => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="skills" ref={sectionRef}>
+    <section id="skills" className="skills">
       <style>{`
         .skills-section-title {
           font-family: "Space Grotesk", sans-serif;
@@ -64,15 +38,10 @@ const Skills = () => {
           border-radius: 16px;
           padding: 24px;
           backdrop-filter: blur(12px);
-          transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
           display: flex;
           flex-direction: column;
           gap: 16px;
-        }
-        .skill-card-modern:hover {
-          transform: translateY(-6px) scale(1.02);
-          border-color: rgba(0, 242, 255, 0.35);
-          box-shadow: 0 0 25px rgba(0, 242, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.3);
+          cursor: pointer;
         }
         .skill-card-top {
           display: flex;
@@ -149,7 +118,6 @@ const Skills = () => {
           height: 100%;
           background: linear-gradient(90deg, #00f2ff, #00f8aa);
           border-radius: 2px;
-          transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
         @media (max-width: 768px) {
           .skills-section-title {
@@ -173,15 +141,25 @@ const Skills = () => {
         }
       `}</style>
 
-      <h2 className="skills-section-title">Technical Arsenal</h2>
+      {/* Section Title */}
+      <m.h2
+        className="skills-section-title"
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+      >
+        Technical Arsenal
+      </m.h2>
 
       {/* Skills Categories Filter */}
       <div className="skills-categories">
         {skillCategories.map((category) => (
-          <button
+          <m.button
             key={category.id}
             className={`category-filter ${activeCategory === category.id ? 'active' : ''}`}
             onClick={() => setActiveCategory(category.id)}
+            whileTap={{ scale: 0.95 }}
             style={{
               background: activeCategory === category.id ? '#00f2ff' : 'rgba(25, 33, 34, 0.7)',
               border: activeCategory === category.id ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
@@ -191,45 +169,61 @@ const Skills = () => {
             }}
           >
             {category.name}
-          </button>
+          </m.button>
         ))}
       </div>
 
-      {/* Skills Grid */}
-      <div className="skills-grid">
-        {filteredSkills.map((skill, index) => (
-          <div
-            key={skill.id}
-            className="skill-card-modern"
-            style={{
-              opacity: animateItems ? 1 : 0,
-              transform: animateItems ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: `${index * 40}ms`,
-              transitionProperty: 'all',
-              transitionDuration: '0.5s',
-              transitionTimingFunction: 'ease'
-            }}
-          >
-            <div className="skill-card-top">
-              <div className="skill-icon-box shimmer">
-                <img src={skill.icon} alt={skill.name} />
+      {/* Skills Grid with AnimatePresence for filter transitions */}
+      <m.div
+        className="skills-grid"
+        variants={staggerContainer(0.05, 0)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        key={activeCategory}
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredSkills.map((skill) => (
+            <m.div
+              key={skill.id}
+              className="skill-card-modern"
+              variants={scaleStaggerItem}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              layout
+              whileHover={{
+                y: -6,
+                scale: 1.02,
+                borderColor: 'rgba(0, 242, 255, 0.35)',
+                boxShadow: '0 0 25px rgba(0, 242, 255, 0.15), 0 12px 30px rgba(0, 0, 0, 0.3)',
+                transition: { duration: 0.3 }
+              }}
+            >
+              <div className="skill-card-top">
+                <div className="skill-icon-box shimmer">
+                  <img src={skill.icon} alt={skill.name} />
+                </div>
+                <div className="skill-card-info">
+                  <h3 className="skill-card-name">{skill.name}</h3>
+                  <p className="skill-card-level">{skill.level}</p>
+                </div>
+                <span className="skill-card-pct">{skill.percentage}%</span>
               </div>
-              <div className="skill-card-info">
-                <h3 className="skill-card-name">{skill.name}</h3>
-                <p className="skill-card-level">{skill.level}</p>
+              <p className="skill-card-desc">{skill.description}</p>
+              <div className="skill-progress-track">
+                <m.div
+                  className="skill-progress-bar"
+                  variants={progressBar(skill.percentage)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                />
               </div>
-              <span className="skill-card-pct">{skill.percentage}%</span>
-            </div>
-            <p className="skill-card-desc">{skill.description}</p>
-            <div className="skill-progress-track">
-              <div
-                className="skill-progress-bar"
-                style={{ width: animateItems ? `${skill.percentage}%` : '0%' }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+            </m.div>
+          ))}
+        </AnimatePresence>
+      </m.div>
     </section>
   );
 };

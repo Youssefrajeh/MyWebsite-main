@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { m, AnimatePresence } from "motion/react";
 import { useMagnetic } from "../hooks/useMagnetic";
+import { fadeInUp, staggerContainer, staggerItem, modalBackdrop, modalContent, viewportConfig } from "../utils/motionVariants";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,36 +12,7 @@ const Contact = () => {
   });
   const [status, setStatus] = useState("idle"); // idle, submitting, success, error
   const [showModal, setShowModal] = useState(false);
-  const containerRef = useRef(null);
   const { wrapRef: submitWrapRef, btnRef: submitBtnRef } = useMagnetic(0.25);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const revealElements = container.querySelectorAll('.reveal');
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    revealElements.forEach((el) => {
-      observer.observe(el);
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -113,246 +86,234 @@ const Contact = () => {
         position: "relative",
       }}
     >
-      {/* Feedback Modal */}
-      {showModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: "rgba(0, 0, 0, 0.7)",
-            backdropFilter: "blur(12px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-            animation: "fadeIn 0.3s ease",
-          }}
-          onClick={closeModal}
-        >
-          <div
+      {/* Feedback Modal with AnimatePresence */}
+      <AnimatePresence>
+        {showModal && (
+          <m.div
+            variants={modalBackdrop}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             style={{
-              background: "#192122",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
-              borderRadius: "16px",
-              padding: "30px",
-              maxWidth: "340px",
-              width: "85%",
-              textAlign: "center",
-              position: "relative",
-              animation: "scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0, 0, 0, 0.7)",
+              backdropFilter: "blur(12px)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 9999,
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={closeModal}
           >
-            {status === "success" ? (
-              <>
-                {/* Success Icon */}
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 20px",
-                    boxShadow: "0 8px 25px rgba(0, 248, 170, 0.3)",
-                    animation:
-                      "bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                  }}
-                >
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+            <m.div
+              variants={modalContent}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{
+                background: "#192122",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                borderRadius: "16px",
+                padding: "30px",
+                maxWidth: "340px",
+                width: "85%",
+                textAlign: "center",
+                position: "relative",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {status === "success" ? (
+                <>
+                  {/* Success Icon with spring bounce */}
+                  <m.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                      delay: 0.1,
+                    }}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 20px",
+                      boxShadow: "0 8px 25px rgba(0, 248, 170, 0.3)",
+                    }}
                   >
-                    <polyline
-                      points="20 6 9 17 4 12"
-                      style={{
-                        animation: "drawCheck 0.5s ease forwards 0.3s",
-                        strokeDasharray: 24,
-                        strokeDashoffset: 24,
-                      }}
-                    />
-                  </svg>
-                </div>
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <m.polyline
+                        points="20 6 9 17 4 12"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                      />
+                    </svg>
+                  </m.div>
 
-                <h3
-                  style={{
-                    fontFamily: '"Space Grotesk", sans-serif',
-                    fontSize: "1.4rem",
-                    fontWeight: "700",
-                    color: "#00f8aa",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Got it!
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: '"Hanken Grotesk", sans-serif',
-                    color: "#b9cacb",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.6",
-                    marginBottom: "20px",
-                  }}
-                >
-                  Thanks for the message! I'll get back to you soon.
-                </p>
-
-                <button
-                  className="modal-close-btn"
-                  onClick={closeModal}
-                  style={{
-                    padding: "10px 30px",
-                    background:
-                      "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
-                    color: "#002113",
-                    border: "none",
-                    borderRadius: "8px",
-                    fontSize: "0.95rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    boxShadow: "0 6px 20px rgba(0, 248, 170, 0.25)",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Close
-                </button>
-              </>
-            ) : (
-              <>
-                {/* Error Icon */}
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #ffb4ab 0%, #93000a 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 20px",
-                    boxShadow: "0 8px 25px rgba(255, 180, 171, 0.25)",
-                    animation: "shake 0.5s ease",
-                  }}
-                >
-                  <svg
-                    width="28"
-                    height="28"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <h3
+                    style={{
+                      fontFamily: '"Space Grotesk", sans-serif',
+                      fontSize: "1.4rem",
+                      fontWeight: "700",
+                      color: "#00f8aa",
+                      marginBottom: "8px",
+                    }}
                   >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="15" y1="9" x2="9" y2="15" />
-                    <line x1="9" y1="9" x2="15" y2="15" />
-                  </svg>
-                </div>
+                    Got it!
+                  </h3>
 
-                <h3
-                  style={{
-                    fontFamily: '"Space Grotesk", sans-serif',
-                    fontSize: "1.4rem",
-                    fontWeight: "700",
-                    color: "#ffb4ab",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Something went wrong
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: '"Hanken Grotesk", sans-serif',
-                    color: "#b9cacb",
-                    fontSize: "0.9rem",
-                    lineHeight: "1.6",
-                    marginBottom: "20px",
-                  }}
-                >
-                  The form didn't go through. Email me at{" "}
-                  <a
-                    href="mailto:youssefrrajeh@gmail.com"
-                    style={{ color: "#00f2ff", fontWeight: "600" }}
+                  <p
+                    style={{
+                      fontFamily: '"Hanken Grotesk", sans-serif',
+                      color: "#b9cacb",
+                      fontSize: "0.9rem",
+                      lineHeight: "1.6",
+                      marginBottom: "20px",
+                    }}
                   >
-                    youssefrrajeh@gmail.com
-                  </a>
-                </p>
+                    Thanks for the message! I'll get back to you soon.
+                  </p>
 
-                <button
-                  className="modal-close-btn"
-                  onClick={closeModal}
-                  style={{
-                    padding: "10px 30px",
-                    background:
-                      "linear-gradient(135deg, #00f2ff 0%, #00dbe7 100%)",
-                    color: "#00363a",
-                    border: "none",
-                    borderRadius: "8px",
-                    fontSize: "0.95rem",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    boxShadow: "0 6px 20px rgba(0, 242, 255, 0.25)",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Close
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
+                  <m.button
+                    className="modal-close-btn"
+                    onClick={closeModal}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    style={{
+                      padding: "10px 30px",
+                      background:
+                        "linear-gradient(135deg, #00f8aa 0%, #00e29b 100%)",
+                      color: "#002113",
+                      border: "none",
+                      borderRadius: "8px",
+                      fontSize: "0.95rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      boxShadow: "0 6px 20px rgba(0, 248, 170, 0.25)",
+                    }}
+                  >
+                    Close
+                  </m.button>
+                </>
+              ) : (
+                <>
+                  {/* Error Icon with shake */}
+                  <m.div
+                    initial={{ x: 0 }}
+                    animate={{ x: [0, -10, 10, -10, 10, 0] }}
+                    transition={{ duration: 0.5 }}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #ffb4ab 0%, #93000a 100%)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 20px",
+                      boxShadow: "0 8px 25px rgba(255, 180, 171, 0.25)",
+                    }}
+                  >
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="15" y1="9" x2="9" y2="15" />
+                      <line x1="9" y1="9" x2="15" y2="15" />
+                    </svg>
+                  </m.div>
 
-      {/* CSS Animations & Responsive Styles */}
+                  <h3
+                    style={{
+                      fontFamily: '"Space Grotesk", sans-serif',
+                      fontSize: "1.4rem",
+                      fontWeight: "700",
+                      color: "#ffb4ab",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Something went wrong
+                  </h3>
+
+                  <p
+                    style={{
+                      fontFamily: '"Hanken Grotesk", sans-serif',
+                      color: "#b9cacb",
+                      fontSize: "0.9rem",
+                      lineHeight: "1.6",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    The form didn't go through. Email me at{" "}
+                    <a
+                      href="mailto:youssefrrajeh@gmail.com"
+                      style={{ color: "#00f2ff", fontWeight: "600" }}
+                    >
+                      youssefrrajeh@gmail.com
+                    </a>
+                  </p>
+
+                  <m.button
+                    className="modal-close-btn"
+                    onClick={closeModal}
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    style={{
+                      padding: "10px 30px",
+                      background:
+                        "linear-gradient(135deg, #00f2ff 0%, #00dbe7 100%)",
+                      color: "#00363a",
+                      border: "none",
+                      borderRadius: "8px",
+                      fontSize: "0.95rem",
+                      fontWeight: "700",
+                      cursor: "pointer",
+                      boxShadow: "0 6px 20px rgba(0, 242, 255, 0.25)",
+                    }}
+                  >
+                    Close
+                  </m.button>
+                </>
+              )}
+            </m.div>
+          </m.div>
+        )}
+      </AnimatePresence>
+
+      {/* CSS Styles */}
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes scaleIn {
-          from { opacity: 0; transform: scale(0.8); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes bounceIn {
-          0% { transform: scale(0); }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); }
-        }
-        @keyframes drawCheck {
-          to { stroke-dashoffset: 0; }
-        }
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-10px); }
-          75% { transform: translateX(10px); }
-        }
         .contact-input:focus {
           border-color: #00f2ff !important;
           box-shadow: 0 0 0 3px rgba(0, 242, 255, 0.1) !important;
-        }
-        .contact-info-card:hover {
-          border-color: rgba(0, 242, 255, 0.35) !important;
-          box-shadow: 0 0 20px rgba(0, 242, 255, 0.12) !important;
-        }
-        .modal-close-btn:hover {
-          transform: translateY(-2px) scale(1.05);
         }
         .contact-label {
           font-family: "JetBrains Mono", monospace;
@@ -407,15 +368,19 @@ const Contact = () => {
       `}</style>
 
       <div
-        ref={containerRef}
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
           textAlign: "center",
         }}
       >
-        <h2
+        {/* Section Title */}
+        <m.h2
           className="contact-section-title"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
           style={{
             fontFamily: '"Space Grotesk", sans-serif',
             fontSize: "3rem",
@@ -425,7 +390,7 @@ const Contact = () => {
           }}
         >
           Get In Touch
-        </h2>
+        </m.h2>
 
         <div
           className="contact-grid"
@@ -437,15 +402,18 @@ const Contact = () => {
           }}
         >
           {/* Contact Form */}
-          <div
-            className="reveal"
+          <m.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            custom={0.1}
             style={{
               background: "#192122",
               padding: "40px",
               borderRadius: "16px",
               boxShadow: "none",
               border: "1px solid rgba(255, 255, 255, 0.06)",
-              transitionDelay: "100ms"
             }}
           >
             <form onSubmit={handleSubmit}>
@@ -502,11 +470,13 @@ const Contact = () => {
               />
 
               <div className="magnetic-wrap" ref={submitWrapRef} style={{ width: "100%" }}>
-                <button
+                <m.button
                   ref={submitBtnRef}
                   type="submit"
                   disabled={status === "submitting"}
                   className="magnetic-button"
+                  whileHover={status !== "submitting" ? { scale: 1.02, boxShadow: "0 0 30px rgba(0, 242, 255, 0.35)" } : {}}
+                  whileTap={status !== "submitting" ? { scale: 0.98 } : {}}
                   style={{
                     width: "100%",
                     padding: "18px 30px",
@@ -522,7 +492,7 @@ const Contact = () => {
                     fontWeight: "700",
                     cursor: status === "submitting" ? "not-allowed" : "pointer",
                     boxShadow: status === "submitting" ? "none" : "0 0 20px rgba(0, 242, 255, 0.2)",
-                    transition: "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+                    transition: "background 0.3s ease, color 0.3s ease",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -531,14 +501,15 @@ const Contact = () => {
                 >
                   {status === "submitting" ? (
                     <>
-                      <div
+                      <m.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         style={{
                           width: "20px",
                           height: "20px",
                           border: "3px solid rgba(255,255,255,0.2)",
                           borderTop: "3px solid #00f2ff",
                           borderRadius: "50%",
-                          animation: "spin 1s linear infinite",
                         }}
                       />
                       Sending...
@@ -561,26 +532,23 @@ const Contact = () => {
                       </svg>
                     </>
                   )}
-                </button>
+                </m.button>
               </div>
-
-              {/* Spinner animation */}
-              <style>{`
-                @keyframes spin {
-                  to { transform: rotate(360deg); }
-                }
-              `}</style>
             </form>
-          </div>
+          </m.div>
 
-          {/* Contact Info */}
-          <div
+          {/* Contact Info — staggered */}
+          <m.div
             className="contact-info-list"
             style={{
               display: "flex",
               flexDirection: "column",
               gap: "20px",
             }}
+            variants={staggerContainer(0.1, 0.2)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
           >
             {[
               {
@@ -608,12 +576,19 @@ const Contact = () => {
                 label: "Location",
               },
             ].map((item, index) => (
-              <a
+              <m.a
                 key={index}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="contact-info-card reveal shimmer"
+                className="contact-info-card shimmer"
+                variants={staggerItem}
+                whileHover={{
+                  borderColor: 'rgba(0, 242, 255, 0.35)',
+                  boxShadow: '0 0 20px rgba(0, 242, 255, 0.12)',
+                  y: -3,
+                  transition: { duration: 0.3 }
+                }}
                 style={{
                   background: "#192122",
                   padding: "20px",
@@ -625,12 +600,9 @@ const Contact = () => {
                   border: "1px solid rgba(255, 255, 255, 0.06)",
                   textDecoration: "none",
                   cursor: "pointer",
-                  transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease, transform 0.8s ease",
                   minHeight: "60px",
                   WebkitTapHighlightColor: "transparent",
-                  transitionDelay: `${(index + 2) * 100}ms`
                 }}
-
               >
                 <div
                   className="contact-info-icon"
@@ -676,9 +648,9 @@ const Contact = () => {
                     {item.text}
                   </span>
                 </div>
-              </a>
+              </m.a>
             ))}
-          </div>
+          </m.div>
         </div>
       </div>
     </section>

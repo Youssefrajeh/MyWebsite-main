@@ -76,6 +76,22 @@ const Projects = () => {
           transform: translateY(-2px);
           box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
         }
+        .project-filters {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-bottom: 50px;
+          flex-wrap: wrap;
+        }
+        .filter-btn {
+          padding: 10px 25px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+          font-size: 0.95rem;
+          font-family: "Hanken Grotesk", sans-serif;
+          font-weight: 500;
+        }
         .project-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
@@ -86,6 +102,15 @@ const Projects = () => {
           box-sizing: border-box;
         }
         @media (max-width: 768px) {
+          .project-filters {
+            gap: 8px !important;
+            margin-bottom: 30px !important;
+          }
+          .filter-btn {
+            padding: 6px 14px !important;
+            font-size: 0.8rem !important;
+            border-radius: 6px !important;
+          }
           .project-grid {
             display: flex !important;
             overflow-x: auto !important;
@@ -137,7 +162,7 @@ const Projects = () => {
       </m.h2>
 
       {/* Filter Buttons */}
-      <div className="project-filters" style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginBottom: '50px', flexWrap: 'wrap' }}>
+      <div className="project-filters">
         {projectFilters.map((filter) => (
           <m.button
             key={filter.id}
@@ -145,15 +170,9 @@ const Projects = () => {
             onClick={() => setActiveFilter(filter.id)}
             whileTap={{ scale: 0.95 }}
             style={{
-              padding: '10px 25px',
-              borderRadius: '8px',
               border: activeFilter === filter.id ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
               background: activeFilter === filter.id ? '#00f2ff' : 'rgba(25, 33, 34, 0.7)',
               color: activeFilter === filter.id ? '#00363a' : '#b9cacb',
-              cursor: 'pointer',
-              transition: 'background 0.3s ease, color 0.3s ease, border 0.3s ease',
-              fontSize: '0.95rem',
-              fontFamily: '"Hanken Grotesk", sans-serif',
               fontWeight: activeFilter === filter.id ? '700' : '500'
             }}
           >

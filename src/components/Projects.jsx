@@ -1,10 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import { projectsData, projectFilters } from '../data/projectsData';
 import { fadeInUp, scaleStaggerItem, staggerContainer, viewportConfig } from '../utils/motionVariants';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [exitX, setExitX] = useState(0);
+
+  // Track mobile responsive width
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset top card index whenever filter changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [activeFilter]);
 
   const filteredProjects = activeFilter === 'all'
     ? projectsData
@@ -61,7 +76,44 @@ const Projects = () => {
           transform: translateY(-2px);
           box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
         }
+        .project-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+          gap: 30px;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 10px;
+          box-sizing: border-box;
+        }
         @media (max-width: 768px) {
+          .project-grid {
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            gap: 16px !important;
+            padding: 20px 24px !important;
+            scroll-behavior: smooth !important;
+            scrollbar-width: none !important;
+            margin: 0 -10px !important; /* Bleed slightly past side bounds for full edge-to-edge swiping */
+          }
+          .project-grid::-webkit-scrollbar {
+            display: none !important;
+          }
+          .glass-card {
+            scroll-snap-align: center !important;
+            flex: 0 0 78vw !important;
+            max-width: 320px !important;
+            height: 380px !important; /* Stable card height for horizontal flow */
+            transform: rotate(1.2deg);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+          }
+          .glass-card:nth-child(even) {
+            transform: rotate(-1.2deg);
+          }
+          .glass-card:active {
+            transform: scale(0.97) rotate(0deg) !important;
+          }
           .project-card-overlay { padding: 20px; }
           .project-card-title { font-size: 1.2rem; margin-bottom: 6px; }
           .project-card-desc { font-size: 0.85rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
@@ -110,75 +162,176 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* Project Grid with AnimatePresence */}
-      <div className="project-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
-        gap: '30px',
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 10px',
-        boxSizing: 'border-box'
-      }}>
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => (
-            <m.div
-              key={project.id}
-              className="glass-card shimmer"
-              variants={scaleStaggerItem}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              layout
-              style={{
-                borderRadius: '16px',
-                overflow: 'hidden',
-                height: 'clamp(280px, 50vw, 400px)',
-                position: 'relative',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
-              }}
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-                borderColor: 'rgba(0, 242, 255, 0.3)',
-                boxShadow: '0 0 30px rgba(0, 242, 255, 0.15)',
-                transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
-              }}
-            >
-              <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
-                <m.img
-                  src={project.image}
-                  alt={project.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                />
-                {/* Overlay with hover reveal via CSS group */}
-                <div className="project-card-overlay">
-                  <h3 className="project-card-title">
-                    {project.title}
-                  </h3>
-                  <p className="project-card-desc">
-                    {project.description}
-                  </p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="view-project-btn"
-                  >
-                    View Project →
-                  </a>
+      {/* Project Grid / Stack with AnimatePresence */}
+      {isMobile ? (
+        <div className="project-stack-container" style={{
+          position: 'relative',
+          height: '420px',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'visible',
+          marginTop: '20px'
+        }}>
+          <div style={{ position: 'relative', width: '100%', height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.length > 0 && (() => {
+                const stackCards = [];
+                const maxVisible = Math.min(filteredProjects.length, 3);
+                for (let i = maxVisible - 1; i >= 0; i--) {
+                  const projectIndex = (currentIndex + i) % filteredProjects.length;
+                  const project = filteredProjects[projectIndex];
+                  const isTop = i === 0;
+                  
+                  stackCards.push(
+                    <m.div
+                      key={project.id}
+                      className="glass-card shimmer"
+                      style={{
+                        position: 'absolute',
+                        width: '88vw',
+                        maxWidth: '320px',
+                        height: '380px',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                        boxShadow: isTop ? '0 10px 30px rgba(0, 0, 0, 0.3)' : '0 4px 15px rgba(0, 0, 0, 0.2)',
+                        pointerEvents: isTop ? 'auto' : 'none',
+                        zIndex: 3 - i,
+                        transformOrigin: 'bottom center',
+                      }}
+                      initial={isTop ? { scale: 0.95, y: 15, opacity: 0 } : false}
+                      animate={{
+                        scale: i === 0 ? 1 : i === 1 ? 0.94 : 0.88,
+                        y: i === 0 ? 0 : i === 1 ? 12 : 24,
+                        rotate: i === 0 ? 0 : i === 1 ? -4 : 4,
+                        opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.5,
+                      }}
+                      exit={{
+                        x: exitX,
+                        opacity: 0,
+                        scale: 0.8,
+                        rotate: exitX > 0 ? 18 : -18,
+                      }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 25,
+                      }}
+                      drag={isTop ? 'x' : false}
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.6}
+                      onDragEnd={isTop ? (event, info) => {
+                        const threshold = 100;
+                        if (info.offset.x > threshold) {
+                          setExitX(400);
+                          setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+                        } else if (info.offset.x < -threshold) {
+                          setExitX(-400);
+                          setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+                        }
+                      } : undefined}
+                    >
+                      <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                          }}
+                        />
+                        <div className="project-card-overlay">
+                          <h3 className="project-card-title">{project.title}</h3>
+                          <p className="project-card-desc" style={{ display: 'none' }}>{project.description}</p>
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="view-project-btn"
+                          >
+                            View Project →
+                          </a>
+                        </div>
+                      </div>
+                    </m.div>
+                  );
+                }
+                return stackCards;
+              })()}
+            </AnimatePresence>
+          </div>
+          {filteredProjects.length > 1 && (
+            <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px', color: '#849495', fontSize: '0.85rem', fontFamily: '"Hanken Grotesk", sans-serif' }}>
+              <span>← Swipe left or right →</span>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="project-grid">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <m.div
+                key={project.id}
+                className="glass-card shimmer"
+                variants={scaleStaggerItem}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                layout
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  height: 'clamp(280px, 50vw, 400px)',
+                  position: 'relative',
+                  border: '1px solid rgba(255, 255, 255, 0.06)',
+                }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  borderColor: 'rgba(0, 242, 255, 0.3)',
+                  boxShadow: '0 0 30px rgba(0, 242, 255, 0.15)',
+                  transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
+                }}
+              >
+                <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
+                  <m.img
+                    src={project.image}
+                    alt={project.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  {/* Overlay with hover reveal via CSS group */}
+                  <div className="project-card-overlay">
+                    <h3 className="project-card-title">
+                      {project.title}
+                    </h3>
+                    <p className="project-card-desc">
+                      {project.description}
+                    </p>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="view-project-btn"
+                    >
+                      View Project →
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </m.div>
-          ))}
-        </AnimatePresence>
-      </div>
+              </m.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 };

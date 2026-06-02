@@ -201,6 +201,7 @@ const Projects = () => {
                         pointerEvents: isTop ? 'auto' : 'none',
                         zIndex: 3 - i,
                         transformOrigin: 'bottom center',
+                        touchAction: isTop ? 'pan-y' : 'auto',
                       }}
                       initial={isTop ? { scale: 0.95, y: 15, opacity: 0 } : false}
                       animate={{

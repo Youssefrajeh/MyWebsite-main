@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LazyMotion, domAnimation } from "motion/react";
+import { LazyMotion, domMax } from "motion/react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -41,7 +41,7 @@ function App() {
   }, []);
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domMax} strict>
       <Navigation />
       <Hero />
       <About />

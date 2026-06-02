@@ -194,11 +194,11 @@ const Hero = () => {
         }
         @media (max-width: 768px) {
           #home.hero {
-            height: 100vh !important;
+            height: auto !important;
             min-height: 100vh !important;
-            padding-top: 40px !important;
-            padding-bottom: 0 !important;
-            align-items: flex-start !important;
+            padding-top: 80px !important;
+            padding-bottom: 30px !important;
+            align-items: center !important;
             justify-content: center !important;
           }
           .hero-logo-video {
@@ -270,6 +270,7 @@ const Hero = () => {
             loop
             muted
             playsInline
+            poster="/images/hero_bg_v4.png"
             className="hero-logo-video"
           />
         </m.div>

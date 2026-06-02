@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { m, AnimatePresence } from 'motion/react';
-import HackerText from './HackerText';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { fadeInDown, slideInRight, staggerContainer, staggerItem } from '../utils/motionVariants';
 
@@ -9,16 +8,21 @@ const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server',
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1100);
+  const [liveWidth, setLiveWidth] = useState(window.innerWidth);
   const [activeItem, setActiveItem] = useState('Home');
   const [typeText, setTypeText] = useState('');
   const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
+  const typeTimerRef = useRef(null);
   const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
 
   // Track mobile breakpoint
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 991);
-    const mq = window.matchMedia('(max-width: 991px)');
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1100);
+      setLiveWidth(window.innerWidth);
+    };
+    const mq = window.matchMedia('(max-width: 1100px)');
     const handler = (e) => setIsMobile(e.matches);
     mq.addEventListener('change', handler);
     window.addEventListener('resize', checkMobile);
@@ -38,22 +42,26 @@ const Navigation = () => {
         typeState.current.charIndex++;
         if (typeState.current.charIndex > currentWord.length) {
           typeState.current.isDeleting = true;
-        return setTimeout(tick, 1800);
+          typeTimerRef.current = setTimeout(tick, 1800);
+          return;
         }
-        return setTimeout(tick, 350);
+        typeTimerRef.current = setTimeout(tick, 350);
+        return;
       } else {
         setTypeText(currentWord.substring(0, charIndex - 1));
         typeState.current.charIndex--;
         if (typeState.current.charIndex <= 0) {
           typeState.current.isDeleting = false;
           typeState.current.wordIndex = (wordIndex + 1) % TYPEWRITER_WORDS.length;
-          return setTimeout(tick, 2000);
+          typeTimerRef.current = setTimeout(tick, 2000);
+          return;
         }
-        return setTimeout(tick, 200);
+        typeTimerRef.current = setTimeout(tick, 200);
+        return;
       }
     };
-    const timer = setTimeout(tick, 500);
-    return () => clearTimeout(timer);
+    typeTimerRef.current = setTimeout(tick, 500);
+    return () => clearTimeout(typeTimerRef.current);
   }, []);
 
   useEffect(() => {
@@ -287,7 +295,7 @@ const Navigation = () => {
         }
 
         /* ─── Mobile adjustments ─── */
-        @media (max-width: 991px) {
+        @media (max-width: 1100px) {
           .nav-container {
             width: 92%;
             top: 12px;
@@ -331,6 +339,7 @@ const Navigation = () => {
         style={{ x: "-50%" }}
       >
         <div className="nav-pill">
+
           {/* Logo */}
           <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span className="logo-prompt">▸</span>

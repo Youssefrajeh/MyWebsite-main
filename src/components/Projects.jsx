@@ -61,6 +61,16 @@ const Projects = () => {
           transform: translateY(-2px);
           box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
         }
+        @media (max-width: 768px) {
+          .project-card-overlay { padding: 20px; }
+          .project-card-title { font-size: 1.2rem; margin-bottom: 6px; }
+          .project-card-desc { font-size: 0.85rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
+        }
+        @media (max-width: 480px) {
+          .project-card-overlay { padding: 15px; }
+          .project-card-title { font-size: 1rem; }
+          .project-card-desc { display: none; }
+        }
       `}</style>
 
       {/* Section Title */}
@@ -103,10 +113,12 @@ const Projects = () => {
       {/* Project Grid with AnimatePresence */}
       <div className="project-grid" style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
         gap: '30px',
         maxWidth: '1200px',
-        margin: '0 auto'
+        margin: '0 auto',
+        padding: '0 10px',
+        boxSizing: 'border-box'
       }}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => (
@@ -121,7 +133,7 @@ const Projects = () => {
               style={{
                 borderRadius: '16px',
                 overflow: 'hidden',
-                height: '400px',
+                height: 'clamp(280px, 50vw, 400px)',
                 position: 'relative',
                 border: '1px solid rgba(255, 255, 255, 0.06)',
               }}

@@ -33,7 +33,7 @@ const Footer = () => {
         </m.a>
       </div>
       <p style={{ fontFamily: '"Hanken Grotesk", sans-serif' }}>
-        &copy; 2025 DevPortfolio. Built with Digital Craftsmanship.
+        &copy; {new Date().getFullYear()} DevPortfolio. Built with Digital Craftsmanship.
       </p>
     </m.footer>
   );

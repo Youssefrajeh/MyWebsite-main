@@ -11,32 +11,6 @@ import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
-    // Hide cursor when clicking on the page
-    const handleMouseDown = () => {
-      document.body.classList.add("cursor-hidden");
-    };
-
-    const handleMouseUp = () => {
-      document.body.classList.remove("cursor-hidden");
-    };
-
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
-
-    // Smooth scroll behavior
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      });
-    });
-
     // Scroll to top button
     const scrollTopBtn = document.createElement("div");
     scrollTopBtn.className = "scroll-top";
@@ -61,8 +35,6 @@ function App() {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener("scroll", handleScroll);
       scrollTopBtn.remove();
     };

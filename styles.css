@@ -90,11 +90,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hide cursor when page is clicked */
-body.cursor-hidden,
-body.cursor-hidden * {
-  cursor: none !important;
-}
+
 
 /* ===== Global Animations ===== */
 @keyframes fadeInUp {
@@ -112,10 +108,7 @@ body.cursor-hidden * {
   to { opacity: 1; }
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
+
 
 /* Section transitions */
 section {
@@ -265,7 +258,6 @@ p {
   transform: translateY(0);
   transition: var(--transition);
   box-sizing: border-box;
-  max-width: 800px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
@@ -932,49 +924,8 @@ p {
   }
 }
 
-/* Organic Floating Motion */
-.skill:nth-child(odd) {
-  animation: organicFloat 8s ease-in-out infinite;
-}
+/* Old .skill animations removed — Skills component now uses .skill-card-modern */
 
-.skill:nth-child(even) {
-  animation: organicFloat 8s ease-in-out infinite;
-  animation-delay: 4s;
-  animation-direction: reverse;
-}
-
-@keyframes organicFloat {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  25% {
-    transform: translateY(-15px) rotate(1deg);
-  }
-
-  50% {
-    transform: translateY(-8px) rotate(0deg);
-  }
-
-  75% {
-    transform: translateY(-20px) rotate(-1deg);
-  }
-}
-
-.skill:hover {
-  animation: none !important;
-}
-
-/* SVG Gradient Definition */
-.skills::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-}
 
 /* Projects Section */
 .projects {
@@ -1760,116 +1711,6 @@ p {
     padding: 15px !important;
   }
 
-  .skill-container {
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 15px !important;
-    padding: 0 10px !important;
-    background: transparent !important;
-    background-color: transparent !important;
-  }
-
-  .skill {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    margin-bottom: 0 !important;
-    background: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  .skill.animate {
-    background: none !important;
-  }
-
-  /* Transform cards into hexagons on mobile */
-  .skill .glass-card {
-    width: 85px !important;
-    height: 98px !important;
-    clip-path: polygon(
-      50% 0%,
-      100% 25%,
-      100% 75%,
-      50% 100%,
-      0% 75%,
-      0% 25%
-    ) !important;
-    background: #4a90e2 !important;
-    background-color: #4a90e2 !important;
-    padding: 12px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    position: relative !important;
-    border-radius: 0 !important;
-    overflow: visible !important;
-  }
-
-  /* Remove any pseudo-element backgrounds */
-  .skill .glass-card::after,
-  .skill .glass-card::before {
-    background: none !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-  }
-
-  /* Hide the ::after completely */
-  .skill .glass-card::after {
-    display: none !important;
-  }
-
-  /* Hide elements not needed in hexagon design */
-  .skill-icon,
-  .skill-description,
-  .skill-details,
-  .skill-footer,
-  .progress-bg,
-  .progress-fill,
-  .skill-level-row,
-  .skill-header div {
-    display: none !important;
-  }
-
-  /* But show the h3 skill name */
-  .skill-header {
-    display: flex !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Show only percentage and name */
-  .skill-name {
-    font-size: 0.5rem !important;
-    color: white !important;
-    font-weight: 700 !important;
-    text-align: center !important;
-    line-height: 1.1 !important;
-    margin: 0 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-    display: block !important;
-  }
-
-  /* Add percentage display - override the ::before we just hid */
-  .skill .glass-card::before {
-    content: attr(data-percentage) "%" !important;
-    font-size: 1.3rem !important;
-    font-weight: 800 !important;
-    color: white !important;
-    margin-bottom: 4px !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-    display: block !important;
-    background: none !important;
-    background-color: transparent !important;
-  }
-
   /* Project Cards as Hexagons on Mobile */
   .project-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -2469,38 +2310,8 @@ p {
   font-size: 1.1rem;
 }
 
-/* Add floating animation keyframes */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
+/* Old .skill float animations removed — Skills component uses Framer Motion */
 
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes floatReverse {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(10px);
-  }
-}
-
-/* Apply floating animation to skills */
-.skill:nth-child(odd) {
-  animation: float 6s ease-in-out infinite;
-}
-
-.skill:nth-child(even) {
-  animation: floatReverse 6s ease-in-out infinite;
-  animation-delay: 1s;
-}
 
 /* Experience Section */
 .experience {
@@ -3501,250 +3312,8 @@ section {
   }
 }
 
-@media screen and (max-width: 480px) {
-  .skill {
-    height: 120px;
-    margin-bottom: 6px;
-  }
+/* Old .skill responsive breakpoints removed — Skills component uses .skill-card-modern with its own responsive styles */
 
-  .skill-card {
-    padding: 6px 4px;
-    background: rgba(25, 33, 34, 0.95) !important;
-    border: 1px solid rgba(0, 242, 255, 0.2) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  }
-
-  .skill-header {
-    margin-bottom: 2px;
-  }
-
-  .skill-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .skill-icon img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .skill-name {
-    font-size: 0.7rem;
-    color: #1f2937 !important;
-    font-weight: 700 !important;
-  }
-
-  .skill-description {
-    font-size: 0.55rem;
-    margin-bottom: 2px;
-    line-height: 1.1;
-    color: #374151 !important;
-  }
-
-  .skill-details {
-    margin-bottom: 2px;
-  }
-
-  .skill-level {
-    font-size: 0.5rem;
-    color: #6b7280 !important;
-    font-weight: 600 !important;
-  }
-
-  .skill-progress {
-    height: 2px;
-    margin-bottom: 2px;
-  }
-
-  .skill-percentage {
-    font-size: 0.55rem;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .skill {
-    height: 100px;
-    margin-bottom: 4px;
-  }
-
-  .skill-card {
-    padding: 3px 2px;
-    background: rgba(25, 33, 34, 0.95) !important;
-    border: 1px solid rgba(0, 242, 255, 0.2) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  }
-
-  .skill-header {
-    margin-bottom: 1px;
-  }
-
-  .skill-icon {
-    width: 22px;
-    height: 22px;
-  }
-
-  .skill-icon img {
-    width: 14px;
-    height: 14px;
-  }
-
-  .skill-name {
-    font-size: 0.6rem;
-    color: #1f2937 !important;
-    font-weight: 700 !important;
-  }
-
-  .skill-description {
-    font-size: 0.45rem;
-    margin-bottom: 1px;
-    line-height: 1.05;
-    color: #374151 !important;
-  }
-
-  .skill-details {
-    margin-bottom: 1px;
-  }
-
-  .skill-level {
-    font-size: 0.4rem;
-    color: #6b7280 !important;
-    font-weight: 600 !important;
-  }
-
-  .skill-progress {
-    height: 1px;
-    margin-bottom: 1px;
-  }
-
-  .skill-percentage {
-    font-size: 0.45rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .skill-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 0 4px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .skill-container {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 0 2px;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .skill-container {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 14px !important;
-    padding: 0 8px !important;
-  }
-
-  .skill,
-  .skill-card {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .skill-container {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    padding: 0 4px !important;
-  }
-
-  .skill,
-  .skill-card {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .skill-container {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 6px !important;
-    padding: 0 2px !important;
-  }
-
-  .skill,
-  .skill-card {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .skill,
-  .skill-card {
-    height: 90px !important;
-    min-height: 0 !important;
-    padding: 6px 4px !important;
-    border: 1px solid rgba(0, 242, 255, 0.2) !important;
-    background: rgba(25, 33, 34, 0.95) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  }
-
-  .skill-header {
-    margin-bottom: 2px !important;
-  }
-
-  .skill-icon {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-  .skill-icon img {
-    width: 14px !important;
-    height: 14px !important;
-  }
-
-  .skill-name {
-    font-size: 0.65rem !important;
-    color: #1f2937 !important;
-    font-weight: 700 !important;
-  }
-
-  .skill-description {
-    font-size: 0.5rem !important;
-    margin-bottom: 2px !important;
-    line-height: 1.1 !important;
-    color: #374151 !important;
-  }
-
-  .skill-details {
-    margin-bottom: 2px !important;
-  }
-
-  .skill-level {
-    font-size: 0.45rem !important;
-    color: #6b7280 !important;
-    font-weight: 600 !important;
-  }
-
-  .skill-progress {
-    height: 2px !important;
-    margin-bottom: 2px !important;
-  }
-
-  .skill-percentage {
-    font-size: 0.45rem !important;
-  }
-}
 
 /* General mobile icon improvements */
 @media (max-width: 768px) {
@@ -3772,26 +3341,7 @@ section {
     text-shadow: 0 1px 3px rgba(59, 130, 246, 0.3);
   }
 
-  /* Mobile-specific skill card interactions */
-  .skill:active .skill-card,
-  .skill-card:active {
-    transform: scale(0.98) !important;
-    background: rgba(25, 33, 34, 1) !important;
-    border-color: rgba(0, 242, 255, 0.5) !important;
-    box-shadow: 0 4px 12px rgba(0, 242, 255, 0.2) !important;
-  }
-
-  .skill:active .skill-name {
-    color: #1e40af !important;
-  }
-
-  .skill:active .skill-description {
-    color: #1f2937 !important;
-  }
-
-  .skill:active .skill-level {
-    color: #4b5563 !important;
-  }
+  /* Old .skill:active styles removed — Skills component uses .skill-card-modern */
 }
 
 /* FAB icon labels for mobile */
@@ -3848,18 +3398,8 @@ section {
   visibility: visible !important;
 }
 
-/* Experience Component Styles */
-.experience {
-  padding: 100px 20px;
-}
+/* Experience Component Styles (main definition at L2506) */
 
-.experience-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
 
 .experience-card {
   padding: 40px;
@@ -4085,14 +3625,7 @@ section {
     font-size: 2.5rem;
   }
 
-  .hero {
-    height: 55vh !important;
-    min-height: 0 !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding-top: 60px !important;
-    padding-bottom: 30px !important;
-  }
+  /* Hero mobile layout is now controlled by Hero.jsx component styles */
 
   .hero-content {
     padding: 1rem !important;

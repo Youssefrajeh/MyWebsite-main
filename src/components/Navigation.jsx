@@ -9,7 +9,6 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1100);
-  const [liveWidth, setLiveWidth] = useState(window.innerWidth);
   const [activeItem, setActiveItem] = useState('Home');
   const [typeText, setTypeText] = useState('');
   const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
@@ -19,11 +18,19 @@ const Navigation = () => {
   // Track mobile breakpoint
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1100);
-      setLiveWidth(window.innerWidth);
+      const mobile = window.innerWidth <= 1100;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setIsMobileMenuOpen(false);
+      }
     };
     const mq = window.matchMedia('(max-width: 1100px)');
-    const handler = (e) => setIsMobile(e.matches);
+    const handler = (e) => {
+      setIsMobile(e.matches);
+      if (!e.matches) {
+        setIsMobileMenuOpen(false);
+      }
+    };
     mq.addEventListener('change', handler);
     window.addEventListener('resize', checkMobile);
     return () => {
@@ -31,6 +38,18 @@ const Navigation = () => {
       window.removeEventListener('resize', checkMobile);
     };
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const tick = () => {
@@ -98,11 +117,32 @@ const Navigation = () => {
           position: fixed;
           top: 20px;
           left: 50%;
-          z-index: 1000;
+          z-index: 1060; /* Sits above mobile menu overlays */
           width: 95%;
           max-width: 1100px;
           pointer-events: none;
           background: transparent !important;
+        }
+
+        .logo {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          min-width: 120px; /* Prevents layout jitter during typewriter typing */
+          pointer-events: auto;
+        }
+        
+        @media (max-width: 1100px) {
+          .logo {
+            min-width: 100px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .logo {
+            min-width: 90px;
+          }
         }
         
         .nav-pill {
@@ -237,6 +277,9 @@ const Navigation = () => {
         }
 
         .mobile-link {
+          display: block;
+          width: 100%;
+          text-align: left;
           font-size: 0.95rem;
           color: rgba(220, 228, 228, 0.7);
           text-decoration: none;
@@ -275,6 +318,9 @@ const Navigation = () => {
         }
 
         .mobile-feedback-btn {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
           margin-top: 15px;
           background: rgba(0, 242, 255, 0.05);
           border: 1px solid rgba(0, 242, 255, 0.2);
@@ -341,7 +387,7 @@ const Navigation = () => {
         <div className="nav-pill">
 
           {/* Logo */}
-          <a href="#home" className="logo" onClick={() => handleLinkClick('Home')} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <a href="#home" className="logo" onClick={() => handleLinkClick('Home')}>
             <span className="logo-prompt">▸</span>
             <span className="logo-text">{typeText}</span>
             <span className="logo-cursor" />
@@ -438,6 +484,7 @@ const Navigation = () => {
                 variants={staggerContainer(0.06, 0.15)}
                 initial="hidden"
                 animate="visible"
+                style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}
               >
                 {navItems.map((item) => (
                   <m.a

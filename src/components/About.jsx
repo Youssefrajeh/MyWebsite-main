@@ -70,6 +70,50 @@ const About = () => {
           letter-spacing: 0.05em;
         }
 
+        .about-highlights {
+          margin-top: 25px;
+          margin-bottom: 25px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 16px;
+          width: 100%;
+        }
+
+        .about-highlight-card {
+          background: rgba(25, 33, 34, 0.6);
+          border: 1px solid rgba(0, 242, 255, 0.12);
+          border-radius: 12px;
+          padding: 16px;
+          text-align: left;
+          backdrop-filter: blur(8px);
+          transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-highlight-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(0, 242, 255, 0.35);
+          box-shadow: 0 10px 25px rgba(0, 242, 255, 0.1);
+        }
+
+        .highlight-value {
+          margin: 0 0 6px 0;
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #00f2ff;
+          text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+          text-align: left;
+        }
+
+        .highlight-label {
+          margin: 0;
+          font-family: "Hanken Grotesk", sans-serif;
+          font-size: 0.85rem;
+          color: #b9cacb;
+          text-align: left;
+          line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
           .about-layout {
             flex-direction: column;
@@ -79,6 +123,15 @@ const About = () => {
           .about-photo-frame {
             width: 200px;
             height: 200px;
+          }
+          .about-highlight-card {
+            text-align: center;
+          }
+          .highlight-value {
+            text-align: center;
+          }
+          .highlight-label {
+            text-align: center;
           }
         }
       `}</style>
@@ -129,6 +182,25 @@ const About = () => {
             <m.p variants={staggerItem}>
               I have a strong understanding of software development principles, databases, debugging, and structured workflows gained through academic projects and prior experience in quality-driven technical environments. I'm a detail-oriented problem solver with strong analytical, documentation, and process improvement skills.
             </m.p>
+
+            {/* Highlights Section */}
+            <m.div
+              className="about-highlights"
+              variants={staggerContainer(0.1, 0.15)}
+            >
+              <m.article className="about-highlight-card shimmer" variants={scaleIn}>
+                <p className="highlight-value">Full-Stack Dev</p>
+                <p className="highlight-label">C#, .NET Core & React applications</p>
+              </m.article>
+              <m.article className="about-highlight-card shimmer" variants={scaleIn}>
+                <p className="highlight-value">Systems Specialist</p>
+                <p className="highlight-label">Database query tuning & OS configs</p>
+              </m.article>
+              <m.article className="about-highlight-card shimmer" variants={scaleIn}>
+                <p className="highlight-value">Co-op Experience</p>
+                <p className="highlight-label">Hands-on corporate & technical support</p>
+              </m.article>
+            </m.div>
 
             {/* Language badges with scale-in stagger */}
             <m.div

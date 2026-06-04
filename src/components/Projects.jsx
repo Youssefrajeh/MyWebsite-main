@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { projectsData, projectFilters } from '../data/projectsData';
 import { fadeInUp, scaleStaggerItem, staggerContainer, viewportConfig } from '../utils/motionVariants';
+
+const stackCardVariants = {
+  exit: (customX) => ({
+    x: customX,
+    opacity: 0,
+    scale: 0.8,
+    rotate: customX > 0 ? 18 : -18,
+  })
+};
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -195,7 +205,7 @@ const Projects = () => {
           marginTop: '20px'
         }}>
           <div style={{ position: 'relative', width: '100%', height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="popLayout" custom={exitX}>
               {filteredProjects.length > 0 && (() => {
                 const stackCards = [];
                 const maxVisible = Math.min(filteredProjects.length, 3);
@@ -208,6 +218,8 @@ const Projects = () => {
                     <m.div
                       key={project.id}
                       className="glass-card shimmer"
+                      custom={exitX}
+                      variants={stackCardVariants}
                       style={{
                         position: 'absolute',
                         width: '88vw',
@@ -229,12 +241,7 @@ const Projects = () => {
                         rotate: i === 0 ? 0 : i === 1 ? -4 : 4,
                         opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.5,
                       }}
-                      exit={{
-                        x: exitX,
-                        opacity: 0,
-                        scale: 0.8,
-                        rotate: exitX > 0 ? 18 : -18,
-                      }}
+                      exit="exit"
                       transition={{
                         type: 'spring',
                         stiffness: 300,
@@ -267,14 +274,12 @@ const Projects = () => {
                         <div className="project-card-overlay">
                           <h3 className="project-card-title">{project.title}</h3>
                           <p className="project-card-desc" style={{ display: 'none' }}>{project.description}</p>
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <Link
+                            to={`/project/${project.id}`}
                             className="view-project-btn"
                           >
-                            View Project →
-                          </a>
+                            View Details →
+                          </Link>
                         </div>
                       </div>
                     </m.div>
@@ -337,14 +342,12 @@ const Projects = () => {
                     <p className="project-card-desc">
                       {project.description}
                     </p>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to={`/project/${project.id}`}
                       className="view-project-btn"
                     >
-                      View Project →
-                    </a>
+                      View Details →
+                    </Link>
                   </div>
                 </div>
               </m.div>

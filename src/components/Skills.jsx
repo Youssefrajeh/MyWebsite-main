@@ -3,6 +3,15 @@ import { m, AnimatePresence } from 'motion/react';
 import { skillsData, skillCategories } from '../data/skillsData';
 import { fadeInUp, scaleStaggerItem, staggerContainer, progressBar, viewportConfig } from '../utils/motionVariants';
 
+const stackCardVariants = {
+  exit: (customX) => ({
+    x: customX,
+    opacity: 0,
+    scale: 0.8,
+    rotate: customX > 0 ? 18 : -18,
+  })
+};
+
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -222,7 +231,7 @@ const Skills = () => {
           marginTop: '20px'
         }}>
           <div style={{ position: 'relative', width: '100%', height: '240px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="popLayout" custom={exitX}>
               {filteredSkills.length > 0 && (() => {
                 const stackCards = [];
                 const maxVisible = Math.min(filteredSkills.length, 3);
@@ -235,6 +244,8 @@ const Skills = () => {
                     <m.div
                       key={skill.id}
                       className="skill-card-modern"
+                      custom={exitX}
+                      variants={stackCardVariants}
                       style={{
                         position: 'absolute',
                         width: '88vw',
@@ -258,12 +269,7 @@ const Skills = () => {
                         rotate: i === 0 ? 0 : i === 1 ? -4 : 4,
                         opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.5,
                       }}
-                      exit={{
-                        x: exitX,
-                        opacity: 0,
-                        scale: 0.8,
-                        rotate: exitX > 0 ? 18 : -18,
-                      }}
+                      exit="exit"
                       transition={{
                         type: 'spring',
                         stiffness: 300,

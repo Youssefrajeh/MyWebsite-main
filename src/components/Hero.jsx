@@ -1,13 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence } from "motion/react";
 import { useMagnetic } from "../hooks/useMagnetic";
 import { heroScaleIn, fadeInUp, staggerContainer, staggerItem, viewportConfig } from "../utils/motionVariants";
+import HackerText from "./HackerText";
 
 const Hero = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const { wrapRef: workWrapRef, btnRef: workBtnRef } = useMagnetic(0.3);
   const { wrapRef: contactWrapRef, btnRef: contactBtnRef } = useMagnetic(0.3);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const roles = ["SOFTWARE DEVELOPER", "FULL-STACK ENGINEER", "SYSTEMS ANALYST", "PROBLEM SOLVER"];
+
+  useEffect(() => {
+    const roleInterval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 4500);
+    return () => clearInterval(roleInterval);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -283,7 +293,7 @@ const Hero = () => {
           animate="visible"
           custom={0.4}
         >
-          SOFTWARE DEVELOPER
+          <HackerText text={roles[roleIndex]} />
         </m.span>
 
         {/* Buttons with stagger */}

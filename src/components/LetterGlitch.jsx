@@ -46,6 +46,20 @@ const LetterGlitch = ({
       : null;
   };
 
+  const parseColor = colorStr => {
+    if (colorStr.startsWith('rgb')) {
+      const match = colorStr.match(/\d+/g);
+      if (match && match.length >= 3) {
+        return {
+          r: parseInt(match[0], 10),
+          g: parseInt(match[1], 10),
+          b: parseInt(match[2], 10)
+        };
+      }
+    }
+    return hexToRgb(colorStr);
+  };
+
   const interpolateColor = (start, end, factor) => {
     const result = {
       r: Math.round(start.r + (end.r - start.r) * factor),
@@ -141,8 +155,8 @@ const LetterGlitch = ({
         letter.colorProgress += 0.05;
         if (letter.colorProgress > 1) letter.colorProgress = 1;
 
-        const startRgb = hexToRgb(letter.color);
-        const endRgb = hexToRgb(letter.targetColor);
+        const startRgb = parseColor(letter.color);
+        const endRgb = parseColor(letter.targetColor);
         if (startRgb && endRgb) {
           letter.color = interpolateColor(startRgb, endRgb, letter.colorProgress);
           needsRedraw = true;

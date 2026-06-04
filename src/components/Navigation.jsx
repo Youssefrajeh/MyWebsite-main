@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { fadeInDown, slideInRight, staggerContainer, staggerItem } from '../utils/motionVariants';
@@ -14,6 +15,8 @@ const Navigation = () => {
   const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
   const typeTimerRef = useRef(null);
   const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Track mobile breakpoint
   useEffect(() => {
@@ -103,9 +106,20 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLinkClick = (item) => {
+  const handleLinkClick = (item, e) => {
     setActiveItem(item);
     setIsMobileMenuOpen(false);
+
+    if (location.pathname !== '/') {
+      if (e) e.preventDefault();
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(item.toLowerCase());
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
   };
 
   const navItems = ['Home', 'About', 'Experience', 'Skills', 'Projects', 'Contact'];
@@ -387,7 +401,7 @@ const Navigation = () => {
         <div className="nav-pill">
 
           {/* Logo */}
-          <a href="#home" className="logo" onClick={() => handleLinkClick('Home')}>
+          <a href="#home" className="logo" onClick={(e) => handleLinkClick('Home', e)}>
             <span className="logo-prompt">▸</span>
             <span className="logo-text">{typeText}</span>
             <span className="logo-cursor" />
@@ -401,7 +415,7 @@ const Navigation = () => {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className={`nav-link ${activeItem === item ? 'active' : ''}`}
-                  onClick={() => handleLinkClick(item)}
+                  onClick={(e) => handleLinkClick(item, e)}
                   style={{ position: 'relative' }}
                 >
                   {item}
@@ -491,7 +505,7 @@ const Navigation = () => {
                     key={item}
                     href={`#${item.toLowerCase()}`}
                     className={`mobile-link ${activeItem === item ? 'active' : ''}`}
-                    onClick={() => handleLinkClick(item)}
+                    onClick={(e) => handleLinkClick(item, e)}
                     variants={staggerItem}
                   >
                     {item}

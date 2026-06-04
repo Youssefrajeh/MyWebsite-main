@@ -110,18 +110,26 @@ const Navigation = () => {
   }, []);
 
   const handleLinkClick = (item, e) => {
+    if (e) e.preventDefault();
     setActiveItem(item);
     setIsMobileMenuOpen(false);
 
+    const elementId = item.toLowerCase();
     if (location.pathname !== '/') {
-      if (e) e.preventDefault();
       navigate('/');
       setTimeout(() => {
-        const element = document.getElementById(item.toLowerCase());
+        const element = document.getElementById(elementId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 100);
+      }, 200);
+    } else {
+      setTimeout(() => {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
     }
   };
 

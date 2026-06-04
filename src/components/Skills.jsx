@@ -129,6 +129,7 @@ const Skills = () => {
             overflow-x: auto !important;
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
+            touch-action: pan-x pan-y !important;
             gap: 16px !important;
             padding: 20px 24px !important;
             scroll-behavior: smooth !important;
@@ -145,6 +146,7 @@ const Skills = () => {
             padding: 20px !important;
             gap: 12px !important;
             transform: rotate(-1.5deg);
+            touch-action: pan-x pan-y !important;
             transition: transform 0.3s ease, border-color 0.3s ease;
             align-items: center !important;
             text-align: center !important;

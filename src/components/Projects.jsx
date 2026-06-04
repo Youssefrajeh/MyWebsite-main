@@ -103,6 +103,7 @@ const Projects = () => {
             overflow-x: auto !important;
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
+            touch-action: pan-x pan-y !important;
             gap: 16px !important;
             padding: 20px 24px !important;
             scroll-behavior: smooth !important;
@@ -118,6 +119,7 @@ const Projects = () => {
             max-width: 320px !important;
             height: 380px !important; /* Stable card height for horizontal flow */
             transform: rotate(1.2deg);
+            touch-action: pan-x pan-y !important;
             transition: transform 0.3s ease, border-color 0.3s ease;
           }
           .glass-card:nth-child(even) {

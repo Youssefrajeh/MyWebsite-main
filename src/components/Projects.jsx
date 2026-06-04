@@ -1,35 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { projectsData, projectFilters } from '../data/projectsData';
 import { fadeInUp, scaleStaggerItem, staggerContainer, viewportConfig } from '../utils/motionVariants';
 
-const stackCardVariants = {
-  exit: (customX) => ({
-    x: customX,
-    opacity: 0,
-    scale: 0.8,
-    rotate: customX > 0 ? 18 : -18,
-  })
-};
-
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [exitX, setExitX] = useState(0);
-
-  // Track mobile responsive width
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Reset top card index whenever filter changes
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [activeFilter]);
+  const navigate = useNavigate();
 
   const filteredProjects = activeFilter === 'all'
     ? projectsData
@@ -149,14 +126,48 @@ const Projects = () => {
           .glass-card:active {
             transform: scale(0.97) rotate(0deg) !important;
           }
-          .project-card-overlay { padding: 20px; }
-          .project-card-title { font-size: 1.2rem; margin-bottom: 6px; }
-          .project-card-desc { font-size: 0.85rem; -webkit-line-clamp: 2; margin-bottom: 12px; }
+          .project-card-overlay {
+            padding: 20px !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            background: linear-gradient(to top, rgba(13, 21, 21, 0.98), rgba(13, 21, 21, 0.55)) !important;
+          }
+          .project-card-title {
+            font-size: 1.25rem !important;
+            margin-bottom: 8px !important;
+            text-align: center !important;
+          }
+          .project-card-desc {
+            font-size: 0.85rem !important;
+            -webkit-line-clamp: 3 !important;
+            margin-bottom: 15px !important;
+            text-align: center !important;
+            display: -webkit-box !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+          }
+          .view-project-btn {
+            align-self: center !important;
+          }
         }
         @media (max-width: 480px) {
-          .project-card-overlay { padding: 15px; }
-          .project-card-title { font-size: 1rem; }
-          .project-card-desc { display: none; }
+          .project-card-overlay {
+            padding: 16px !important;
+          }
+          .project-card-title {
+            font-size: 1.15rem !important;
+            margin-bottom: 6px !important;
+          }
+          .project-card-desc {
+            font-size: 0.8rem !important;
+            -webkit-line-clamp: 2 !important;
+            margin-bottom: 12px !important;
+          }
+          .glass-card {
+            flex: 0 0 84vw !important;
+          }
         }
       `}</style>
 
@@ -191,170 +202,65 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* Project Grid / Stack with AnimatePresence */}
-      {isMobile ? (
-        <div className="project-stack-container" style={{
-          position: 'relative',
-          height: '420px',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'visible',
-          marginTop: '20px'
-        }}>
-          <div style={{ position: 'relative', width: '100%', height: '380px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <AnimatePresence mode="popLayout" custom={exitX}>
-              {filteredProjects.length > 0 && (() => {
-                const stackCards = [];
-                const maxVisible = Math.min(filteredProjects.length, 3);
-                for (let i = maxVisible - 1; i >= 0; i--) {
-                  const projectIndex = (currentIndex + i) % filteredProjects.length;
-                  const project = filteredProjects[projectIndex];
-                  const isTop = i === 0;
-                  
-                  stackCards.push(
-                    <m.div
-                      key={project.id}
-                      className="glass-card shimmer"
-                      custom={exitX}
-                      variants={stackCardVariants}
-                      style={{
-                        position: 'absolute',
-                        width: '88vw',
-                        maxWidth: '320px',
-                        height: '380px',
-                        borderRadius: '16px',
-                        overflow: 'hidden',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
-                        boxShadow: isTop ? '0 10px 30px rgba(0, 0, 0, 0.3)' : '0 4px 15px rgba(0, 0, 0, 0.2)',
-                        pointerEvents: isTop ? 'auto' : 'none',
-                        zIndex: 3 - i,
-                        transformOrigin: 'bottom center',
-                        touchAction: isTop ? 'pan-y' : 'auto',
-                      }}
-                      initial={isTop ? { scale: 0.95, y: 15, opacity: 0 } : false}
-                      animate={{
-                        scale: i === 0 ? 1 : i === 1 ? 0.94 : 0.88,
-                        y: i === 0 ? 0 : i === 1 ? 12 : 24,
-                        rotate: i === 0 ? 0 : i === 1 ? -4 : 4,
-                        opacity: i === 0 ? 1 : i === 1 ? 0.85 : 0.5,
-                      }}
-                      exit="exit"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 25,
-                      }}
-                      drag={isTop ? 'x' : false}
-                      dragConstraints={{ left: 0, right: 0 }}
-                      dragElastic={0.6}
-                      onDragEnd={isTop ? (event, info) => {
-                        const threshold = 100;
-                        if (info.offset.x > threshold) {
-                          setExitX(400);
-                          setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-                        } else if (info.offset.x < -threshold) {
-                          setExitX(-400);
-                          setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-                        }
-                      } : undefined}
-                    >
-                      <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                          }}
-                        />
-                        <div className="project-card-overlay">
-                          <h3 className="project-card-title">{project.title}</h3>
-                          <p className="project-card-desc" style={{ display: 'none' }}>{project.description}</p>
-                          <Link
-                            to={`/project/${project.id}`}
-                            className="view-project-btn"
-                          >
-                            View Details →
-                          </Link>
-                        </div>
-                      </div>
-                    </m.div>
-                  );
-                }
-                return stackCards;
-              })()}
-            </AnimatePresence>
-          </div>
-          {filteredProjects.length > 1 && (
-            <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px', color: '#849495', fontSize: '0.85rem', fontFamily: '"Hanken Grotesk", sans-serif' }}>
-              <span>← Swipe left or right →</span>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="project-grid">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <m.div
-                key={project.id}
-                className="glass-card shimmer"
-                variants={scaleStaggerItem}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                layout
-                style={{
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  height: 'clamp(280px, 50vw, 400px)',
-                  position: 'relative',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  borderColor: 'rgba(0, 242, 255, 0.3)',
-                  boxShadow: '0 0 30px rgba(0, 242, 255, 0.15)',
-                  transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
-                }}
-              >
-                <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
-                  <m.img
-                    src={project.image}
-                    alt={project.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                  {/* Overlay with hover reveal via CSS group */}
-                  <div className="project-card-overlay">
-                    <h3 className="project-card-title">
-                      {project.title}
-                    </h3>
-                    <p className="project-card-desc">
-                      {project.description}
-                    </p>
-                    <Link
-                      to={`/project/${project.id}`}
-                      className="view-project-btn"
-                    >
-                      View Details →
-                    </Link>
-                  </div>
+      {/* Project Grid with AnimatePresence */}
+      <div className="project-grid">
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project) => (
+            <m.div
+              key={project.id}
+              className="glass-card shimmer"
+              variants={scaleStaggerItem}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              layout
+              style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                height: 'clamp(280px, 50vw, 400px)',
+                position: 'relative',
+                border: '1px solid rgba(255, 255, 255, 0.06)',
+              }}
+              whileHover={{
+                y: -10,
+                scale: 1.02,
+                borderColor: 'rgba(0, 242, 255, 0.3)',
+                boxShadow: '0 0 30px rgba(0, 242, 255, 0.15)',
+                transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
+              }}
+            >
+              <div className="project-image" style={{ height: '100%', width: '100%', position: 'relative' }}>
+                <m.img
+                  src={project.image}
+                  alt={project.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                />
+                {/* Overlay with details and button */}
+                <div className="project-card-overlay">
+                  <h3 className="project-card-title">
+                    {project.title}
+                  </h3>
+                  <p className="project-card-desc">
+                    {project.description}
+                  </p>
+                  <Link
+                    to={`/project/${project.id}`}
+                    className="view-project-btn"
+                  >
+                    View Details →
+                  </Link>
                 </div>
-              </m.div>
-            ))}
-          </AnimatePresence>
-        </div>
-      )}
+              </div>
+            </m.div>
+          ))}
+        </AnimatePresence>
+      </div>
     </section>
   );
 };

@@ -49,6 +49,36 @@ const About = () => {
           flex: 1;
         }
 
+        .about-status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 16px;
+          background: rgba(0, 248, 170, 0.08);
+          border: 1px solid rgba(0, 248, 170, 0.2);
+          border-radius: 9999px;
+          margin-bottom: 20px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 0.75rem;
+          color: #00f8aa;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+        }
+
+        .about-status-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #00f8aa;
+          box-shadow: 0 0 8px #00f8aa;
+          animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
         .language-badges {
           display: flex;
           gap: 10px;
@@ -114,24 +144,126 @@ const About = () => {
           line-height: 1.4;
         }
 
+        .about-text p {
+          font-family: "Hanken Grotesk", sans-serif;
+          color: #b9cacb;
+          line-height: 1.75;
+          font-size: 1rem;
+        }
+
+        .about-cv-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 36px;
+          background: linear-gradient(135deg, #00f2ff 0%, #00dbe7 100%);
+          color: #00363a;
+          border: none;
+          border-radius: 50px;
+          text-decoration: none;
+          font-family: "Hanken Grotesk", sans-serif;
+          font-weight: 700;
+          font-size: 1rem;
+          box-shadow: 0 4px 20px rgba(0, 242, 255, 0.25);
+          transition: all 0.3s ease;
+        }
+
+        .about-cv-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(0, 242, 255, 0.4);
+        }
+
         @media (max-width: 768px) {
           .about-layout {
             flex-direction: column;
-            gap: 32px;
+            gap: 28px;
             text-align: center;
+            padding: 0 10px;
           }
           .about-photo-frame {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.35), 0 0 80px rgba(0, 248, 170, 0.12);
+          }
+          .about-photo-img {
+            border-radius: 50%;
+          }
+          .about-status-badge {
+            margin-bottom: 16px;
+          }
+          .about-text p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: #a3b5b6;
           }
           .about-highlight-card {
             text-align: center;
+            padding: 14px 12px;
           }
           .highlight-value {
             text-align: center;
+            font-size: 1rem;
           }
           .highlight-label {
             text-align: center;
+            font-size: 0.82rem;
+          }
+          .about-highlights {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+          }
+          .language-badges {
+            gap: 8px;
+          }
+          .language-badge {
+            font-size: 0.7rem;
+            padding: 5px 12px;
+          }
+          .about-cv-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 12px;
+          }
+          #about.about {
+            padding-top: 70px !important;
+            padding-bottom: 30px !important;
+            margin-top: 0px !important;
+          }
+          #about .section-title {
+            margin-top: 0px !important;
+            margin-bottom: 20px !important;
+            font-size: 1.8rem !important;
+          }
+          .about-photo-col {
+            margin-top: 0px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          #about.about {
+            padding-top: 65px !important;
+            padding-bottom: 20px !important;
+            margin-top: 0px !important;
+          }
+          #about .section-title {
+            margin-top: 0px !important;
+            margin-bottom: 16px !important;
+            font-size: 1.6rem !important;
+          }
+          .about-photo-col {
+            margin-top: 0px !important;
+          }
+          .about-photo-frame {
+            width: 140px;
+            height: 140px;
+          }
+          .about-highlights {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          .about-text p {
+            font-size: 0.88rem;
           }
         }
       `}</style>
@@ -176,6 +308,11 @@ const About = () => {
           viewport={viewportConfig}
         >
           <div className="about-text">
+            <m.div className="about-status-badge" variants={staggerItem}>
+              <span className="about-status-dot"></span>
+              Available for Work
+            </m.div>
+
             <m.p variants={staggerItem}>
               I'm a Computer Programming & Analysis co-op student at Fanshawe College with hands-on experience developing full-stack web applications using C#, .NET Core, React, SQL Server, and modern development tools.
             </m.p>
@@ -214,7 +351,7 @@ const About = () => {
 
             {/* CV button */}
             <m.div className="cv-button" variants={staggerItem}>
-              <a href="/Youssef Rajeh.pdf" className="btn primary-btn" download>
+              <a href="/Youssef Rajeh.pdf" className="about-cv-btn" download>
                 <i className="fas fa-download"></i> Download CV
               </a>
             </m.div>

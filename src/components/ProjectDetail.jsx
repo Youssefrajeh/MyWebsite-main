@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { m } from 'motion/react';
 import { projectsData } from '../data/projectsData';
@@ -7,6 +8,10 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const project = projectsData.find((p) => p.id === parseInt(id));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!project) {
     return (
@@ -103,13 +108,13 @@ const ProjectDetail = () => {
         }
 
         .detail-hero-frame {
-          width: 100%;
-          border-radius: 16px;
+          width: 120px;
+          height: 120px;
+          border-radius: 24px;
           overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          margin-bottom: 40px;
-          max-height: 480px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          border: 2px solid rgba(0, 242, 255, 0.25);
+          margin: 0 auto 35px;
+          box-shadow: 0 12px 35px rgba(0, 242, 255, 0.15);
         }
 
         .detail-hero-img {
@@ -308,26 +313,46 @@ const ProjectDetail = () => {
         }
 
         @media (max-width: 768px) {
+          .project-detail-page {
+            padding: 80px 10px 40px !important;
+          }
+
           .detail-wrap {
-            padding: 30px 24px;
+            padding: 24px 16px;
           }
 
           .back-nav-link {
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
           }
 
           .detail-title {
-            font-size: 2.2rem;
-            margin-bottom: 18px;
+            font-size: 2rem;
+            margin-bottom: 16px;
             text-align: center;
+          }
+
+          .detail-hero-frame {
+            width: 60px !important;
+            height: 60px !important;
+            margin: 0 auto 12px !important;
+            border-radius: 12px !important;
+            border: 2px solid rgba(0, 242, 255, 0.25) !important;
+            box-shadow: 0 4px 16px rgba(0, 242, 255, 0.15) !important;
+            overflow: hidden !important;
+          }
+
+          .detail-hero-img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
           }
 
           .detail-layout {
             flex-direction: column;
-            gap: 30px;
+            gap: 24px;
             align-items: center;
           }
 

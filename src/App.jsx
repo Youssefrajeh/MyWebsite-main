@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { LazyMotion, domMax } from "motion/react";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
@@ -74,6 +74,8 @@ function App() {
           }
         />
         <Route path="/project/:id" element={<ProjectDetail />} />
+        {/* Wildcard redirect fallback for unmatched routes */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
     </LazyMotion>

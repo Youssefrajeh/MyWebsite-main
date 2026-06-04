@@ -155,6 +155,35 @@ const Hero = () => {
           z-index: 1;
           opacity: 0.6;
         }
+        .hero-greeting {
+          font-family: "JetBrains Mono", "Space Mono", monospace;
+          font-size: 1rem;
+          color: #00f8aa;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          margin: 0 0 6px 0;
+          display: block;
+          text-align: center;
+          opacity: 0.85;
+        }
+        .hero-name {
+          font-family: "Space Grotesk", sans-serif;
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #e1fdff;
+          text-align: center;
+          margin: 0 0 0.5rem 0;
+          letter-spacing: -0.02em;
+          text-shadow: 0 0 30px rgba(0, 242, 255, 0.25);
+        }
+        .hero-tagline {
+          font-family: "Hanken Grotesk", sans-serif;
+          font-size: 0.95rem;
+          color: #849495;
+          text-align: center;
+          margin: 0 0 1.2rem 0;
+          letter-spacing: 0.02em;
+        }
         .hero-btn {
           color: #dce4e4;
           padding: 20px 50px;
@@ -174,6 +203,17 @@ const Hero = () => {
           background: rgba(0, 242, 255, 0.12);
           border-color: #00f2ff;
           box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
+        }
+        .hero-btn-primary {
+          background: linear-gradient(135deg, #00f2ff 0%, #00dbe7 100%) !important;
+          color: #00363a !important;
+          border: none !important;
+          font-weight: 700 !important;
+          box-shadow: 0 4px 20px rgba(0, 242, 255, 0.3);
+        }
+        .hero-btn-primary:hover {
+          box-shadow: 0 6px 30px rgba(0, 242, 255, 0.5) !important;
+          transform: translateY(-3px) scale(1.04) !important;
         }
         .hero-logo-video {
           width: 420px;
@@ -202,14 +242,18 @@ const Hero = () => {
           display: block;
           text-align: center;
         }
+        .hero-scroll-indicator {
+          display: none;
+        }
         @media (max-width: 768px) {
           #home.hero {
-            height: auto !important;
-            min-height: 100vh !important;
-            padding-top: 80px !important;
-            padding-bottom: 30px !important;
-            align-items: center !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            padding-top: 0px !important;
+            padding-bottom: 10px !important;
+            align-items: flex-start !important;
             justify-content: center !important;
+            overflow: hidden;
           }
           .hero-logo-video {
             width: 85vw;
@@ -217,46 +261,78 @@ const Hero = () => {
             height: auto;
             aspect-ratio: 1;
             margin: 0 auto;
+            -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 72%);
+            mask-image: radial-gradient(circle at center, black 45%, transparent 72%);
           }
           .hero-logo-wrapper {
-            margin-bottom: -50px;
-            margin-top: -60px;
+            margin-bottom: -45px;
+            margin-top: -30px;
             display: flex;
             justify-content: center;
           }
           .hero-title-text {
-            font-size: 1.8rem !important;
-            margin-bottom: 0.5rem !important;
+            font-size: 1.25rem !important;
+            margin-bottom: 0.8rem !important;
+            letter-spacing: 0.08em !important;
           }
           .hero-btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 0.85rem;
+            border-radius: 50px;
+          }
+          .hero-btn-primary {
+            padding: 12px 28px !important;
           }
           .hero-buttons {
             flex-direction: row !important;
             flex-wrap: nowrap !important;
-            gap: 10px !important;
+            gap: 12px !important;
+            margin-bottom: 10px;
           }
           .hero-content {
             padding: 0.5rem !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 60px !important;
+          }
+          .hero-scroll-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            animation: heroScrollBounce 2s ease-in-out infinite;
           }
         }
         @media (max-width: 480px) {
+          #home.hero {
+            padding-top: 0px !important;
+          }
+          .hero-content {
+            margin-top: 40px !important;
+          }
           .hero-logo-video {
             width: 80vw;
-            max-width: 320px;
+            max-width: 330px;
           }
           .hero-logo-wrapper {
-            margin-bottom: -40px;
-            margin-top: -40px;
+            margin-bottom: -35px;
+            margin-top: -20px;
           }
           .hero-title-text {
-            font-size: 1.5rem !important;
+            font-size: 1.1rem !important;
           }
           .hero-btn {
-            padding: 10px 24px;
-            font-size: 0.85rem;
+            padding: 10px 20px;
+            font-size: 0.8rem;
           }
+          .hero-btn-primary {
+            padding: 10px 24px !important;
+          }
+        }
+        @keyframes heroScrollBounce {
+          0%, 100% { transform: translateY(0); opacity: 0.6; }
+          50% { transform: translateY(8px); opacity: 1; }
         }
       `}</style>
 
@@ -307,12 +383,12 @@ const Hero = () => {
             position: 'relative',
             zIndex: 10
           }}
-          variants={staggerContainer(0.15, 0.7)}
+          variants={staggerContainer(0.15, 0.8)}
           initial="hidden"
           animate="visible"
         >
           <m.div className="magnetic-wrap" ref={workWrapRef} variants={staggerItem}>
-            <a ref={workBtnRef} href="#projects" className="hero-btn magnetic-button">
+            <a ref={workBtnRef} href="#projects" className="hero-btn hero-btn-primary magnetic-button">
               View My Work
             </a>
           </m.div>
@@ -322,6 +398,13 @@ const Hero = () => {
             </a>
           </m.div>
         </m.div>
+
+        {/* Scroll down indicator — mobile only */}
+        <div className="hero-scroll-indicator">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#849495" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
       </div>
     </section>
   );

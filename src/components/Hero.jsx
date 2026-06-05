@@ -130,7 +130,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero" ref={containerRef} style={{ 
-      background: `linear-gradient(rgba(13, 21, 21, 0.92), rgba(13, 21, 21, 0.88)), url('/images/hero_bg_v4.png')`,
+      background: `linear-gradient(rgba(13, 21, 21, 0.92), rgba(13, 21, 21, 0.88)), url('images/hero_bg_v4.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: '100vh',
@@ -351,12 +351,12 @@ const Hero = () => {
           animate="visible"
         >
           <video
-            src="/YR.mp4"
+            src="YR.mp4"
             autoPlay
             loop
             muted
             playsInline
-            poster="/images/hero_bg_v4.png"
+            poster="images/hero_bg_v4.png"
             className="hero-logo-video"
           />
         </m.div>

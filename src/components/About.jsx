@@ -291,7 +291,7 @@ const About = () => {
         >
           <div className="about-photo-frame shimmer">
             <img
-              src="/images/youssef.jpeg"
+              src="images/youssef.jpeg"
               alt="Youssef Rajeh"
               className="about-photo-img"
               loading="lazy"
@@ -351,7 +351,7 @@ const About = () => {
 
             {/* CV button */}
             <m.div className="cv-button" variants={staggerItem}>
-              <a href="/Youssef Rajeh.pdf" className="about-cv-btn" download>
+              <a href="Youssef Rajeh.pdf" className="about-cv-btn" download>
                 <i className="fas fa-download"></i> Download CV
               </a>
             </m.div>

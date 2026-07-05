@@ -394,7 +394,7 @@ p {
   padding: 120px 20px;
   background: var(--alt-section-bg);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: visible;
   text-align: center;
   width: 100%;
@@ -2358,7 +2358,7 @@ img {
 /* Ensure all containers respect width */
 section {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   box-sizing: border-box;
 }
 

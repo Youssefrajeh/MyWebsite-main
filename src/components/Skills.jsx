@@ -24,8 +24,8 @@ const Skills = () => {
         }
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 12px;
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
@@ -35,12 +35,12 @@ const Skills = () => {
         .skill-card-modern {
           background: rgba(25, 33, 34, 0.7);
           border: 1px solid rgba(0, 242, 255, 0.1);
-          border-radius: 16px;
-          padding: 24px;
+          border-radius: 10px;
+          padding: 14px 16px;
           backdrop-filter: blur(12px);
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 8px;
           cursor: pointer;
         }
         .skill-card-top {
@@ -49,15 +49,15 @@ const Skills = () => {
           gap: 14px;
         }
         .skill-icon-box {
-          width: 44px;
-          height: 44px;
+          width: 34px;
+          height: 34px;
           background: rgba(13, 21, 21, 0.8);
           border: 1px solid rgba(0, 242, 255, 0.15);
-          border-radius: 12px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px;
+          padding: 6px;
           flex-shrink: 0;
           transition: all 0.3s ease;
         }
@@ -76,7 +76,7 @@ const Skills = () => {
         }
         .skill-card-name {
           font-family: "Space Grotesk", sans-serif;
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 600;
           color: #dce4e4;
           margin: 0 0 2px 0;
@@ -101,15 +101,15 @@ const Skills = () => {
         }
         .skill-card-desc {
           font-family: "Hanken Grotesk", sans-serif;
-          font-size: 0.85rem;
+          font-size: 0.78rem;
           color: #b9cacb;
-          line-height: 1.5;
+          line-height: 1.4;
           margin: 0;
           text-align: left;
         }
         .skill-progress-track {
           width: 100%;
-          height: 4px;
+          height: 3px;
           background: rgba(255, 255, 255, 0.06);
           border-radius: 2px;
           overflow: hidden;
@@ -125,37 +125,16 @@ const Skills = () => {
             margin-bottom: 25px;
           }
           .skills-grid {
-            display: flex !important;
-            overflow-x: auto !important;
-            scroll-snap-type: x mandatory !important;
-            -webkit-overflow-scrolling: touch !important;
-            touch-action: pan-x pan-y !important;
+            grid-template-columns: 1fr !important;
             gap: 16px !important;
-            padding: 20px 24px !important;
-            scroll-behavior: smooth !important;
-            scrollbar-width: none !important;
-            margin: 0 -20px !important; /* Bleed slightly past padding for perfect full-bleed swipe */
-          }
-          .skills-grid::-webkit-scrollbar {
-            display: none !important;
+            padding: 0 10px !important;
+            overflow-x: visible !important;
           }
           .skill-card-modern {
-            scroll-snap-align: center !important;
-            flex: 0 0 78vw !important;
-            max-width: 290px !important;
             padding: 20px !important;
             gap: 12px !important;
-            transform: rotate(-1.5deg);
-            touch-action: pan-x pan-y !important;
-            transition: transform 0.3s ease, border-color 0.3s ease;
             align-items: center !important;
             text-align: center !important;
-          }
-          .skill-card-modern:nth-child(even) {
-            transform: rotate(1.5deg);
-          }
-          .skill-card-modern:active {
-            transform: scale(0.97) rotate(0deg) !important;
           }
           .skill-card-top {
             flex-direction: column !important;
@@ -187,7 +166,7 @@ const Skills = () => {
         whileInView="visible"
         viewport={viewportConfig}
       >
-        Technical Arsenal
+        Skills
       </m.h2>
 
       {/* Skills Categories Filter */}

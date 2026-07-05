@@ -98,34 +98,8 @@ const Projects = () => {
             border-radius: 6px !important;
           }
           .project-grid {
-            display: flex !important;
-            overflow-x: auto !important;
-            scroll-snap-type: x mandatory !important;
-            -webkit-overflow-scrolling: touch !important;
-            touch-action: pan-x pan-y !important;
-            gap: 16px !important;
-            padding: 20px 24px !important;
-            scroll-behavior: smooth !important;
-            scrollbar-width: none !important;
-            margin: 0 -10px !important; /* Bleed slightly past side bounds for full edge-to-edge swiping */
-          }
-          .project-grid::-webkit-scrollbar {
-            display: none !important;
-          }
-          .glass-card {
-            scroll-snap-align: center !important;
-            flex: 0 0 78vw !important;
-            max-width: 320px !important;
-            height: 380px !important; /* Stable card height for horizontal flow */
-            transform: rotate(1.2deg);
-            touch-action: pan-x pan-y !important;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-          }
-          .glass-card:nth-child(even) {
-            transform: rotate(-1.2deg);
-          }
-          .glass-card:active {
-            transform: scale(0.97) rotate(0deg) !important;
+            gap: 20px !important;
+            padding: 0 10px !important;
           }
           .project-card-overlay {
             padding: 20px !important;
@@ -165,9 +139,6 @@ const Projects = () => {
             font-size: 0.8rem !important;
             -webkit-line-clamp: 2 !important;
             margin-bottom: 12px !important;
-          }
-          .glass-card {
-            flex: 0 0 84vw !important;
           }
         }
       `}</style>

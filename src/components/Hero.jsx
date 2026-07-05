@@ -24,7 +24,7 @@ const Hero = () => {
   return (
     <section id="home" className="hero" style={{ 
       background: '#f7f4ef',
-      height: '100vh',
+      minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -32,7 +32,6 @@ const Hero = () => {
     }}>
       <style>{`
         #home.hero {
-          height: 100vh !important;
           min-height: 100vh !important;
         }
         #neural-canvas {
@@ -155,13 +154,12 @@ const Hero = () => {
         }
         @media (max-width: 768px) {
           #home.hero {
-            height: 100vh !important;
-            height: 100dvh !important;
-            padding-top: 0px !important;
-            padding-bottom: 10px !important;
-            align-items: flex-start !important;
+            min-height: auto !important;
+            padding-top: 120px !important;
+            padding-bottom: 28px !important;
+            align-items: center !important;
             justify-content: center !important;
-            overflow: hidden;
+            overflow: visible;
           }
           .hero-logo-video {
             width: 85vw;
@@ -213,7 +211,7 @@ const Hero = () => {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 140px !important;
+            margin-top: 0 !important;
           }
           .hero-scroll-indicator {
             display: flex;
@@ -224,10 +222,11 @@ const Hero = () => {
         }
         @media (max-width: 480px) {
           #home.hero {
-            padding-top: 0px !important;
+            padding-top: 110px !important;
+            padding-bottom: 24px !important;
           }
           .hero-content {
-            margin-top: 120px !important;
+            margin-top: 0 !important;
           }
           .hero-logo-video {
             width: 80vw;

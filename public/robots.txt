@@ -8,6 +8,7 @@ Sitemap: https://youssefrajeh.com/sitemap.xml
 Crawl-delay: 1
 
 # Allow specific files that are important for SEO
+Allow: /llms.txt
 Allow: /images/
 Allow: /styles.css
 Allow: /script.js

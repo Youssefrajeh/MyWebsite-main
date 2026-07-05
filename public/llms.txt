@@ -28,19 +28,19 @@ Youssef is available for software development opportunities involving full-stack
 
 ## Featured Projects
 
-- Breast Cancer Decision Tree: C++ machine learning decision tree project for data preprocessing, model training, and evaluation.
+- Breast Cancer Decision Tree: C++ decision tree classification project for parsing records, building decision branches, and reporting accuracy.
 - FileUsage Analyzer: C++ command-line utility for filesystem usage analysis and storage reporting.
 - Newcomb-Benford Statistics: C++ statistical tool for Benford's Law analysis and anomaly detection.
 - Expression Evaluator: C++ mathematical parser using expression parsing and evaluation algorithms.
-- XO Game: responsive JavaScript tic-tac-toe game with local score tracking and AI play.
+- XO Game: responsive JavaScript tic-tac-toe game with local score tracking and browser-based gameplay.
 - Prayer Times: web application for location-based prayer schedules and countdown timers.
 - Microwave Simulator: Java Swing application modeling microwave states, timing, and GUI behavior.
 - Android Assignment: Kotlin Android application using modern mobile UI and local data workflows.
 - Grades Tracking System: C# JSON-based grade tracking and transcript generation application.
 - Full Stack Application: ASP.NET Core API, React frontend, SQL Server, JWT authentication, and role-based controls.
 - Student Loan Calculator: Java application for amortization and compound interest calculations.
-- Rajehtube Downloader: C# WPF desktop downloader integrating yt-dlp and FFmpeg workflows.
-- WordleGame: C# ASP.NET Core and gRPC distributed Wordle clone.
+- Rajehtube Downloader: C# WPF desktop downloader that works with yt-dlp and FFmpeg process output.
+- WordleGame: C# ASP.NET Core and gRPC Wordle-style project with separate game, word, and console-client components.
 - Stoichiometry: .NET application for chemical formula parsing and molecular mass calculations.
 
 ## Professional Experience

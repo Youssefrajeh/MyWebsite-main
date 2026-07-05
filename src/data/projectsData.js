@@ -4,22 +4,21 @@ export const projectsData = [
     title: 'Breast Cancer Decision Tree',
     category: 'cpp',
     image: '/images/v2/breast_cancer.png',
-    description: 'Machine learning project using decision trees to analyze breast cancer data, featuring data preprocessing, model training, and accuracy evaluation.',
+    description: 'C++ decision tree project for classifying breast cancer records using dataset parsing, tree construction, and accuracy reporting.',
     link: 'https://github.com/Youssefrajeh/BreastCancerDecisionTree',
     duration: 'Oct 2025',
-    role: 'Lead AI Engineer',
-    detailedDescription: 'An analytical and predictive application designed to help identify breast cancer markers using a custom-built machine learning decision tree algorithm. The program processes clinical dataset attributes, establishes logical classification splits, and predicts cancer classification with statistical accuracy reports.',
+    role: 'C++ Developer',
+    detailedDescription: 'A C++ classification project that builds a decision tree from breast cancer dataset records. The program parses clinical attributes, creates logical decision branches, and reports classification results for testing and review.',
     techStack: [
-      { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
-      { name: 'Machine Learning', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' }
+      { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' }
     ],
     features: [
-      'Recursive entropy-based information gain computations for tree splits',
-      'Data cleaning pipeline parsing CSV reports and resolving missing/null attributes',
-      'Cross-validation testing evaluating prediction precision, recall, and F1-score',
-      'Visual decision path generator showing logical branches created by the model'
+      'Decision tree construction using recursive node splitting',
+      'Dataset parsing for structured breast cancer records',
+      'Classification output with basic accuracy checking',
+      'Readable decision paths for reviewing how records are classified'
     ],
-    challenges: 'Designing dynamic tree nodes without bloated memory allocations. Resolved by writing a strict pointer-based node manager in C++ that recursively prunes subtrees using custom threshold metrics, reducing memory footprint by 40% and preventing stack overflow errors on large training runs.'
+    challenges: 'Organizing decision tree nodes and dataset records clearly in C++. Solved by separating parsing, tree-building, and prediction logic so the project stays easier to test and explain.'
   },
   {
     id: 2,
@@ -30,18 +29,17 @@ export const projectsData = [
     link: 'https://github.com/Youssefrajeh/fileusage',
     duration: 'Nov 2025',
     role: 'Solo Developer',
-    detailedDescription: 'A high-performance C++ command-line utility that indexes directory paths, aggregates file sizes, and generates visual storage usage reports. Designed to mimic Linux disk utilization commands but optimized for cross-platform speed and deep path nesting.',
+    detailedDescription: 'A C++ command-line utility that scans directory paths, aggregates file sizes, and prints storage usage summaries. Designed as a practical filesystem analysis tool for understanding where disk space is being used.',
     techStack: [
-      { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
-      { name: 'File System APIs', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
+      { name: 'C++', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' }
     ],
     features: [
-      'Multi-threaded directory traversing using system-level APIs',
+      'Directory traversal for reading nested folders and files',
       'Formatted terminal output with graphical bar charts showing usage splits',
-      'Advanced filter flags supporting file extension types, size ranges, and modification dates',
-      'Direct JSON and CSV export capabilities for scripting automation'
+      'Size summaries that help compare folders quickly',
+      'Command-line workflow focused on practical storage inspection'
     ],
-    challenges: 'Handling access denied folders and circular symlinks without breaking traversal loops. Solved by implementing an error pipeline that silently flags unreadable files while tracking directory inodes to detect and bypass infinite loop paths.'
+    challenges: 'Handling folders that may be unreadable or deeply nested without stopping the whole scan. Solved by keeping traversal errors isolated and continuing with the rest of the directory tree.'
   },
   {
     id: 3,
@@ -90,7 +88,7 @@ export const projectsData = [
     title: 'XO Game',
     category: 'web',
     image: '/images/v2/xo_game.png',
-    description: 'Interactive Tic-Tac-Toe game built with HTML, CSS, and JavaScript featuring responsive design and smooth animations.',
+    description: 'Interactive Tic-Tac-Toe game built with HTML, CSS, and JavaScript featuring responsive layout and clean browser-based gameplay.',
     link: 'https://github.com/Youssefrajeh/XO',
     duration: 'Feb 2026',
     role: 'Frontend Developer',
@@ -101,12 +99,12 @@ export const projectsData = [
       { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' }
     ],
     features: [
-      'Interactive board with smooth CSS keyframe animations and sound effects',
+      'Interactive board with simple browser-based game state',
       'Local score tracking keeping record histories between browser reloads',
-      'Smart AI opponent built using a Minimax algorithm for unbeatable play',
+      'Turn handling and win/draw detection',
       'Responsive design ensuring touch interactions work seamlessly on mobile browsers'
     ],
-    challenges: 'Creating an unbeatable AI opponent without delaying the game loop. Solved by executing a minimax tree search with alpha-beta pruning in JavaScript, ensuring calculations execute in under 5 milliseconds.'
+    challenges: 'Keeping the game logic clear while updating the interface after every move. Solved by separating board state, result checking, and UI updates into smaller JavaScript functions.'
   },
   {
     id: 6,
@@ -116,20 +114,20 @@ export const projectsData = [
     description: 'Web application providing accurate prayer times based on location with beautiful UI and real-time updates for Muslims worldwide.',
     link: 'https://github.com/Youssefrajeh/Prayer-Times',
     duration: 'Mar 2026',
-    role: 'Full-Stack Developer',
-    detailedDescription: 'An interactive web dashboard that queries geolocation APIs to serve real-time prayer schedules based on astronomical calculation methods. Features automated countdown timers, dynamic background changes reflecting the time of day, and location overrides.',
+    role: 'Frontend Developer',
+    detailedDescription: 'An interactive web page that displays prayer times based on location data and calculation settings. It focuses on a clear schedule layout, countdown behavior, and responsive browser use.',
     techStack: [
       { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
       { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
       { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' }
     ],
     features: [
-      'Automated geographical location parsing via HTML5 Geolocation API fallback',
+      'Location-based prayer time lookup',
       'Dynamic countdown timers indicating the remaining hours/minutes for the next event',
-      'Fully responsive UI layout adjusting background gradients according to calculations',
-      'Supports multiple computation methods (ISNA, MWL, Egyptian Authority) via settings panel'
+      'Responsive UI layout for desktop and mobile screens',
+      'Settings support for prayer time calculation preferences'
     ],
-    challenges: 'Managing time zone offsets and daylight savings changes across global queries. Solved by shifting calculation structures to parse Unix timestamps directly and using astronomical coordinate equations computed locally in JavaScript.'
+    challenges: 'Presenting time-based information clearly across different devices. Solved by keeping schedule display, countdown updates, and location handling separate in the JavaScript code.'
   },
   {
     id: 7,
@@ -139,18 +137,18 @@ export const projectsData = [
     description: 'Java application simulating microwave oven functionality with GUI, timer controls, and realistic cooking operations.',
     link: 'https://github.com/Youssefrajeh/Microwave',
     duration: 'Apr 2026',
-    role: 'Lead Developer',
+    role: 'Java Developer',
     detailedDescription: 'An object-oriented Java Swing application simulating the operation of a physical microwave oven. Features comprehensive state modeling representing status changes (idle, heating, paused, open door) and real-time thread synchronization.',
     techStack: [
       { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' }
     ],
     features: [
       'Fully simulated control panel supporting input times, start/stop commands, and preset modes',
-      'Asynchronous countdown thread modeling microwave heating with a visual progress dial',
+      'Countdown logic for modeling microwave heating time',
       'Dynamic state locking preventing heating when the virtual oven door is toggled open',
       'Interactive alert system sounding virtual bleep signals on timer completion'
     ],
-    challenges: 'Synchronizing GUI state updates across background threads without encountering race conditions. Solved by utilizing SwingWorker and wrapping display events within EventQueue.invokeLater, keeping state locks thread-safe.'
+    challenges: 'Keeping the microwave states consistent when users start, pause, stop, or open the virtual door. Solved by modeling each state transition clearly before updating the Swing interface.'
   },
   {
     id: 8,
@@ -160,51 +158,51 @@ export const projectsData = [
     description: 'Native Android application built with Kotlin featuring modern UI components, user interactions, and following Android development best practices.',
     link: 'https://github.com/Youssefrajeh/AndroidAssignment',
     duration: 'May 2026',
-    role: 'Mobile Developer',
-    detailedDescription: 'A native Android application showcasing material design, structured fragments, and structured Kotlin workflows. Features lists built using RecyclerView, custom adapters, and SQLite database integrations.',
+    role: 'Android Developer',
+    detailedDescription: 'A native Android assignment project showcasing Kotlin-based screens, user interactions, and structured mobile app development practices.',
     techStack: [
       { name: 'Kotlin', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg' },
       { name: 'Android SDK', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg' }
     ],
     features: [
-      'Responsive listing components loading data efficiently via custom adapters',
-      'Dynamic search filter capabilities refining card lists instantly',
-      'SQLite repository backend caching user edits and entries',
-      'Seamless multi-activity navigation using Android Navigation Components'
+      'Native Android UI screens built with Kotlin',
+      'User input and interaction handling',
+      'Structured project organization for mobile development',
+      'Mobile layout behavior tested across common screen sizes'
     ],
-    challenges: 'Preventing memory leaks when rotating the device and managing layout configurations. Solved by structuring the application using the Model-View-ViewModel (MVVM) pattern and managing data state inside ViewModel holders.'
+    challenges: 'Learning how to keep Android screens organized while handling user actions. Solved by separating UI logic into focused Kotlin classes and following Android project conventions.'
   },
   {
     id: 9,
     title: 'Grades Tracking System',
     category: 'csharp',
     image: '/images/v2/grades_tracking.png',
-    description: 'JSON-based grade tracking system with C# console application featuring data validation, course management, evaluation tracking, and automated grade calculations with JSON schema validation.',
+    description: 'C# grade tracking console application with JSON data storage, course management, evaluation tracking, and automated grade calculations.',
     link: 'https://github.com/Youssefrajeh/Grades-Tracking-System',
     duration: 'Sep 2025',
     role: 'Systems Developer',
-    detailedDescription: 'A robust C# application that parses student profiles, registers custom courses, imports grade categories, and exports academic transcripts. Backed by structured JSON storage validation.',
+    detailedDescription: 'A C# console application that stores student, course, and evaluation data in JSON format. It supports grade calculations, course tracking, and structured academic record management.',
     techStack: [
       { name: 'C#', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' }
     ],
     features: [
-      'Comprehensive JSON schema validation ensuring imported dataset structures are clean',
+      'JSON-based data storage for student and course records',
       'Calculates weighted grade categories, GPAs, and course progress indicators',
       'CLI menu offering prompt controls, file path queries, and error feedback',
-      'Automated HTML transcript generator converting JSON objects to printable summaries'
+      'Structured output for reviewing academic progress'
     ],
-    challenges: 'Validating nested evaluation categories to verify total weights add up to exactly 100%. Solved by building a validation filter that runs recursive checksum audits on imported JSON files before loading them into active memory.'
+    challenges: 'Making sure grade category weights and entered marks produce reliable totals. Solved by validating input before calculations and keeping the JSON structure predictable.'
   },
   {
     id: 10,
     title: 'Full Stack Application',
     category: 'fullstack',
     image: '/images/v2/full_stack.png',
-    description: 'Complete full-stack web application featuring frontend and backend integration, database management, user authentication, and modern development practices.',
+    description: 'Full-stack practice application connecting an ASP.NET Core backend, React frontend, SQL Server database, and authentication workflow.',
     link: 'https://github.com/Youssefrajeh/Full_Satck',
     duration: 'Oct 2025',
     role: 'Full-Stack Developer',
-    detailedDescription: 'A secure full-stack platform built with ASP.NET Core Web API on the backend and React on the frontend. Uses Entity Framework Core to connect to SQL Server, supporting JWT token authentication and role-based client controls.',
+    detailedDescription: 'A full-stack application built with ASP.NET Core Web API, React, and SQL Server. The project demonstrates API routing, database access, authentication, and frontend/backend communication.',
     techStack: [
       { name: 'C# / .NET', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
       { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
@@ -212,11 +210,11 @@ export const projectsData = [
     ],
     features: [
       'RESTful API routing with secure JWT authorization filters',
-      'Dynamic React dashboard consuming APIs and rendering real-time metrics',
+      'React frontend consuming backend API endpoints',
       'Structured database seeding and migration pipeline handled via EF Core',
-      'Custom middleware layers handling validation errors and logging'
+      'Validation and error-handling patterns for API requests'
     ],
-    challenges: 'Securing user data and managing CORS issues during local and staging deployments. Resolved by writing custom middleware, utilizing secure password hashing (BCrypt), and storing JWT keys in encrypted environment configurations.'
+    challenges: 'Connecting the frontend and backend reliably while handling authentication and CORS. Solved by organizing API routes, frontend service calls, and configuration settings clearly.'
   },
   {
     id: 11,
@@ -226,7 +224,7 @@ export const projectsData = [
     description: 'Java application for managing student loans, calculating monthly payments, and handling invalid input with custom exceptions. Implements OOP, interfaces, and exception handling.',
     link: 'https://github.com/Youssefrajeh/Student-Loan-Calculator',
     duration: 'Nov 2025',
-    role: 'Lead Developer',
+    role: 'Java Developer',
     detailedDescription: 'An analytical Java application designed to calculate compound interest schedules for student loans. Focuses on strict interface modeling, unit testing coverage, and custom nested exception flows.',
     techStack: [
       { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' }
@@ -235,32 +233,31 @@ export const projectsData = [
       'Calculates amortized loan payment schedules including interest splits over time',
       'Custom exception structures catching invalid rates, negative inputs, and out-of-bound ranges',
       'OOP architecture leveraging interfaces to support swap-in calculation algorithms',
-      'Comprehensive JUnit test suites validating calculation accuracies'
+      'Basic validation checks for calculation accuracy'
     ],
-    challenges: 'Handling currency rounding discrepancies across extended amortization tables. Solved by shifting internal values to BigDecimal objects and setting precise banking round modes (ROUND_HALF_EVEN).'
+    challenges: 'Handling currency rounding and invalid user input. Solved by using precise numeric handling and custom exceptions for values outside accepted ranges.'
   },
   {
     id: 12,
     title: 'Rajehtube Downloader',
     category: 'csharp',
     image: '/images/v2/rajehtube.png',
-    description: 'A professional-quality Windows desktop application for downloading YouTube videos and playlists. Acts as a wrapper for yt-dlp and ffmpeg, featuring real-time progress tracking, quality selection, and automatic conversion.',
+    description: 'Windows desktop downloader built with C# and WPF. It works with yt-dlp and FFmpeg to download media and show progress updates.',
     link: 'https://github.com/Youssefrajeh/RajehtubeDownloader',
     duration: 'Dec 2025',
     role: 'Solo Developer',
-    detailedDescription: 'A high-performance Windows desktop downloader built in C# using WPF and the MVVM architecture. It interfaces directly with yt-dlp and FFmpeg to queue downloads, extract audio, mux formats, and save media with real-time download speed reports.',
+    detailedDescription: 'A Windows desktop downloader built in C# using WPF. It launches yt-dlp and FFmpeg processes, reads command output, and updates the interface with download progress and status messages.',
     techStack: [
       { name: 'C# / WPF', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
-      { name: 'yt-dlp', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows/windows-original.svg' },
-      { name: 'FFmpeg', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' }
+      { name: 'Windows Desktop', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg' }
     ],
     features: [
-      'Multi-threaded queuing system allowing concurrent file downloads',
-      'Real-time output stream parsing displaying percentage steps, speeds, and ETA indicators',
-      'Integrated FFmpeg scripts automatically merging high-definition video files and audio channels',
-      'Advanced options panel supporting playlist ranges and audio extraction presets'
+      'Desktop interface for starting and monitoring downloads',
+      'Process output parsing for progress messages',
+      'FFmpeg support for media conversion and merging workflows',
+      'Options for selecting download behavior and output format'
     ],
-    challenges: 'Parsing output stdout logs from CLI child processes in real-time without locking the WPF UI thread. Solved by launching CLI routines asynchronously and parsing stdout lines using reactive regex events dispatched back to the UI thread.',
+    challenges: 'Reading command-line output without freezing the WPF interface. Solved by running external processes asynchronously and updating the UI from parsed progress messages.',
   },
   {
     id: 13,
@@ -270,41 +267,40 @@ export const projectsData = [
     description: 'A distributed Wordle clone built with C#, ASP.NET Core, and gRPC. Features a multi-service architecture including a game server, word provider, and a console-based UI.',
     link: 'https://github.com/Youssefrajeh/WordleGame',
     duration: 'Jan 2026',
-    role: 'Microservices Architect',
-    detailedDescription: 'A high-throughput distributed implementation of the popular Wordle game. Built using ASP.NET Core microservices communicating via gRPC. Includes a centralized game logic engine, dictionary services, and a CLI client.',
+    role: 'C# Developer',
+    detailedDescription: 'A distributed Wordle-style game built with C#, ASP.NET Core, and gRPC. It separates game logic, word validation, and a console client to practice service communication.',
     techStack: [
       { name: 'C# / .NET', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' },
-      { name: 'gRPC', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg' },
-      { name: 'Microservices', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' }
+      { name: 'ASP.NET Core / gRPC', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg' }
     ],
     features: [
-      'gRPC service communication layer ensuring low-latency RPC requests',
-      'Distributed game session storage keeping tracking of multiple concurrent users',
+      'gRPC service communication between project components',
+      'Game session handling for Wordle-style guesses',
       'Separate dictionary service managing dictionary checks and word lists',
-      'Robust error-handling middle layers recovering sessions from server drops'
+      'Console client for playing and testing the game flow'
     ],
-    challenges: 'Maintaining synchronized game state across stateless microservice boundaries. Solved by designing a lightweight gRPC session token framework that routes state payloads in header contexts, avoiding db bottlenecks.'
+    challenges: 'Keeping game state understandable across separate services. Solved by defining clear request and response contracts for the gRPC calls.'
   },
   {
     id: 14,
     title: 'Stoichiometry',
     category: 'csharp',
     image: '/images/v2/stoichiometry.png',
-    description: 'A component-based .NET 9.0 application for chemical formula analysis and molecular mass calculations. Includes a reusable class library and a command-line client.',
+    description: 'A .NET application for parsing chemical formulas and calculating molecular mass through a reusable class library and console client.',
     link: 'https://github.com/Youssefrajeh/Stoichiometry',
     duration: 'Feb 2026',
     role: 'Solo Developer',
-    detailedDescription: 'A .NET 9.0 class library and console application designed to parse complex chemical formulas (like CuSO4 or Fe2(SO4)3), balance chemical equations, and compute molecular mass. Leverages parser tokenizers and dictionary trees.',
+    detailedDescription: 'A .NET class library and console application designed to parse chemical formulas such as CuSO4 and Fe2(SO4)3, then compute molecular mass using stored element data.',
     techStack: [
       { name: 'C# / .NET 9', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg' }
     ],
     features: [
-      'Chemical formula tokenizer parsing element quantities, sub-brackets, and hydrate dots',
-      'Balances unbalanced chemical equations using matrix reduction algebra',
+      'Chemical formula parser for element symbols, quantities, and grouped terms',
+      'Molecular mass calculation using element weight data',
       'Retrieves element weights dynamically using a built-in periodic table system',
       'Exposes fully reusable class library APIs for integration into other applications'
     ],
-    challenges: 'Correctly parsing nested brackets (e.g. Fe(NO3)3) and hydrates in chemical equations. Solved by implementing a stack-based token parser that recursively expands formula nodes and accumulates element atomic counts.'
+    challenges: 'Correctly parsing grouped formulas such as Fe(NO3)3. Solved by expanding grouped terms and accumulating element counts before calculating mass.'
   }
 ];
 

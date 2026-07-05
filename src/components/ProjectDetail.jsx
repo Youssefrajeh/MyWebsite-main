@@ -11,7 +11,13 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    if (project) {
+      document.title = `${project.title} | Youssef Rajeh Portfolio`;
+    }
+    return () => {
+      document.title = 'Youssef Rajeh - Portfolio';
+    };
+  }, [id, project]);
 
   if (!project) {
     return (

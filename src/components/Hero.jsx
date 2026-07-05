@@ -311,7 +311,7 @@ const Hero = () => {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 60px !important;
+            margin-top: 140px !important;
           }
           .hero-scroll-indicator {
             display: flex;
@@ -325,7 +325,7 @@ const Hero = () => {
             padding-top: 0px !important;
           }
           .hero-content {
-            margin-top: 40px !important;
+            margin-top: 120px !important;
           }
           .hero-logo-video {
             width: 80vw;

@@ -330,19 +330,21 @@ const Contact = () => {
           .contact-info-list {
             flex-direction: row !important;
             justify-content: center !important;
-            gap: 15px !important;
+            gap: 10px !important;
             width: 100% !important;
             margin-top: 20px !important;
+            flex-wrap: wrap !important;
           }
           .contact-info-card {
-            width: 50px !important;
-            height: 50px !important;
+            width: 48px !important;
+            height: 48px !important;
             padding: 0 !important;
             border-radius: 50% !important;
             justify-content: center !important;
-            background: rgba(25, 33, 34, 0.7) !important;
-            border: 1px solid rgba(0, 242, 255, 0.15) !important;
-            backdrop-filter: blur(12px) !important;
+            background: #ffffff !important;
+            border: 1px solid #d7dee8 !important;
+            box-shadow: 0 8px 18px rgba(31, 41, 55, 0.08) !important;
+            backdrop-filter: none !important;
           }
           .contact-text-container {
             display: none !important;
@@ -351,18 +353,31 @@ const Contact = () => {
             width: 100% !important;
             height: 100% !important;
             background: transparent !important;
+            border: 0 !important;
             margin: 0 !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
           }
           .contact-info-icon i {
-            color: #00f2ff !important;
-            font-size: 1.2rem !important;
+            color: #2563eb !important;
+            font-size: 1.05rem !important;
           }
           .contact-section-title {
             font-size: 1.8rem !important;
             margin-bottom: 20px !important;
+          }
+        }
+        @media (max-width: 420px) {
+          .contact-info-list {
+            gap: 8px !important;
+          }
+          .contact-info-card {
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .contact-info-icon i {
+            font-size: 1rem !important;
           }
         }
       `}</style>

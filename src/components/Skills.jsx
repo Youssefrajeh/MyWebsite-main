@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { m, AnimatePresence } from 'motion/react';
 import { skillsData, skillCategories } from '../data/skillsData';
 import { fadeInUp, scaleStaggerItem, staggerContainer, progressBar, viewportConfig } from '../utils/motionVariants';

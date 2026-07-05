@@ -42,7 +42,7 @@ const Contact = () => {
       } else {
         throw new Error("Form submission failed");
       }
-    } catch (error) {
+    } catch {
       setStatus("error");
       setShowModal(true);
     }

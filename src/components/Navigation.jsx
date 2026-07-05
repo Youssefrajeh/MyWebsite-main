@@ -1,19 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { fadeInDown, slideInRight, staggerContainer, staggerItem } from '../utils/motionVariants';
-
-const TYPEWRITER_WORDS = ['portfolio', 'C#', '.NET Core', 'React', 'SQL Server', 'C++', 'JavaScript', 'REST APIs'];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1100);
   const [activeItem, setActiveItem] = useState('Home');
-  const [typeText, setTypeText] = useState('');
-  const typeState = useRef({ wordIndex: 0, charIndex: 0, isDeleting: false });
-  const typeTimerRef = useRef(null);
   const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
   const location = useLocation();
   const navigate = useNavigate();
@@ -56,38 +51,6 @@ const Navigation = () => {
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
-
-  useEffect(() => {
-    const tick = () => {
-      const { wordIndex, charIndex, isDeleting } = typeState.current;
-      const currentWord = TYPEWRITER_WORDS[wordIndex];
-
-      if (!isDeleting) {
-        setTypeText(currentWord.substring(0, charIndex + 1));
-        typeState.current.charIndex++;
-        if (typeState.current.charIndex > currentWord.length) {
-          typeState.current.isDeleting = true;
-          typeTimerRef.current = setTimeout(tick, 1800);
-          return;
-        }
-        typeTimerRef.current = setTimeout(tick, 350);
-        return;
-      } else {
-        setTypeText(currentWord.substring(0, charIndex - 1));
-        typeState.current.charIndex--;
-        if (typeState.current.charIndex <= 0) {
-          typeState.current.isDeleting = false;
-          typeState.current.wordIndex = (wordIndex + 1) % TYPEWRITER_WORDS.length;
-          typeTimerRef.current = setTimeout(tick, 2000);
-          return;
-        }
-        typeTimerRef.current = setTimeout(tick, 200);
-        return;
-      }
-    };
-    typeTimerRef.current = setTimeout(tick, 500);
-    return () => clearTimeout(typeTimerRef.current);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -414,8 +377,7 @@ const Navigation = () => {
           {/* Logo */}
           <a href="#home" className="logo" onClick={(e) => handleLinkClick('Home', e)}>
             <span className="logo-prompt">▸</span>
-            <span className="logo-text">{typeText}</span>
-            <span className="logo-cursor" />
+            <span className="logo-text">Youssef Rajeh</span>
           </a>
 
           {/* Desktop nav links — only rendered on desktop */}

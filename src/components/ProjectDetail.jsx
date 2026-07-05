@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { m } from 'motion/react';
 import { projectsData } from '../data/projectsData';
-import { fadeInUp, fadeInLeft, staggerContainer, staggerItem } from '../utils/motionVariants';
+import { fadeInUp, fadeInLeft } from '../utils/motionVariants';
 
 const ProjectDetail = () => {
   const { id } = useParams();

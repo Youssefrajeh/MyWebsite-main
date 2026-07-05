@@ -1,23 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence } from "motion/react";
+import { useEffect, useRef } from "react";
+import { m } from "motion/react";
 import { useMagnetic } from "../hooks/useMagnetic";
-import { heroScaleIn, fadeInUp, staggerContainer, staggerItem, viewportConfig } from "../utils/motionVariants";
-import HackerText from "./HackerText";
+import { fadeInUp, staggerContainer, staggerItem } from "../utils/motionVariants";
 
 const Hero = () => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const { wrapRef: workWrapRef, btnRef: workBtnRef } = useMagnetic(0.3);
   const { wrapRef: contactWrapRef, btnRef: contactBtnRef } = useMagnetic(0.3);
-  const [roleIndex, setRoleIndex] = useState(0);
-  const roles = ["SOFTWARE DEVELOPER", "FULL-STACK ENGINEER", "SYSTEMS ANALYST", "PROBLEM SOLVER"];
-
-  useEffect(() => {
-    const roleInterval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 6000);
-    return () => clearInterval(roleInterval);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -130,16 +120,14 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero" ref={containerRef} style={{ 
-      background: `linear-gradient(rgba(13, 21, 21, 0.92), rgba(13, 21, 21, 0.88)), url('/images/hero_bg_v4.png')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      background: '#f7f4ef',
       height: '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative'
     }}>
-      <canvas ref={canvasRef} id="neural-canvas" />
+      <canvas ref={canvasRef} id="neural-canvas" aria-hidden="true" />
       <style>{`
         #home.hero {
           height: 100vh !important;
@@ -227,6 +215,16 @@ const Hero = () => {
           -webkit-mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
           mask-image: radial-gradient(circle at center, black 35%, transparent 70%);
         }
+        .hero-profile-photo {
+          width: 220px;
+          height: 220px;
+          object-fit: cover;
+          display: block;
+          margin: 0 auto 26px;
+          border-radius: 50%;
+          border: 6px solid #ffffff;
+          box-shadow: 0 18px 35px rgba(31, 41, 55, 0.16);
+        }
         .hero-logo-wrapper:hover .hero-logo-video {
           filter: drop-shadow(0 0 50px rgba(0, 242, 255, 0.3));
         }
@@ -241,6 +239,14 @@ const Hero = () => {
           margin: 0 0 1rem 0;
           display: block;
           text-align: center;
+        }
+        .hero-student-line {
+          max-width: 620px;
+          margin: -0.35rem auto 1.5rem auto;
+          color: #4b5563;
+          font-family: "Hanken Grotesk", sans-serif;
+          font-size: 1.05rem;
+          line-height: 1.7;
         }
         .hero-scroll-indicator {
           display: none;
@@ -271,9 +277,19 @@ const Hero = () => {
             justify-content: center;
           }
           .hero-title-text {
-            font-size: 1.25rem !important;
+            font-size: 2.2rem !important;
             margin-bottom: 0.8rem !important;
-            letter-spacing: 0.08em !important;
+            letter-spacing: 0 !important;
+          }
+          .hero-student-line {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            padding: 0 8px;
+          }
+          .hero-profile-photo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 18px;
           }
           .hero-btn {
             padding: 12px 24px;
@@ -320,7 +336,11 @@ const Hero = () => {
             margin-top: -20px;
           }
           .hero-title-text {
-            font-size: 1.1rem !important;
+            font-size: 1.9rem !important;
+          }
+          .hero-profile-photo {
+            width: 130px;
+            height: 130px;
           }
           .hero-btn {
             padding: 10px 20px;
@@ -342,35 +362,15 @@ const Hero = () => {
         textAlign: 'center',
         zIndex: 2
       }}>
-        {/* Logo with scale-in animation */}
-        <m.div
-          className="hero-logo-wrapper"
-          style={{ marginBottom: '-20px' }}
-          variants={heroScaleIn}
-          initial="hidden"
-          animate="visible"
-        >
-          <video
-            src="/YR.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/hero_bg_v4.png"
-            className="hero-logo-video"
-          />
-        </m.div>
-
-        {/* Title with fade-in-up */}
-        <m.span
-          className="hero-title-text"
+        <m.p
+          className="hero-student-line"
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          custom={0.4}
+          custom={0.55}
         >
-          <HackerText text={roles[roleIndex]} />
-        </m.span>
+          Computer Programming & Analysis student building practical web, database, and software projects.
+        </m.p>
 
         {/* Buttons with stagger */}
         <m.div

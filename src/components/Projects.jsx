@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { projectsData, projectFilters } from '../data/projectsData';
-import { fadeInUp, scaleStaggerItem, staggerContainer, viewportConfig } from '../utils/motionVariants';
+import { fadeInUp, scaleStaggerItem, viewportConfig } from '../utils/motionVariants';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   const filteredProjects = activeFilter === 'all'
     ? projectsData

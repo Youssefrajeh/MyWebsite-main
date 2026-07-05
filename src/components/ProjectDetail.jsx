@@ -52,13 +52,28 @@ const ProjectDetail = () => {
   const handleBackClick = (e) => {
     e.preventDefault();
     navigate('/');
-    // Smooth scroll back to projects section
-    setTimeout(() => {
+
+    let attempts = 0;
+    const scrollToProjects = () => {
       const element = document.getElementById('projects');
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const navOffset = 90;
+        const targetTop = element.getBoundingClientRect().top + window.scrollY - navOffset;
+
+        window.scrollTo({
+          top: Math.max(targetTop, 0),
+          behavior: 'smooth',
+        });
+        return;
       }
-    }, 100);
+
+      attempts += 1;
+      if (attempts < 20) {
+        requestAnimationFrame(scrollToProjects);
+      }
+    };
+
+    requestAnimationFrame(scrollToProjects);
   };
 
   return (

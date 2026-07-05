@@ -1,6 +1,6 @@
 import { m } from 'motion/react';
 import { experienceData } from '../data/experienceData';
-import { fadeInUp, staggerContainer, staggerItem, scaleIn, viewportConfig } from '../utils/motionVariants';
+import { fadeInUp, staggerContainer, staggerItem, scaleIn } from '../utils/motionVariants';
 
 const Experience = () => {
   return (
@@ -8,9 +8,8 @@ const Experience = () => {
       <m.h2
         className="section-title"
         variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportConfig}
+        initial="visible"
+        animate="visible"
       >
         Professional Journey
       </m.h2>
@@ -18,9 +17,8 @@ const Experience = () => {
       <m.div
         className="experience-container"
         variants={staggerContainer(0.15, 0.1)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportConfig}
+        initial="visible"
+        animate="visible"
       >
         {experienceData.map((exp) => (
           <m.div 
@@ -82,9 +80,8 @@ const Experience = () => {
               <m.div
                 className="experience-tech-stack"
                 variants={staggerContainer(0.05, 0)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                initial="visible"
+                animate="visible"
               >
                 {exp.technologies.map((tech, index) => (
                   <m.span key={index} className="tech-tag" variants={scaleIn}>

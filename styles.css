@@ -3888,3 +3888,20 @@ p {
   }
 }
 
+.experience,
+.experience-container,
+.experience-card {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.experience {
+  padding: 90px 20px !important;
+}
+
+.experience-container {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+}
+

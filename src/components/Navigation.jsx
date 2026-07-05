@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { m, AnimatePresence } from 'motion/react';
 import { useMagnetic } from '../hooks/useMagnetic';
@@ -9,9 +9,25 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1100);
   const [activeItem, setActiveItem] = useState('Home');
+  const pendingScrollTarget = useRef(null);
   const { wrapRef: navWrapRef, btnRef: navBtnRef } = useMagnetic(0.25);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const scrollToSection = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (!element) return false;
+
+    const navOffset = 90;
+    const targetTop = element.getBoundingClientRect().top + window.scrollY - navOffset;
+
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: 'smooth',
+    });
+
+    return true;
+  };
 
   // Track mobile breakpoint
   useEffect(() => {
@@ -72,6 +88,19 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== '/' || !pendingScrollTarget.current) return;
+
+    const target = pendingScrollTarget.current;
+    pendingScrollTarget.current = null;
+
+    requestAnimationFrame(() => {
+      if (!scrollToSection(target)) {
+        setTimeout(() => scrollToSection(target), 120);
+      }
+    });
+  }, [location.pathname]);
+
   const handleLinkClick = (item, e) => {
     if (e) e.preventDefault();
     setActiveItem(item);
@@ -79,20 +108,10 @@ const Navigation = () => {
 
     const elementId = item.toLowerCase();
     if (location.pathname !== '/') {
+      pendingScrollTarget.current = elementId;
       navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(elementId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 200);
     } else {
-      setTimeout(() => {
-        const element = document.getElementById(elementId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 150);
+      scrollToSection(elementId);
     }
   };
 

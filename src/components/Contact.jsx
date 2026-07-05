@@ -594,8 +594,8 @@ const Contact = () => {
               <m.a
                 key={index}
                 href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={item.link.startsWith("http") ? "_blank" : undefined}
+                rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="contact-info-card shimmer"
                 variants={staggerItem}
                 whileHover={{

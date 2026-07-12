@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import ProjectDetail from "./components/ProjectDetail";
 import NotFound from "./components/NotFound";
 import LandingPage from "./components/LandingPage";
+import FloatingHubButton from "./components/FloatingHubButton";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -105,6 +106,7 @@ function App() {
     <LazyMotion features={domMax} strict>
       <ScrollToTop />
       {showPortfolioNav && <Navigation />}
+      {showPortfolioNav && <FloatingHubButton />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />

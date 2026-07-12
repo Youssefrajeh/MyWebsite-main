@@ -2,7 +2,7 @@
 
 > AI-readable summary for search engines, answer engines, and assistants.
 
-Youssef Rajeh is a software developer and Computer Programming & Analysis co-op student at Fanshawe College in London, Ontario, Canada. He builds full-stack and systems-focused software with C#, .NET Core, React, SQL Server, JavaScript, Java, C++, Python, PowerShell, and related web technologies.
+Youssef Rajeh is a software developer and Computer Programming & Analysis student at Fanshawe College in London, Ontario, Canada. He builds full-stack and systems-focused software with C#, .NET Core, React, SQL Server, JavaScript, Java, C++, Python, PowerShell, and related web technologies.
 
 ## Primary Site
 

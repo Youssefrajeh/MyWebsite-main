@@ -1,52 +1,23 @@
 import { m } from 'motion/react';
-import { fadeInUp, fadeInLeft, scaleIn, staggerContainer, staggerItem, viewportConfig } from '../utils/motionVariants';
+import { fadeInUp, scaleIn, staggerContainer, staggerItem, viewportConfig } from '../utils/motionVariants';
 
 const About = () => {
   return (
     <section id="about" className="about">
       <style>{`
         .about-layout {
-          display: flex;
-          align-items: center;
-          gap: 60px;
-          max-width: 1100px;
-          margin: 0 auto;
-        }
-
-        .about-photo-frame {
-          width: 260px;
-          height: 260px;
-          border-radius: 16px;
-          padding: 4px;
-          background: linear-gradient(135deg, #00f2ff, #00f8aa, #6366f1, #00f2ff);
-          background-size: 300% 300%;
-          animation: aboutGradientSpin 6s ease infinite;
-          box-shadow: 0 0 30px rgba(0, 242, 255, 0.25), 0 0 60px rgba(0, 248, 170, 0.1);
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .about-photo-frame:hover {
-          transform: scale(1.04) rotate(1deg);
-          box-shadow: 0 0 40px rgba(0, 242, 255, 0.45), 0 0 80px rgba(0, 248, 170, 0.15);
-        }
-
-        .about-photo-img {
-          width: 100%;
-          height: 100%;
-          border-radius: 12px;
-          object-fit: cover;
           display: block;
-          border: 3px solid #0d1515;
-        }
-
-        @keyframes aboutGradientSpin {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          align-items: center;
+          max-width: 860px;
+          margin: 0 auto;
         }
 
         .about-text-col {
           flex: 1;
+        }
+
+        .about-photo-col {
+          display: none;
         }
 
         .about-status-badge {
@@ -175,19 +146,8 @@ const About = () => {
 
         @media (max-width: 768px) {
           .about-layout {
-            flex-direction: column;
-            gap: 28px;
             text-align: center;
             padding: 0 10px;
-          }
-          .about-photo-frame {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.35), 0 0 80px rgba(0, 248, 170, 0.12);
-          }
-          .about-photo-img {
-            border-radius: 50%;
           }
           .about-status-badge {
             margin-bottom: 16px;
@@ -236,9 +196,6 @@ const About = () => {
             margin-bottom: 20px !important;
             font-size: 1.8rem !important;
           }
-          .about-photo-col {
-            margin-top: 0px !important;
-          }
         }
         @media (max-width: 480px) {
           #about.about {
@@ -250,13 +207,6 @@ const About = () => {
             margin-top: 0px !important;
             margin-bottom: 16px !important;
             font-size: 1.6rem !important;
-          }
-          .about-photo-col {
-            margin-top: 0px !important;
-          }
-          .about-photo-frame {
-            width: 140px;
-            height: 140px;
           }
           .about-highlights {
             grid-template-columns: 1fr;
@@ -284,7 +234,7 @@ const About = () => {
         <m.div
           className="about-photo-col"
           style={{ flexShrink: 0 }}
-          variants={fadeInLeft}
+          variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
@@ -314,7 +264,7 @@ const About = () => {
             </m.div>
 
             <m.p variants={staggerItem}>
-              I'm a Computer Programming & Analysis co-op student at Fanshawe College with hands-on experience developing full-stack web applications using C#, .NET Core, React, SQL Server, and modern development tools.
+              I'm a Computer Programming & Analysis student at Fanshawe College with hands-on experience developing full-stack web applications using C#, .NET Core, React, SQL Server, and modern development tools.
             </m.p>
             <m.p variants={staggerItem}>
               I have a strong understanding of software development principles, databases, debugging, and structured workflows gained through academic projects and prior experience in quality-driven technical environments. I'm a detail-oriented problem solver with strong analytical, documentation, and process improvement skills.

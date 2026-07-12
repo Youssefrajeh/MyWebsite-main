@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetail from "./components/ProjectDetail";
 import NotFound from "./components/NotFound";
+import LandingPage from "./components/LandingPage";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ function ScrollToTop() {
   return null;
 }
 
-function HomePage() {
+function PortfolioPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ function HomePage() {
       }
     });
 
-    navigate("/", { replace: true, state: null });
+    navigate("/portfolio", { replace: true, state: null });
   }, [location.state, navigate]);
 
   return (
@@ -67,6 +68,9 @@ function HomePage() {
 }
 
 function App() {
+  const location = useLocation();
+  const showPortfolioNav = location.pathname === "/portfolio" || location.pathname.startsWith("/project/");
+
   useEffect(() => {
     // Scroll to top button
     const scrollTopBtn = document.createElement("div");
@@ -100,9 +104,10 @@ function App() {
   return (
     <LazyMotion features={domMax} strict>
       <ScrollToTop />
-      <Navigation />
+      {showPortfolioNav && <Navigation />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

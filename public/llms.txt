@@ -1,4 +1,4 @@
-# Youssef Rajeh Portfolio
+# Youssef Rajeh Personal Website
 
 > AI-readable summary for search engines, answer engines, and assistants.
 
@@ -7,6 +7,7 @@ Youssef Rajeh is a software developer and Computer Programming & Analysis co-op 
 ## Primary Site
 
 - Website: https://youssefrajeh.com/
+- Portfolio: https://youssefrajeh.com/#/portfolio
 - Resume: https://youssefrajeh.com/Youssef%20Rajeh.pdf
 - GitHub: https://github.com/Youssefrajeh
 - LinkedIn: https://www.linkedin.com/in/youssefrajeh

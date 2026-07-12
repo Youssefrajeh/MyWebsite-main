@@ -89,7 +89,7 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    if (location.pathname !== '/' || !pendingScrollTarget.current) return;
+    if (location.pathname !== '/portfolio' || !pendingScrollTarget.current) return;
 
     const target = pendingScrollTarget.current;
     pendingScrollTarget.current = null;
@@ -107,9 +107,9 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
 
     const elementId = item.toLowerCase();
-    if (location.pathname !== '/') {
+    if (location.pathname !== '/portfolio') {
       pendingScrollTarget.current = elementId;
-      navigate('/');
+      navigate('/portfolio');
     } else {
       scrollToSection(elementId);
     }

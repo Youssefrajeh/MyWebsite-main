@@ -121,7 +121,7 @@ const NotFound = () => {
           <Link className="not-found-btn primary" to="/">
             Back Home
           </Link>
-          <Link className="not-found-btn secondary" to="/" state={{ scrollTo: "projects" }}>
+          <Link className="not-found-btn secondary" to="/portfolio" state={{ scrollTo: "projects" }}>
             View Projects
           </Link>
         </m.div>

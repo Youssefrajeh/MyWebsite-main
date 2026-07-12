@@ -34,7 +34,7 @@ const ProjectDetail = () => {
       }}>
         <h2 style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: '2.5rem', marginBottom: '20px' }}>Project Not Found</h2>
         <p style={{ color: '#b9cacb', marginBottom: '30px' }}>The project you are looking for does not exist or has been moved.</p>
-        <Link to="/" style={{
+        <Link to="/portfolio" style={{
           padding: '12px 30px',
           background: '#00f2ff',
           color: '#00363a',
@@ -51,7 +51,7 @@ const ProjectDetail = () => {
 
   const handleBackClick = (e) => {
     e.preventDefault();
-    navigate('/');
+    navigate('/portfolio');
 
     let attempts = 0;
     const scrollToProjects = () => {
@@ -441,7 +441,7 @@ const ProjectDetail = () => {
 
       <div className="detail-wrap">
         {/* Back navigation */}
-        <a href="/" onClick={handleBackClick} className="back-nav-link">
+        <a href="/#/portfolio" onClick={handleBackClick} className="back-nav-link">
           ← Back to Portfolio
         </a>
 
@@ -533,7 +533,7 @@ const ProjectDetail = () => {
               >
                 <i className="fab fa-github"></i> Visit Repository
               </a>
-              <a href="/" onClick={handleBackClick} className="detail-btn secondary">
+              <a href="/#/portfolio" onClick={handleBackClick} className="detail-btn secondary">
                 Back to Projects
               </a>
             </div>

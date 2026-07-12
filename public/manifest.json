@@ -1,7 +1,7 @@
 {
-  "name": "Youssef Rajeh Portfolio",
-  "short_name": "Portfolio",
-  "description": "Professional portfolio of Youssef Rajeh.",
+  "name": "Youssef Rajeh Personal Website",
+  "short_name": "Youssef Rajeh",
+  "description": "Personal website hub and software portfolio of Youssef Rajeh.",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#f7f4ef",

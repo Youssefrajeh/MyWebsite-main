@@ -3945,8 +3945,16 @@ p {
 .landing-layout > .footer {
   position: relative;
   z-index: 1;
+  align-self: end;
+  padding: 16px 20px;
   background: #f7f4ef;
   border-top: 0;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.landing-layout > .footer .social-links {
+  margin-bottom: 8px;
 }
 
 .landing-layout > .footer p {

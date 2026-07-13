@@ -115,7 +115,7 @@ function App() {
           <Route path="/project/:id" element={<ProjectDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+        <Footer alwaysVisible={isLandingPage} />
       </div>
     </LazyMotion>
   );

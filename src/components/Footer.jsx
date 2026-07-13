@@ -34,13 +34,13 @@ const PhoneIcon = () => (
   </svg>
 );
 
-const Footer = () => {
+const Footer = ({ alwaysVisible = false }) => {
   return (
     <m.footer
       className="footer"
       variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
+      initial={alwaysVisible ? false : "hidden"}
+      whileInView={alwaysVisible ? undefined : "visible"}
       viewport={viewportConfig}
     >
       <div className="social-links">

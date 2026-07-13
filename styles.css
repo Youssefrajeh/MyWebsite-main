@@ -3888,6 +3888,44 @@ p {
   }
 }
 
+@media (max-width: 520px) {
+  .landing-page + .footer {
+    padding: 16px !important;
+  }
+
+  .landing-page + .footer .social-links {
+    gap: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .landing-page + .footer .social-links a {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+
+  .landing-page + .footer .social-links a svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .landing-page + .footer p {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+  }
+}
+
+@media (max-width: 520px) and (max-height: 620px) {
+  .landing-page + .footer {
+    padding: 12px 16px !important;
+  }
+
+  .landing-page + .footer .social-links {
+    margin-bottom: 8px !important;
+  }
+}
+
 .experience,
 .experience-container,
 .experience-card {

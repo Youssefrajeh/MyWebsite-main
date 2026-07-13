@@ -7,7 +7,7 @@ const LandingPage = () => {
     <main className="landing-page">
       <style>{`
         .landing-page {
-          min-height: 100vh;
+          min-height: 100svh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -91,24 +91,54 @@ const LandingPage = () => {
 
         @media (max-width: 520px) {
           .landing-page {
-            align-items: flex-start;
-            padding: 34px 16px;
+            min-height: calc(100svh - 112px);
+            align-items: center;
+            padding: 18px 16px;
           }
 
           .landing-photo {
-            width: 132px;
-            height: 132px;
-            margin-bottom: 24px;
+            width: 118px;
+            height: 118px;
+            margin-bottom: 18px;
+          }
+
+          .landing-kicker {
+            margin-bottom: 8px;
+            font-size: 0.76rem;
+          }
+
+          .landing-title {
+            font-size: clamp(2.45rem, 13vw, 3.4rem);
           }
 
           .landing-summary {
-            font-size: 0.98rem;
-            margin-bottom: 24px;
+            font-size: 0.93rem;
+            line-height: 1.55;
+            margin: 14px auto 18px;
           }
 
           .landing-cta {
+            min-height: 46px;
             width: 100%;
             box-sizing: border-box;
+          }
+        }
+
+        @media (max-width: 520px) and (max-height: 620px) {
+          .landing-page {
+            min-height: calc(100svh - 98px);
+            padding-top: 12px;
+            padding-bottom: 12px;
+          }
+
+          .landing-photo {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 14px;
+          }
+
+          .landing-summary {
+            margin-bottom: 14px;
           }
         }
       `}</style>

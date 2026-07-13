@@ -70,6 +70,7 @@ function PortfolioPage() {
 
 function App() {
   const location = useLocation();
+  const isLandingPage = location.pathname === "/";
   const showPortfolioNav = location.pathname === "/portfolio" || location.pathname.startsWith("/project/");
 
   useEffect(() => {
@@ -107,13 +108,15 @@ function App() {
       <ScrollToTop />
       {showPortfolioNav && <Navigation />}
       {showPortfolioNav && <FloatingHubButton />}
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
+      <div className={isLandingPage ? "landing-layout" : undefined}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </div>
     </LazyMotion>
   );
 }
